@@ -8,8 +8,9 @@ const app = express();
 const api = require('./bin/server/routes/audio');
 
 // Parsers
+app.use(bodyParser());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: true}));
 
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));

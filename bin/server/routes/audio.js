@@ -7,7 +7,8 @@ router.get('/',function(req,res){
 });
 
 router.post('/upload',function(req,res){
-    console.log(req);
+    console.log(req.files);
+    console.log(req.body)
     res.json('success');
 });
 

@@ -8,7 +8,10 @@ export class AudioServiceService {
   constructor(private http: HttpClient) { 
     
   }
-  getMessage() : Observable<string> {
+  public getMessage() : Observable<string> {
     return this.http.get<string>(this.baseUrl);
+  }
+  public upload(formData: FormData) : Observable<any> {
+    return this.http.post(this.baseUrl+'/upload',formData)
   }
 }
