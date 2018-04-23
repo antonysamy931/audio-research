@@ -1,4 +1,4 @@
 <p>
   audio-upload works!
 </p>
-<input type="file" (change)="onFileChange($event)"/>
+<input #audioUpload type="file" accept=".mp3" (change)="onFileChange($event)"/>
