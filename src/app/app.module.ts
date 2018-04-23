@@ -12,7 +12,8 @@ import { DashboardComponentComponent } from './dashboard-component/dashboard-com
 import { AudioServiceService } from './audio-service.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material';
+
+import { AppMaterialModule } from './app-material/app-material.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { MatToolbarModule } from '@angular/material';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    AppMaterialModule
   ],
   providers: [ AudioServiceService ],
   bootstrap: [AppComponent]
