@@ -7,6 +7,7 @@ const app = express();
 
 // API file for interacting with MongoDB
 const api = require('./bin/server/routes/audio');
+const db = require('./bin/server/routes/database');
 
 // Parsers
 app.use(bodyParser.json());

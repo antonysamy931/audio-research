@@ -33,5 +33,3 @@ import { AppMaterialModule } from './app-material/app-material.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-/* https://loiane.com/2017/07/getting-started-with-angular-material-2/ */
