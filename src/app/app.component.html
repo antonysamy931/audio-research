@@ -1,28 +1,2 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<mat-toolbar color="primary">
-  <span class="mat-title-custom">Audio Player</span>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>  
-
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="Redirect('/dashboard')">
-      <mat-icon>home</mat-icon>
-      <span>Dashboard</span>
-    </button>
-    <button mat-menu-item (click)="Redirect('/audioup')">
-      <mat-icon>file_upload</mat-icon>
-      <span>Audio Upload</span>
-    </button>
-    <button mat-menu-item (click)="Redirect('/audiolisten')">
-      <mat-icon>album</mat-icon>
-      <span>Audio Listen</span>
-    </button>
-  </mat-menu>
-</mat-toolbar>
-
-<mat-card class="example-card md-card-min-height">    
-  <mat-card-content>
-    <router-outlet></router-outlet>
-  </mat-card-content>  
-</mat-card>
+<router-outlet></router-outlet>

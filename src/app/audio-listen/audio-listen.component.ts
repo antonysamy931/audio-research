@@ -1,17 +1,23 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AudioServiceService } from '../audio-service.service'
+import { Common } from '../class/common';
+
 @Component({
   selector: 'app-audio-listen',
   templateUrl: './audio-listen.component.html',
   styleUrls: ['./audio-listen.component.css']
 })
-export class AudioListenComponent implements OnInit {  
+export class AudioListenComponent extends Common implements OnInit {  
 
   private apiMessage: any;
   private audioFiles: any = [];
   private currentAudioId: string = "";
 
-  constructor(private audioService: AudioServiceService) { }
+  constructor(private audioService: AudioServiceService, public router:Router) {
+    super(router);
+  }
 
   ngOnInit() {    
     this.loadMessage();

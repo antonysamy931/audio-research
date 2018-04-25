@@ -1,9 +1,40 @@
-<div class="file-field input-field">
-  <div class="btn">
-    <span>File</span>
-    <input type="file" accept=".mp3" (change)="onFileChange($event)">
-  </div>
-  <div class="file-path-wrapper">
-    <input #audioUpload class="file-path validate" type="text" placeholder="Upload one or more files">
-  </div>
-</div>
+<mat-toolbar color="primary">
+  <span class="mat-title-custom">Audio Player</span>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+    <span>Welcome {{Name}}</span>
+  </button>  
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="Redirect('/dashboard')">
+      <mat-icon>home</mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button mat-menu-item (click)="Redirect('/audioup')">
+      <mat-icon>file_upload</mat-icon>
+      <span>Audio Upload</span>
+    </button>
+    <button mat-menu-item (click)="Redirect('/audiolisten')">
+      <mat-icon>album</mat-icon>
+      <span>Audio Listen</span>
+    </button>
+    <button mat-menu-item (click)="Logout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Logout</span>
+    </button>    
+  </mat-menu>
+</mat-toolbar>
+
+<mat-card class="example-card md-card-min-height">    
+  <mat-card-content>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" accept=".mp3" (change)="onFileChange($event)">
+      </div>
+      <div class="file-path-wrapper">
+        <input #audioUpload class="file-path validate" type="text" placeholder="Upload one or more files">
+      </div>
+    </div>
+  </mat-card-content>  
+</mat-card>

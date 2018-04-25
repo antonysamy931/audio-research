@@ -6,8 +6,9 @@ const http = require('http');
 const app = express();
 
 // API file for interacting with MongoDB
-const api = require('./bin/server/routes/audio');
-const db = require('./bin/server/routes/database');
+const api = require(path.join(__dirname,'bin/server/routes/audio'));
+const db = require(path.join(__dirname,'/bin/server/routes/database'));
+const user = require(path.join(__dirname,'/bin/server/routes/userapi'));
 
 // Parsers
 app.use(bodyParser.json());
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // API location
 app.use('/api', api);
+app.use('/user',user);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {
