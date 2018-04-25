@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~material-design-icons/iconfont/material-icons.css';
-@import '../external_modules/materialize/css/materialize.min.css';
+/*@import '../external_modules/materialize/css/materialize.min.css';*/
 
 .md-card-min-height{
     min-height: 750px;
@@ -12,8 +12,15 @@ button:focus{
 }
 
 .mat-title-custom{
-    width: 80%;
-    padding-left: 30%;
+    width: 85%;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.mat-user-welcome-message{
+    text-transform: uppercase;
 }
 
 .mat-menu-item {
@@ -23,4 +30,8 @@ button:focus{
 
 .cdk-focused, .cdk-mouse-focused{
     background-color: "#3f51b5" !important;
+}
+
+.mat-user-button{
+    width:15% !important;
 }

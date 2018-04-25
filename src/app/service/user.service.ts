@@ -14,4 +14,8 @@ export class UserService {
     return this.http.get(this.baseUrl+'/authenticate?UserName='+username+'&Password='+password);
   }
 
+  public getotherusers():Observable<any>{
+    return this.http.get(this.baseUrl+'/getotherusers');
+  }
+
 }

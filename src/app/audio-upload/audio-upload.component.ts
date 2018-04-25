@@ -3,7 +3,11 @@ import { AnimateTimings } from '@angular/core/src/animation/dsl';
 import { Router } from '@angular/router';
 
 import { AudioServiceService } from '../audio-service.service'
+import { UserService } from '../service/user.service';
+
 import { Common } from '../class/common';
+import { User } from '../class/user';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-audio-upload',
@@ -13,13 +17,21 @@ import { Common } from '../class/common';
 
 export class AudioUploadComponent extends Common implements OnInit {
   audioFile: any;
-  constructor(private audioService: AudioServiceService, public router:Router) {
+  constructor(private audioService: AudioServiceService, public router:Router,
+  private userService: UserService) {
     super(router);
   }
 
   @ViewChild('audioUpload')
   private audioElement : any;
+  private Name:string;
+  private Users: any[];
+
   ngOnInit() {
+    if(localStorage.getItem('Name')){
+        this.Name = localStorage.getItem('Name');
+    }
+    this.GetUsers();
   }
 
   onFileChange(event){
@@ -38,6 +50,26 @@ export class AudioUploadComponent extends Common implements OnInit {
           console.log(err)
         });      
     }
+  }
+
+  GetUsers(){
+    this.userService.getotherusers().subscribe(data => {
+      this.Users = data;      
+      /*let users: User[];
+
+      data.forEach(item => {
+        let user: User = {
+          Id : item.ID,
+          Name : item.Name,
+          UserName : item.UserName
+        };
+        users.push(user);        
+      });
+      this.Users = users;*/
+      console.log(this.Users);
+    }, err => {
+      console.log(err);
+    });
   }
 
 }

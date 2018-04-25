@@ -10,6 +10,12 @@ router.get('/authenticate',function(req,res){
     dbhelper.AuthenticateUser(UserName,Password).then(function(result){
         res.json(result);
     });    
-})
+});
+
+router.get('/getotherusers',function(req,res){
+    dbhelper.UsersByUserRole().then(function(result){
+        res.json(result);
+    });
+});
 
 module.exports = router;

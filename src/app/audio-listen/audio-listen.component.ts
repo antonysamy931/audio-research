@@ -14,6 +14,7 @@ export class AudioListenComponent extends Common implements OnInit {
   private apiMessage: any;
   private audioFiles: any = [];
   private currentAudioId: string = "";
+  private Name:string;
 
   constructor(private audioService: AudioServiceService, public router:Router) {
     super(router);
@@ -23,6 +24,9 @@ export class AudioListenComponent extends Common implements OnInit {
     this.loadMessage();
     this.getPlayList();    
     this.currentAudioId = "";
+    if(localStorage.getItem('Name')){
+        this.Name = localStorage.getItem('Name');
+    }
   }
 
   loadMessage(){

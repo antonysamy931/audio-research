@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
   <span class="mat-title-custom">Audio Player</span>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-    <span>Welcome {{Name}}</span>
+  <button mat-icon-button class="mat-user-button" [matMenuTriggerFor]="menu">
+    <span class="mat-user-welcome-message">Welcome {{Name}}</span>
+    <mat-icon>details</mat-icon>    
   </button>  
 
   <mat-menu #menu="matMenu">
@@ -25,11 +25,32 @@
   </mat-menu>
 </mat-toolbar>
 
-<mat-card class="example-card md-card-min-height">    
-  <mat-card-content>
-    <p>
-      dashboard-component works!
-    </p>
-  </mat-card-content>  
+<mat-card class="md-card-min-height">
+  <mat-card class="dashboard-card">    
+    <mat-card-title>
+      <span>Upload Music</span>
+    </mat-card-title>
+    <mat-card-content>
+      <p>
+        The following screen can be used to upload music for users.
+      </p>
+    </mat-card-content> 
+    <mat-card-actions>
+      <button mat-raised-button (click)="Redirect('/audioup')">Click</button>
+    </mat-card-actions> 
+  </mat-card>
+  <mat-card class="dashboard-card">
+    <mat-card-title>
+      Play Music
+    </mat-card-title>    
+    <mat-card-content>
+      <p>
+        The following screen can be used to verify the list of music assigned for an user.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="Redirect('/audiolisten')">Click</button>
+    </mat-card-actions>  
+  </mat-card>
 </mat-card>
 

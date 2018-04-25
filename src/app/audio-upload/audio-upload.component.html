@@ -1,10 +1,10 @@
 <mat-toolbar color="primary">
   <span class="mat-title-custom">Audio Player</span>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-    <span>Welcome {{Name}}</span>
+  <button mat-icon-button class="mat-user-button" [matMenuTriggerFor]="menu">
+    <span class="mat-user-welcome-message">Welcome {{Name}}</span>
+    <mat-icon>details</mat-icon>    
   </button>  
-
+  
   <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="Redirect('/dashboard')">
       <mat-icon>home</mat-icon>

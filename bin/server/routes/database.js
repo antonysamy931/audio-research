@@ -29,7 +29,57 @@ db.serialize(() =>{
 
 db.parallelize(() => {
     InsertRecord(db);
+    InsertUser(db);
+    InsertUser1(db);
 });
+
+function InsertUser(db){
+    let query = "SELECT COUNT('') AS Count FROM Users WHERE UserName = ?";
+    let param = "james";
+    
+    const insertQuery = `INSERT INTO Users VALUES (?,?,?,?,?,?)`;
+
+    var count = 0;        
+    db.each(query,[param],(err, row)=>{
+        if(err){
+            console.log(err);
+        }
+        count = row.Count;        
+    },function(){
+        if(count == 0){
+            var date = new Date().toLocaleDateString()            
+            db.run(insertQuery,[null,"James","james","abc123","user", date],(err) => {
+                if(err){
+                    console.log(err);
+                }                
+            });            
+        }
+    });    
+}
+
+function InsertUser1(db){
+    let query = "SELECT COUNT('') AS Count FROM Users WHERE UserName = ?";
+    let param = "antony";
+    
+    const insertQuery = `INSERT INTO Users VALUES (?,?,?,?,?,?)`;
+
+    var count = 0;        
+    db.each(query,[param],(err, row)=>{
+        if(err){
+            console.log(err);
+        }
+        count = row.Count;        
+    },function(){
+        if(count == 0){
+            var date = new Date().toLocaleDateString();           
+            db.run(insertQuery,[null,"Antony","antony","abc123","user", date],(err) => {
+                if(err){
+                    console.log(err);
+                }                
+            });
+        }    
+    });
+}
 
 function InsertRecord(db){
     let query = "SELECT COUNT('') AS Count FROM Users WHERE UserName = ?";
@@ -45,25 +95,13 @@ function InsertRecord(db){
         count = row.Count;        
     },function(){
         if(count == 0){
-            var date = new Date().toLocaleDateString()            
+            var date = new Date().toLocaleDateString();    
             db.run(insertQuery,[null,"Admin","admin","admin","admin", date],(err) => {
                 if(err){
                     console.log(err);
                 }                
             });
-            db.run(insertQuery,[null,"James","james","abc123","user", date],(err) => {
-                if(err){
-                    console.log(err);
-                }                
-            });
-            db.run(insertQuery,[null,"Antony","antony","abc123","user", date],(err) => {
-                if(err){
-                    console.log(err);
-                }                
-            });
         }
-    },function(){        
-        //FetchRecord(db);
     });
 }
 

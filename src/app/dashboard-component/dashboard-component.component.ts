@@ -10,15 +10,15 @@ import { Common } from '../class/common';
 })
 export class DashboardComponentComponent extends Common implements OnInit {  
   
-  public Name:string;
+  private Name:string;
 
   constructor(public router:Router) { 
     super(router);    
   }
 
   ngOnInit() {
-    if(localStorage.getItem('UserId')){
-        this.Name = localStorage.getItem('UserId');
+    if(localStorage.getItem('Name')){
+        this.Name = localStorage.getItem('Name');
     }
   }
 

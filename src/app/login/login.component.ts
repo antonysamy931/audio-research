@@ -12,8 +12,8 @@ import { Login } from '../class/login';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  username = new FormControl('username', [Validators.required, Validators.email]);
+  public hide : boolean = true;
+  username = new FormControl('username', [Validators.required]);
   password = new FormControl('password', [Validators.required]);
 
   constructor(private userService: UserService, private router: Router) { }

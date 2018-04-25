@@ -40,11 +40,14 @@ function GetUserByUserNameAndPassword(UserName, Password, db) {
 }
 
 function GetUsersByRole(role, db){
-    db.all("Select * from Users Where Role = ?",[role],(err,rows)=>{        
-        if(err){
-            console.log(err);
-        }                
-        return rows;
+    return new Promise(function(resolve,reject){
+        let statement = db.prepare("Select * from Users Where Role = ?");
+        statement.all([role],function(err,rows){
+            if(err){
+                console.log(err);
+            }
+            resolve(rows);
+        });
     });
 }
 
