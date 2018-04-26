@@ -54,7 +54,7 @@ function FileInfoInsert(Id, Name){
     });
     PlayFile = {
         Name : Name,
-        Id: Id
+        UserId: Id
     };
     playrepo.Insert(PlayFile, db);
 }

@@ -33,13 +33,15 @@
         <mat-card-content>
           <ul>
             <li *ngFor="let audio of audioFiles">
-              <div class="audio-listen-audio">
-                <audio controls loop id="{{audio.Id}}" on-play="CurrentPlay(audio.Id)" >      
-                  <source src="{{audio.path}}" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
-              <div class="audio-listen-filename">{{audio.name}}</div>
+              <span *ngIf="audio.UserId.indexOf(user.ID) > -1">
+                <div class="audio-listen-audio">
+                  <audio controls loop id="{{audio.Id}}" on-play="CurrentPlay(audio.Id)" >      
+                    <source src="{{audio.path}}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
+                <div class="audio-listen-filename">{{audio.name}}</div>
+              </span>
             </li>
           </ul>
         </mat-card-content>

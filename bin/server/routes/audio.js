@@ -17,6 +17,10 @@ router.post('/upload',function(req, res, next){
 
     if(req.files)
     {     
+        if(!fs.existsSync(fileDir)){
+            fs.mkdirSync(fileDir);
+        }
+
         let Id = req.query.Id;
         console.log(Id);
         let Name = req.files.audio.name;
@@ -39,6 +43,13 @@ router.get('/getfiles',function(req, res, next){
 
 router.get('/getfile',function(req, res, next){
     res.send(fs.readFileSync(fileDir+req.query.name));
+});
+
+router.get('/getfilesbyuser',function(req,res){
+    let UserId = req.query.Id;
+    dbhelper.GetFilesByUser(UserId).then(function(result){
+        res.json(result);
+    });
 });
 
 module.exports = router;

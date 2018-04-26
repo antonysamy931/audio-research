@@ -17,5 +17,4 @@ export class UserService {
   public getotherusers():Observable<any>{
     return this.http.get(this.baseUrl+'/getotherusers');
   }
-
 }

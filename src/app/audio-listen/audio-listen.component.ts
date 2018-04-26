@@ -25,13 +25,41 @@ export class AudioListenComponent extends Common implements OnInit {
   }
 
   ngOnInit() {    
-    this.loadMessage();
-    this.getPlayList();    
+    this.loadMessage();    
     this.currentAudioId = "";
     if(localStorage.getItem('Name')){
         this.Name = localStorage.getItem('Name');
     }
-    this.GetUsers();
+    this.GetUsers();                
+  }
+
+  mapAudioFileByUser(){
+    this.Users.forEach(record => {
+      this.audioService.getfilesbyuser(record.ID).subscribe(
+        data => {
+          data.forEach(file => {
+            this.audioFiles.forEach(audio => {
+              if(audio.fullname == file.Name){
+                audio.UserId.push(record.ID);
+              }
+            });
+          });
+          console.log(this.audioFiles);
+        }, err =>{
+          console.log(err)
+        }
+      );
+    });
+  }
+
+  getFileNamesByUser(Id:any){
+    this.audioService.getfilesbyuser(Id).subscribe(
+        data => {
+          console.log(data)
+        }, err =>{
+          console.log(err)
+        }
+      );
   }
 
   loadMessage(){
@@ -57,32 +85,26 @@ export class AudioListenComponent extends Common implements OnInit {
           this.audioFiles.push({
             name:element.split('.')[0],
             fullname:element,
+            UserId: [],
             path:'/api/getfile?name='+element,
             Id:element.split('.')[0].replace(' ','_')
           });
         });        
       },
       err => {console.log(err)}
-    )    
+    ,() => {
+      this.mapAudioFileByUser();
+    });    
   }
 
   GetUsers(){
     this.userService.getotherusers().subscribe(data => {
-      this.Users = data;      
-      /*let users: User[];
-
-      data.forEach(item => {
-        let user: User = {
-          Id : item.ID,
-          Name : item.Name,
-          UserName : item.UserName
-        };
-        users.push(user);        
-      });
-      this.Users = users;*/
+      this.Users = data;            
       console.log(this.Users);
     }, err => {
       console.log(err);
+    },()=>{
+      this.getPlayList();
     });
   }
 }

@@ -23,4 +23,8 @@ export class AudioServiceService {
   public getPlayFile(name: string) : Observable<any>{
     return this.http.get(this.baseUrl+'/getfile?name='+name);
   }
+
+  public getfilesbyuser(Id: any) : Observable<any>{
+    return this.http.get(this.baseUrl+'/getfilesbyuser?Id='+Id);
+  }
 }

@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { Observable } from 'rxjs/Observable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SimpleGlobal } from 'ng2-simple-global';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import { AppComponent } from './app.component';
 import { AudioListenComponent } from './audio-listen/audio-listen.component';
@@ -34,7 +35,8 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [ AudioServiceService, UserService, SimpleGlobal ],
   bootstrap: [ AppComponent ]

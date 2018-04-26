@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AnimateTimings } from '@angular/core/src/animation/dsl';
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 import { AudioServiceService } from '../audio-service.service'
 import { UserService } from '../service/user.service';
@@ -19,7 +20,7 @@ import { isNgTemplate } from '@angular/compiler';
 export class AudioUploadComponent extends Common implements OnInit {
   audioFile: any;
   constructor(private audioService: AudioServiceService, public router:Router,
-  private userService: UserService) {
+  private userService: UserService, private spinnerService: Ng4LoadingSpinnerService) {
     super(router);
   }
 
@@ -42,6 +43,7 @@ export class AudioUploadComponent extends Common implements OnInit {
   }
 
   Upload(){
+    this.spinnerService.show();
     let reader = new FileReader();
     const formData: any = new FormData();
     formData.append('audio', this.AudioFile, this.AudioFile.name);      
@@ -50,47 +52,25 @@ export class AudioUploadComponent extends Common implements OnInit {
       {
         console.log(message)          
         this.audioElement.nativeElement.value = "";   
-        this.User="";       
+        this.User=""; 
+        this.user.reset();    
+        this.spinnerService.hide();
       }, err => 
       {
         console.log(err)
       });
   }
 
-  onFileChange(event){
-    //let reader = new FileReader();
+  onFileChange(event){    
     if(event.target.files && event.target.files.length > 0){
       this.AudioFile=event.target.files[0];
-      this.ButtonDisabled = false;
-      /*const formData: any = new FormData();
-      let file = event.target.files[0];
-      formData.append('audio', file, file.name);      
-      this.audioService.upload(formData)
-        .subscribe(message => 
-        {
-          console.log(message)          
-          this.audioElement.nativeElement.value = "";          
-        }, err => 
-        {
-          console.log(err)
-        });*/      
+      this.ButtonDisabled = false;          
     }
   }
 
   GetUsers(){
     this.userService.getotherusers().subscribe(data => {
-      this.Users = data;      
-      /*let users: User[];
-
-      data.forEach(item => {
-        let user: User = {
-          Id : item.ID,
-          Name : item.Name,
-          UserName : item.UserName
-        };
-        users.push(user);        
-      });
-      this.Users = users;*/
+      this.Users = data;            
       console.log(this.Users);
     }, err => {
       console.log(err);
