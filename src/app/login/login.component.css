@@ -31,9 +31,18 @@ input.example-right-align {
 }
 
 .login-form-field{
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .login-card button {
   width:20%;  
+}
+
+.validation-error{
+  color: #f44336;
+}
+
+.login-card-actions{
+  float: right;
+  padding-right: 20px;
 }

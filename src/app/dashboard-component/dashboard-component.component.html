@@ -25,7 +25,7 @@
   </mat-menu>
 </mat-toolbar>
 
-<mat-card class="md-card-min-height">
+<mat-card class="md-card-min-height dashboard-parent-card">
   <mat-card class="dashboard-card">    
     <mat-card-title>
       <span>Upload Music</span>
@@ -35,8 +35,8 @@
         The following screen can be used to upload music for users.
       </p>
     </mat-card-content> 
-    <mat-card-actions>
-      <button mat-raised-button (click)="Redirect('/audioup')">Click</button>
+    <mat-card-actions class="dashboard-card-actions">
+      <button mat-raised-button color="primary" (click)="Redirect('/audioup')">Go here..</button>
     </mat-card-actions> 
   </mat-card>
   <mat-card class="dashboard-card">
@@ -48,8 +48,8 @@
         The following screen can be used to verify the list of music assigned for an user.
       </p>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button (click)="Redirect('/audiolisten')">Click</button>
+    <mat-card-actions class="dashboard-card-actions">
+      <button mat-raised-button color="primary" (click)="Redirect('/audiolisten')">Go here..</button>
     </mat-card-actions>  
   </mat-card>
 </mat-card>

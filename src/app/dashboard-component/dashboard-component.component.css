@@ -1,5 +1,14 @@
 .dashboard-card{
-    width:45%;
+    width: 40%;
     float: left;
-    margin-left:10px;
+    margin-left: 5%;
+}
+
+.dashboard-card-actions{
+    float: right;
+    padding-right: 10px;
+}
+
+.dashboard-parent-card{
+    padding-left: 0!important;
 }

@@ -11,7 +11,7 @@ var User = {
     Name : "",
     UserName : "",
     Password : "",
-    Role : "User"
+    Role : ""
 }
 
 var PlayFile = {
