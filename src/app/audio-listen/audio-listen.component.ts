@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import { Router } from '@angular/router';
 
 import { AudioServiceService } from '../audio-service.service'
+import { UserService } from '../service/user.service';
+
 import { Common } from '../class/common';
 
 @Component({
@@ -15,8 +17,10 @@ export class AudioListenComponent extends Common implements OnInit {
   private audioFiles: any = [];
   private currentAudioId: string = "";
   private Name:string;
+  private Users: any[];
 
-  constructor(private audioService: AudioServiceService, public router:Router) {
+  constructor(private audioService: AudioServiceService, public router:Router,
+  private userService: UserService) {
     super(router);
   }
 
@@ -27,6 +31,7 @@ export class AudioListenComponent extends Common implements OnInit {
     if(localStorage.getItem('Name')){
         this.Name = localStorage.getItem('Name');
     }
+    this.GetUsers();
   }
 
   loadMessage(){
@@ -59,5 +64,25 @@ export class AudioListenComponent extends Common implements OnInit {
       },
       err => {console.log(err)}
     )    
+  }
+
+  GetUsers(){
+    this.userService.getotherusers().subscribe(data => {
+      this.Users = data;      
+      /*let users: User[];
+
+      data.forEach(item => {
+        let user: User = {
+          Id : item.ID,
+          Name : item.Name,
+          UserName : item.UserName
+        };
+        users.push(user);        
+      });
+      this.Users = users;*/
+      console.log(this.Users);
+    }, err => {
+      console.log(err);
+    });
   }
 }

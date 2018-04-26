@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AnimateTimings } from '@angular/core/src/animation/dsl';
 import { Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
 
 import { AudioServiceService } from '../audio-service.service'
 import { UserService } from '../service/user.service';
@@ -26,6 +27,12 @@ export class AudioUploadComponent extends Common implements OnInit {
   private audioElement : any;
   private Name:string;
   private Users: any[];
+  private User: any;
+  private AudioFile: any;
+  private ButtonDisabled: boolean = true;
+  
+  private user = new FormControl('user',[Validators.required]);
+  private file = new FormControl('file',[Validators.required]);
 
   ngOnInit() {
     if(localStorage.getItem('Name')){
@@ -34,10 +41,28 @@ export class AudioUploadComponent extends Common implements OnInit {
     this.GetUsers();
   }
 
-  onFileChange(event){
+  Upload(){
     let reader = new FileReader();
+    const formData: any = new FormData();
+    formData.append('audio', this.AudioFile, this.AudioFile.name);      
+    this.audioService.upload(formData,this.User)
+      .subscribe(message => 
+      {
+        console.log(message)          
+        this.audioElement.nativeElement.value = "";   
+        this.User="";       
+      }, err => 
+      {
+        console.log(err)
+      });
+  }
+
+  onFileChange(event){
+    //let reader = new FileReader();
     if(event.target.files && event.target.files.length > 0){
-      const formData: any = new FormData();
+      this.AudioFile=event.target.files[0];
+      this.ButtonDisabled = false;
+      /*const formData: any = new FormData();
       let file = event.target.files[0];
       formData.append('audio', file, file.name);      
       this.audioService.upload(formData)
@@ -48,7 +73,7 @@ export class AudioUploadComponent extends Common implements OnInit {
         }, err => 
         {
           console.log(err)
-        });      
+        });*/      
     }
   }
 

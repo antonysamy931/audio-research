@@ -46,8 +46,22 @@ function AuthenticateUser(UserName, Password){
     return userrepo.GetUserByUserNameAndPassword(UserName, Password, db);
 }
 
+function FileInfoInsert(Id, Name){
+    let db = new sqlite.Database(databasePath, (err) => {
+        if(err){
+            console.log(err);
+        }    
+    });
+    PlayFile = {
+        Name : Name,
+        Id: Id
+    };
+    playrepo.Insert(PlayFile, db);
+}
+
 module.exports = {
     UsersByUserRole : UsersByUserRole,
     GetFilesByUser : GetFilesByUser,
-    AuthenticateUser : AuthenticateUser
+    AuthenticateUser : AuthenticateUser,
+    FileInfoInsert : FileInfoInsert
 };

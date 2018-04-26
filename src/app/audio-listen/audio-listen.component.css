@@ -1,3 +1,28 @@
 .md-card-min-height{
     min-height: 750px;
 }
+
+.audio-listen-child-card{
+    width:40%;
+    float: left;
+    margin-left: 10px;
+}
+.audio-listen-child-card ul{
+    list-style: none;
+    padding:0;
+}
+.audio-listen-child-title{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+.audio-listen-audio{
+    width:60%;
+    float: left;
+}
+
+.audio-listen-filename{
+    width:40%;
+    float: left;
+    font-size: 12px;
+}

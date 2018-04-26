@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+const path = require('path');
 
 const fileDir = './bin/Files/';
-
+const dbhelper = require(path.join(__dirname,'dbhelper'));
 
 /* Api gets work */
 router.get('/',function(req, res, next){
@@ -15,7 +16,12 @@ router.post('/upload',function(req, res, next){
         return res.status(400).json('No files were uploaded.');
 
     if(req.files)
-    {       
+    {     
+        let Id = req.query.Id;
+        console.log(Id);
+        let Name = req.files.audio.name;
+        dbhelper.FileInfoInsert(Id, Name);
+
         let audioFile = req.files.audio;
         audioFile.mv(fileDir + req.files.audio.name, function(err){
             if (err)

@@ -25,13 +25,17 @@ db.serialize(() =>{
         CreatedDate TEXT NOT NULL,
         FOREIGN KEY(UserId) REFERENCES Users(Id)
     )`);
-});
-
-db.parallelize(() => {
+}).parallelize(()=>{
     InsertRecord(db);
     InsertUser(db);
     InsertUser1(db);
 });
+
+/*db.parallelize(() => {
+    InsertRecord(db);
+    InsertUser(db);
+    InsertUser1(db);
+});*/
 
 function InsertUser(db){
     let query = "SELECT COUNT('') AS Count FROM Users WHERE UserName = ?";

@@ -12,8 +12,8 @@ export class AudioServiceService {
     return this.http.get<string>(this.baseUrl);
   }
 
-  public upload(formData: FormData) : Observable<any> {
-    return this.http.post(this.baseUrl+'/upload',formData)
+  public upload(formData: FormData, Id: any) : Observable<any> {
+    return this.http.post(this.baseUrl+'/upload?Id='+Id,formData)
   }
 
   public getPlayLists() : Observable<any>{

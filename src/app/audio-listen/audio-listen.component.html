@@ -25,15 +25,25 @@
   </mat-menu>
 </mat-toolbar>
 
-<mat-card class="example-card md-card-min-height">    
+<mat-card class="audio-listen-card md-card-min-height">    
   <mat-card-content>
-    <ul>
-      <li *ngFor="let audio of audioFiles">
-        <audio controls loop id="{{audio.Id}}" on-play="CurrentPlay(audio.Id)" >      
-          <source src="{{audio.path}}" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>{{audio.name}}
-      </li>
-    </ul>
+    <div *ngFor="let user of Users">
+      <mat-card class="audio-listen-child-card">
+        <mat-card-title class="audio-listen-child-title">Playlist for <strong>{{user.Name}}</strong></mat-card-title>
+        <mat-card-content>
+          <ul>
+            <li *ngFor="let audio of audioFiles">
+              <div class="audio-listen-audio">
+                <audio controls loop id="{{audio.Id}}" on-play="CurrentPlay(audio.Id)" >      
+                  <source src="{{audio.path}}" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+              <div class="audio-listen-filename">{{audio.name}}</div>
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>          
+    </div>
   </mat-card-content>  
 </mat-card>

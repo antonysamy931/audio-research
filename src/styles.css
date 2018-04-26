@@ -34,4 +34,9 @@ button:focus{
 
 .mat-user-button{
     width:15% !important;
+    font-size: 13px !important;
+}
+
+.mat-user-button .mat-icon{
+    font-size:13px !important;
 }

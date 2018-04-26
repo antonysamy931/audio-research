@@ -17,3 +17,18 @@
 .mdl-textfield--file .mdl-button--file {
     right: 0;
 }
+
+.file-upload-child-card{
+    width:50%;
+    min-height: 200px;
+    left: 23%;
+}
+
+.file-upload-select{
+    width:93%;
+}
+
+.file-upload-actions{
+    float: right;
+    padding-right: 10%;
+}

@@ -25,16 +25,31 @@
   </mat-menu>
 </mat-toolbar>
 
-<mat-card class="example-card md-card-min-height">    
+<mat-card class="file-upload-card md-card-min-height">    
   <mat-card-content>
-    <div class="file-field input-field">
-      <div class="btn">
-        <span>File</span>
-        <input type="file" accept=".mp3" (change)="onFileChange($event)">
-      </div>
-      <div class="file-path-wrapper">
-        <input #audioUpload class="file-path validate" type="text" placeholder="Upload one or more files">
-      </div>
-    </div>
+
+    <mat-card class="file-upload-child-card">
+        <mat-card-title class="file-upload-card-title">Audio Upload</mat-card-title>  
+      <mat-card-content>
+        <mat-form-field class="file-upload-select">
+          <mat-select placeholder="Please Select User" [(ngModel)]="User" [formControl]="user" required>
+            <mat-option *ngFor="let user of Users" [value]="user.ID">{{user.Name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="user.hasError('required')">User is <strong>required</strong>.</mat-error>
+        </mat-form-field>    
+    
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <input #audioUpload type="file" accept=".mp3" (change)="onFileChange($event)">
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="file-upload-actions">
+          <button mat-raised-button [disabled]="user.invalid || ButtonDisabled" 
+          (click)="Upload()">Upload</button>
+      </mat-card-actions>
+    </mat-card>        
+
   </mat-card-content>  
 </mat-card>
