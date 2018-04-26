@@ -9,21 +9,25 @@ function Insert(record, db){
     });
 }
 
-function GetUsers(db){    
-    db.all("Select * from Users", (err,rows)=> {      
-        if(err){
-            console.log(err);
-        }                
-        return rows;        
-    });
+function GetUsers(db){
+    return new Promise(function(resolve,reject){
+        db.all("Select * from Users", (err,rows)=> {      
+            if(err){
+                console.log(err);
+            }                
+            resolve(rows);
+        });
+    });        
 }
 
 function GetUserById(Id, db){    
-    db.get("Select * from Users Where Id = ?",[Id],(err,row)=>{        
-        if(err){
-            console.log(err);
-        }                
-        return row;
+    return new Promise(function(resolve,reject){
+        db.get("Select * from Users Where Id = ?",[Id],(err,row)=>{        
+            if(err){
+                console.log(err);
+            }                
+            resolve(row);
+        });
     });
 }
 
