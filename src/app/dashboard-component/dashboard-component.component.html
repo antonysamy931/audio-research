@@ -1,6 +1,8 @@
 <mat-toolbar color="primary">
   <span class="mat-title-custom">Audio Player</span>
-  <button mat-icon-button class="mat-user-button" [matMenuTriggerFor]="menu">
+  <button mat-icon-button class="mat-user-button" [matMenuTriggerFor]="menu"
+    #menuTrigger="matMenuTrigger"
+    (mouseenter)="menuTrigger.openMenu()">
     <span class="mat-user-welcome-message">Welcome {{Name}}</span>
     <mat-icon>details</mat-icon>    
   </button>  
@@ -26,11 +28,28 @@
 </mat-toolbar>
 
 <mat-card class="md-card-min-height dashboard-parent-card">
-  <mat-card class="dashboard-card">    
-    <mat-card-title>
+  <mat-card class="dashboard-card">
+    <mat-list>    
+      <mat-list-item class="dashboard-mat-list-header">Customer Management</mat-list-item>
+      <mat-divider class="dashboard-mat-divider"></mat-divider>
+      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/customer')">Customers</a></mat-list-item>
+      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/load')">Bulkload Customers / Branches</a></mat-list-item>
+      <mat-list-item></mat-list-item>    
+      <mat-list-item class="dashboard-mat-list-header">User Management</mat-list-item>
+      <mat-divider class="dashboard-mat-divider"></mat-divider>
+      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/users')">Users</a></mat-list-item>      
+      <mat-list-item></mat-list-item>
+      <mat-list-item class="dashboard-mat-list-header">File Management</mat-list-item>
+      <mat-divider class="dashboard-mat-divider"></mat-divider>
+      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/audioup')">Upload Music</a></mat-list-item>
+      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/audiolisten')">Play Music</a></mat-list-item>    
+    </mat-list>  
+  </mat-card>
+  <!--<mat-card class="dashboard-card">    
+    <mat-card-title class="dashboard-mat-card-title">
       <span>Upload Music</span>
     </mat-card-title>
-    <mat-card-content>
+    <mat-card-content class="dashboard-mat-card-content">
       <p>
         The following screen can be used to upload music for users.
       </p>
@@ -40,10 +59,10 @@
     </mat-card-actions> 
   </mat-card>
   <mat-card class="dashboard-card">
-    <mat-card-title>
+    <mat-card-title class="dashboard-mat-card-title">
       Play Music
     </mat-card-title>    
-    <mat-card-content>
+    <mat-card-content class="dashboard-mat-card-content">
       <p>
         The following screen can be used to verify the list of music assigned for an user.
       </p>
@@ -52,5 +71,31 @@
       <button mat-raised-button color="primary" (click)="Redirect('/audiolisten')">Go here..</button>
     </mat-card-actions>  
   </mat-card>
+  <mat-card class="dashboard-card">
+    <mat-card-title class="dashboard-mat-card-title">
+      Customers
+    </mat-card-title>    
+    <mat-card-content class="dashboard-mat-card-content">
+      <p>
+        The following screen can be used to manipulate customer related changes.
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="dashboard-card-actions">
+      <button mat-raised-button color="primary" (click)="Redirect('/customer')">Go here..</button>
+    </mat-card-actions>  
+  </mat-card>
+  <mat-card class="dashboard-card">
+    <mat-card-title class="dashboard-mat-card-title">
+      User Management
+    </mat-card-title>    
+    <mat-card-content class="dashboard-mat-card-content">
+      <p>
+        The following screen can be used to manipulate customer related changes.
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="dashboard-card-actions">
+      <button mat-raised-button color="primary" (click)="Redirect('/customer')">Go here..</button>
+    </mat-card-actions>  
+  </mat-card>-->
 </mat-card>
 

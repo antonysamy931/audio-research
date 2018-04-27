@@ -11,7 +11,11 @@ body{
 }
 
 button:focus{
-    background-color: "#3f51b5" !important;
+    background-color: #3f51b5 !important;
+}
+
+.mat-toolbar.mat-primary{
+    background-color: #303e8c !important
 }
 
 .mat-title-custom{
@@ -31,9 +35,9 @@ button:focus{
     color: rgba(0,0,0,.87) !important;
 }
 
-.cdk-focused, .cdk-mouse-focused{
-    background-color: "#3f51b5" !important;
-}
+/*.cdk-focused, .cdk-mouse-focused, .cdk-program-focused{
+    background-color: #3f51b5 !important;
+}*/
 
 .mat-user-button{
     width:15% !important;
@@ -43,3 +47,148 @@ button:focus{
 .mat-user-button .mat-icon{
     font-size:13px !important;
 }
+
+/*
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-width : 321px) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (max-width : 320px) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen  and (min-width : 1224px) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen  and (min-width : 1824px) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+    .md-card-min-height{
+        min-height: 0;
+    }
+}*/

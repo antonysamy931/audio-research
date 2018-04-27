@@ -11,7 +11,9 @@ import {
   MatInputModule,
   MatOptionModule,
   MatCheckboxModule,
-  MatSelectModule 
+  MatSelectModule,
+  MatListModule,
+  MatDividerModule  
 } from '@angular/material';
 
 @NgModule({
@@ -28,7 +30,9 @@ import {
     MatInputModule,
     MatOptionModule,
     MatCheckboxModule,
-    MatSelectModule
+    MatSelectModule,
+    MatListModule,
+    MatDividerModule
   ],
   declarations: []
 })

@@ -2,13 +2,39 @@
     width: 40%;
     float: left;
     margin-left: 5%;
+    background-color: #eaecf8;
 }
 
 .dashboard-card-actions{
-    float: right;
+    text-align: right;
     padding-right: 10px;
 }
 
 .dashboard-parent-card{
     padding-left: 0!important;
+}
+
+.dashboard-mat-card-title{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.dashboard-mat-card-content{
+    font-size: 15px;
+}
+
+.dashboard-mat-list-header{
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;    
+    color: #3f51b5;
+}
+.dashboard-mat-list-content{
+    font-size: 15px;
+    margin-left: 5%;
+    cursor: pointer;
+    width: 50%;
+}
+.dashboard-mat-divider{
+    margin-left: 0;    
 }

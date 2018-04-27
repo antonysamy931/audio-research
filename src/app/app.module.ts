@@ -19,6 +19,10 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppMaterialModule } from './app-material/app-material.module';
 import { LoginComponent } from './login/login.component';
+import { CustomerComponent } from './customer/customer.component';
+import { BranchComponent } from './branch/branch.component';
+import { UsersComponent } from './users/users.component';
+import { BulkLoadComponent } from './bulk-load/bulk-load.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,7 @@ import { LoginComponent } from './login/login.component';
     AudioListenComponent, 
     AudioUploadComponent, 
     DashboardComponentComponent, 
-    LoginComponent
+    LoginComponent, CustomerComponent, BranchComponent, UsersComponent, BulkLoadComponent
   ],
   imports: [    
     BrowserModule,
