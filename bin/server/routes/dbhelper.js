@@ -4,8 +4,8 @@ const sqlite = require('sqlite3').verbose();
 
 const databasePath = path.join(__dirname ,"../db/Audio_Player.db");
 
-const userrepo = require(path.join(__dirname,'userrepo'));
-const playrepo = require(path.join(__dirname,'playfilerepo'));
+const userrepo = require(path.join(__dirname,'./repo/userrepo'));
+const playrepo = require(path.join(__dirname,'./repo/playfilerepo'));
 
 var User = {
     Name : "",
