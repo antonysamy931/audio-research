@@ -1,28 +1,19 @@
 const crypto = require('crypto');
+const path = require('path');
 
-const ENCRYPTION_KEY = "asdfgbvcxdrtyui2456789@$!789kjhr";
-const IV_LENGTH = 16;
+const config = require(path.join(__dirname, '../constant/config'));
 
-function encrypt(text) {
- let iv = crypto.randomBytes(IV_LENGTH);
- let cipher = crypto.createCipheriv('aes-256-cbc', new Buffer(ENCRYPTION_KEY), iv);
- let encrypted = cipher.update(text);
+const ENCRYPTION_KEY = config.Crypto_Key;
 
- encrypted = Buffer.concat([encrypted, cipher.final()]);
+function encrypt(plainText) {
+    var m = crypto.createHash('md5');
+    m.update(ENCRYPTION_KEY);
+    var key = m.digest();
+    var iv = '\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f';    
+    var cipher = crypto.createCipheriv('aes-128-cbc', key, iv);    
+    var encoded = cipher.update(plainText, 'utf8', 'hex');
+    encoded += cipher.final('hex');
+    return encoded;
+};
 
- return iv.toString('hex') + ':' + encrypted.toString('hex');
-}
-
-function decrypt(text) {
- let textParts = text.split(':');
- let iv = new Buffer(textParts.shift(), 'hex');
- let encryptedText = new Buffer(textParts.join(':'), 'hex');
- let decipher = crypto.createDecipheriv('aes-256-cbc', new Buffer(ENCRYPTION_KEY), iv);
- let decrypted = decipher.update(encryptedText);
-
- decrypted = Buffer.concat([decrypted, decipher.final()]);
-
- return decrypted.toString();
-}
-
-module.exports = { decrypt, encrypt };
+module.exports = { encrypt };

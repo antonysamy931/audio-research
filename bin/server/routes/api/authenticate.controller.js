@@ -1,0 +1,34 @@
+const express = require('express');
+const router = express.Router();
+const path = require('path');
+const jwt = require('jsonwebtoken');
+
+const dbhelper = require(path.join(__dirname,'../dbhelper'));
+const cryptosystem = require(path.join(__dirname, '../helpers/cryptosystem'));
+const config = require(path.join(__dirname, '../constant/config'));
+
+router.post('/login',function(req,res){    
+    let UserName = req.body.UserName;
+    let Password = cryptosystem.encrypt(req.body.Password);
+     
+    dbhelper.authenticaterepo.Login(UserName,Password).then(function(result){
+        if(typeof(result) == 'undefined' || result == null || result == ''){
+            res.status(401).json('Username or password provide incorrect');
+        }else{
+            var token = jwt.sign(JSON.stringify(result),config.My_Secret_Key);
+            var data = {
+                Token : token,
+                Result : result
+            }
+            res.status(201).json(data);
+        }
+    });    
+});
+
+router.get('/getotherusers',function(req,res){
+    dbhelper.UsersByUserRole().then(function(result){
+        res.json(result);
+    });
+});
+
+module.exports = router;

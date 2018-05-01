@@ -5,10 +5,13 @@ const path = require('path');
 const http = require('http');
 const app = express();
 
-// API file for interacting with MongoDB
-const api = require(path.join(__dirname,'bin/server/routes/audio'));
-const db = require(path.join(__dirname,'/bin/server/routes/database'));
-const user = require(path.join(__dirname,'/bin/server/routes/userapi'));
+const config = require(path.join(__dirname, '/bin/server/routes/constant/config'));
+
+// API file for interacting with Sqlite Database
+const api = require(path.join(__dirname,'bin/server/routes/api/audio.controller'));
+const db = require(path.join(__dirname,'/bin/server/routes/database.init'));
+const user = require(path.join(__dirname,'/bin/server/routes/api/user.controller'));
+const authentication = require(path.join(__dirname, '/bin/server/routes/api/authenticate.controller'));
 
 // Parsers
 app.use(bodyParser.json());
@@ -27,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // API location
 app.use('/api', api);
 app.use('/user',user);
+app.use('/auth',authentication);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {

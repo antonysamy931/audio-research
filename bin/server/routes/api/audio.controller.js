@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const fileDir = './bin/Files/';
-const dbhelper = require(path.join(__dirname,'dbhelper'));
+const dbhelper = require(path.join(__dirname,'../dbhelper'));
 
 /* Api gets work */
 router.get('/',function(req, res, next){

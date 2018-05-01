@@ -5,6 +5,7 @@ const sqlite = require('sqlite3').verbose();
 const guid = require(path.join(__dirname,'./helpers/guid'));
 const crypto = require(path.join(__dirname,'./helpers/cryptosystem'));
 const logger = require(path.join(__dirname, './helpers/logger'));
+const db = require(path.join(__dirname, './helpers/db.instance'));
 
 const databaseAudioPath = path.join(__dirname ,"../db/audio_player.db");
 const databaseUserPath = path.join(__dirname, "../db/user_master.db");
@@ -15,32 +16,8 @@ const errorlog = logger.getLogger('error');
 const infolog = logger.getLogger('info');
 const debuglog = logger.getLogger('debug');
 
-let db = new sqlite.Database(databaseAudioPath, (err) => {
-    if(err){
-        errorlog.error(err);
-    }    
-});
-
-let dbUser = new sqlite.Database(databaseUserPath, (err) => {
-    if(err){
-        errorlog.error(err);
-    }    
-});
-
-let dbCustomer = new sqlite.Database(databaseCustomerPath, (err) => {
-    if(err){
-        errorlog.error(err);
-    }    
-});
-
-let dbAudit = new sqlite.Database(databaseAuditPath, (err) => {
-    if(err){
-        errorlog.error(err);
-    }    
-});
-
-dbCustomer.serialize(() => {
-    dbCustomer.run(`CREATE TABLE IF NOT EXISTS Customer(
+db.customer_db.serialize(() => {
+    db.customer_db.run(`CREATE TABLE IF NOT EXISTS Customer(
         ID TEXT NOT NULL PRIMARY KEY,
         Name TEXT NOT NULL,
         Description TEXT NOT NULL,
@@ -61,11 +38,19 @@ dbCustomer.serialize(() => {
         UpdatedDate TEXT NULL,
         Active INTEGER DEFAULT 1,
         FOREIGN KEY(CustomerId) REFERENCES Customer(ID)
+    )`).run(`CREATE TABLE IF NOT EXISTS Address (
+        ID INTEGER PRIMARY KEY,
+        AddressLine1 TEXT NULL,
+        AddressLine2 TEXT NULL,
+        City TEXT NULL,
+        State TEXT NULL,
+        CustomerId TEXT NULL,
+        BranchId TEXT NULL
     )`); 
 });
 
-dbUser.serialize(() => {
-    dbUser.run(`CREATE TABLE IF NOT EXISTS Users(
+db.user_db.serialize(() => {
+    db.user_db.run(`CREATE TABLE IF NOT EXISTS Users(
         ID TEXT NOT NULL PRIMARY KEY,
         Name TEXT NOT NULL,
         UserName TEXT NOT NULL,
@@ -89,11 +74,11 @@ dbUser.serialize(() => {
         FOREIGN KEY(UserId) REFERENCES Users(ID)
     )`);
 }).parallelize(() => {
-    InsertRecord(dbUser);
+    InsertRecord(db.user_db);
 });
 
-db.serialize(() =>{
-    db.run(`CREATE TABLE IF NOT EXISTS PlayList(
+db.audio_db.serialize(() =>{
+    db.audio_db.run(`CREATE TABLE IF NOT EXISTS PlayList(
         Id INTEGER PRIMARY KEY,
         Name TEXT NOT NULL,
         UserId TEXT NOT NULL,
@@ -106,15 +91,16 @@ db.serialize(() =>{
 }).parallelize(()=>{    
 });
 
-dbAudit.serialize(() => {
-    dbAudit.run(`CREATE TABLE IF NOT EXISTS UserAudit(
+db.audit_db.serialize(() => {
+    db.audit_db.run(`CREATE TABLE IF NOT EXISTS UserAudit(
         Id INTEGER PRIMARY KEY,
         UserAction TEXT NOT NULL,
         UserId TEXT NOT NULL,
         Customer TEXT NULL,
         CustomerId TEXT NULL,
         Branch TEXT NULL,
-        BranchId TEXT NULL
+        BranchId TEXT NULL,
+        Date TEXT NOT NULL
         )`).run(`CREATE TABLE IF NOT EXISTS AudioMonitor(
             Id INTEGER PRIMARY KEY,
             Song TEXT NOT NULL,
@@ -212,9 +198,3 @@ function FetchRecord(db){
         console.log(row);
     });
 }
-
-db.close((err) => {
-    if(err){
-        errorlog.error(err);
-    }    
-});
