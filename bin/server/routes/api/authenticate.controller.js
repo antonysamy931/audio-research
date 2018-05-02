@@ -20,15 +20,24 @@ router.post('/login',function(req,res){
                 Token : token,
                 Result : result
             }
+            if(typeof(result.CustomerId) == 'undefined' || result.CustomerId == null){
+                if(result.UserRole == 'admin'){
+                    data.Result.IsSuperAdmin = true;
+                } else if(result.UserRole == 'member'){
+                    data.Result.IsSuperMember = true;
+                }
+            }
             res.status(201).json(data);
         }
     });    
 });
 
-router.get('/getotherusers',function(req,res){
-    dbhelper.UsersByUserRole().then(function(result){
-        res.json(result);
-    });
+router.post('/logout',function(req, res){           
+    var Result = {
+        token: null,
+        message: "User logged out successfully"
+    } 
+    res.status(201).json(Result);
 });
 
 module.exports = router;

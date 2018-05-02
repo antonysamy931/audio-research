@@ -1,0 +1,23 @@
+/*Insert*/
+{
+	"Name":"Customer2",
+	"Description":"Customer two",
+	"AddressLine1":"No 24, 2nd street",
+	"AddressLine2":"Medavakkam",
+	"City":"Chennai",
+	"State":"TN"
+}
+
+/*Update*/
+{
+	"CustomerId":"cust22244910-4e00-11e8-9a1a-c11197c7dcf2",
+	"Description":"Customer 2",
+	"AddressLine1":"No 255, 25nd street",
+	"AddressLine2":"Medavakkam",
+	"City":"Chennai",
+	"State":"TN"
+}
+/*Delete*/
+{
+	"CustomerId":"cust22244910-4e00-11e8-9a1a-c11197c7dcf2"
+}

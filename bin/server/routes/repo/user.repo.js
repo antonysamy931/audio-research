@@ -41,20 +41,20 @@ function Insert(record){
     });
 }
 
-function GetUsers(db){
+function GetCustomersUsers(){
     return new Promise(function(resolve,reject){
-        db.all("Select * from Users", (err,rows)=> {      
+        userdb.all(userquery.SELECT_ALL_CUSTOMER_USER,(err,rows)=>{
             if(err){
-                console.log(err);
-            }                
+                errorlog.error(err);
+            }
             resolve(rows);
         });
-    });        
+    });
 }
 
 function GetUserById(Id, db){    
     return new Promise(function(resolve,reject){
-        db.get("Select * from Users Where Id = ?",[Id],(err,row)=>{        
+        userdb.get("Select * from Users Where Id = ?",[Id],(err,row)=>{        
             if(err){
                 console.log(err);
             }                
@@ -63,35 +63,9 @@ function GetUserById(Id, db){
     });
 }
 
-function GetUserByUserNameAndPassword(UserName, Password, db) {
-    return new Promise(function(resolve,reject){
-        let statement = db.prepare("Select * from Users Where UserName = ? AND Password = ?");
-        statement.get([UserName,Password],function(err,row) {
-            if(err){
-                console.log(err);
-            }
-            resolve(row);
-        });
-    });
-}
-
-function GetUsersByRole(role, db){
-    return new Promise(function(resolve,reject){
-        let statement = db.prepare("Select * from Users Where Role = ?");
-        statement.all([role],function(err,rows){
-            if(err){
-                console.log(err);
-            }
-            resolve(rows);
-        });
-    });
-}
 
 module.exports = {
     Insert : Insert,
-    GetUsers : GetUsers,
-    GetUserById : GetUserById,
-    GetUsersByRole : GetUsersByRole,
-    GetUserByUserNameAndPassword : GetUserByUserNameAndPassword
+    GetCustomersUsers : GetCustomersUsers
 }
 

@@ -12,6 +12,11 @@ const api = require(path.join(__dirname,'bin/server/routes/api/audio.controller'
 const db = require(path.join(__dirname,'/bin/server/routes/database.init'));
 const user = require(path.join(__dirname,'/bin/server/routes/api/user.controller'));
 const authentication = require(path.join(__dirname, '/bin/server/routes/api/authenticate.controller'));
+const customer = require(path.join(__dirname, '/bin/server/routes/api/customer.controller'));
+const branch = require(path.join(__dirname, '/bin/server/routes/api/branch.controller'));
+
+//Custom Middleware
+const tokenMiddleware = require(path.join(__dirname, '/bin/server/routes/helpers/req.middleware'))
 
 // Parsers
 app.use(bodyParser.json());
@@ -24,6 +29,9 @@ app.use(function(req, res, next) { //allow cross origin requests
         next();
 });
 
+//Middleware mapping
+app.use(tokenMiddleware);
+
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -31,6 +39,8 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/api', api);
 app.use('/user',user);
 app.use('/auth',authentication);
+app.use('/customer',customer);
+app.use('/branch',branch);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {

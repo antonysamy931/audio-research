@@ -4,16 +4,8 @@ const path = require('path');
 
 const dbhelper = require(path.join(__dirname,'../dbhelper'));
 
-router.get('/authenticate',function(req,res){
-    let UserName = req.query.UserName;
-    let Password = req.query.Password;    
-    dbhelper.AuthenticateUser(UserName,Password).then(function(result){
-        res.json(result);
-    });    
-});
-
-router.get('/getotherusers',function(req,res){
-    dbhelper.UsersByUserRole().then(function(result){
+router.get('/getcustomersusers',function(req,res){
+    dbhelper.userrepo.GetCustomersUsers().then(function(result){
         res.json(result);
     });
 });

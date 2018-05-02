@@ -5,3 +5,13 @@
 [2018-05-01T17:55:00.355] [ERROR] error - { Error: SQLITE_ERROR: ambiguous column name: Active errno: 1, code: 'SQLITE_ERROR' }
 [2018-05-01T17:56:09.524] [ERROR] error - { Error: SQLITE_ERROR: ambiguous column name: Active errno: 1, code: 'SQLITE_ERROR' }
 [2018-05-01T22:51:43.305] [ERROR] error - { Error: SQLITE_ERROR: ambiguous column name: Active errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-02T17:23:30.848] [ERROR] error - { Error: SQLITE_ERROR: table Address has 7 columns but 8 values were supplied
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-02T17:25:05.350] [ERROR] error - { Error: SQLITE_BUSY: database is locked
+    at Error (native) errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-02T18:01:22.369] [ERROR] error - { Error: SQLITE_ERROR: unrecognized token: "'<ID>"
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-02T18:02:09.190] [ERROR] error - { Error: SQLITE_ERROR: unrecognized token: "'<ID>"
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-02T19:23:59.933] [ERROR] error - { Error: SQLITE_BUSY: database is locked
+    at Error (native) errno: 5, code: 'SQLITE_BUSY' }

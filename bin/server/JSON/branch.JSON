@@ -1,0 +1,25 @@
+/*create*/
+{
+	"CustomerId": "custe3c9e9e0-4dff-11e8-a285-91693061e0e4",
+	"Name":"Customer2",
+	"Description":"Customer two",
+	"AddressLine1":"No 24, 2nd street",
+	"AddressLine2":"Medavakkam",
+	"City":"Chennai",
+	"State":"TN"
+}
+
+/*Update*/
+{
+	"BranchId": "branch6673f9c0-4e10-11e8-bc7e-7978452c5519",
+	"Description":"branch two",
+	"AddressLine1":"No 340, 30th street",
+	"AddressLine2":"Medavakkam",
+	"City":"Chennai",
+	"State":"TN"
+}
+
+/*delete*/
+{
+	"BranchId": "branch6673f9c0-4e10-11e8-bc7e-7978452c5519"
+}
