@@ -6,7 +6,7 @@ export abstract class Common implements OnInit{
     }
 
     ngOnInit() {                
-        if(!localStorage.getItem('UserId')){            
+        if(!localStorage.getItem('LoggedInUserData')){            
             this.router.navigateByUrl('/login');
         }
     }    

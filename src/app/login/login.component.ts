@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
     this.userService.authenticateUser(this.loginUser.UserName,this.loginUser.Password)
     .subscribe(
       data => {        
-        if(data !== null){          
+        if(data !== null){     
+          localStorage.setItem('LoggedInUserData', JSON.stringify(data));
           localStorage.setItem('UserId',data.ID);
           localStorage.setItem('UserRole',data.Role);
           localStorage.setItem('Name',data.Name);                 

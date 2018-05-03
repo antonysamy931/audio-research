@@ -14,3 +14,6 @@ exports.UPDATE_BRANCH = `UPDATE Branch
 exports.DELETE_BRANCH = `UPDATE Branch 
                             SET Active = ?, UpdatedBy = ?, UpdatedDate = ?
                             WHERE ID = ?`;
+exports.DELETE_BRANCH_By_Customer = `UPDATE Branch 
+                            SET Active = ?, UpdatedBy = ?, UpdatedDate = ?
+                            WHERE CustomerId = ?`;

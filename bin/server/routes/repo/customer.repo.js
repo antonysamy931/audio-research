@@ -8,6 +8,7 @@ const guid = require(path.join(__dirname, '../helpers/guid'));
 const customerquery = require(path.join(__dirname, '../query/customer.query'));
 
 const addressrepo = require(path.join(__dirname, './address.repo'));
+const branchrepo = require(path.join(__dirname, './branch.repo'));
 
 const customerdb = db.customer_db;
 
@@ -95,6 +96,8 @@ function Delete(record){
             }
         },function(){            
             resolve('Update record successfully');
+        },function(){
+            branchrepo.DeleteByCustomerId(record);
         });        
     });
 }

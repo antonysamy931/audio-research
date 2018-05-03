@@ -111,11 +111,30 @@ function Delete(record){
     });
 }
 
+function DeleteByCustomerId(record){
+    return new Promise(function(resolve,reject){
+        var date = utility.get_local_date_string();
+        customerdb.run(branchquery.DELETE_BRANCH_By_Customer, [
+            0,
+            record.UpdatedBy,
+            date,
+            record.CustomerId
+        ],(err) => {
+            if(err){
+                errorlog.error(err);
+            }
+        },function(){            
+            resolve('Update record successfully');
+        });        
+    });
+}
+
 module.exports = {
     Insert : Insert,
     GetAllBranches : GetAllBranches,
     GetCustomerBranches : GetCustomerBranches,
     BranchGetById : BranchGetById,
     Update : Update,
-    Delete : Delete
+    Delete : Delete,
+    DeleteByCustomerId : DeleteByCustomerId
 }
