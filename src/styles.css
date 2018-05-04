@@ -18,7 +18,7 @@ button:focus{
     background-color: #303e8c !important
 }
 
-.mat-title-custom{
+/*.mat-title-custom{
     width: 85%;
     text-align: center;
     text-transform: uppercase;
@@ -35,10 +35,6 @@ button:focus{
     color: rgba(0,0,0,.87) !important;
 }
 
-/*.cdk-focused, .cdk-mouse-focused, .cdk-program-focused{
-    background-color: #3f51b5 !important;
-}*/
-
 .mat-user-button{
     width:15% !important;
     font-size: 13px !important;
@@ -46,7 +42,7 @@ button:focus{
 
 .mat-user-button .mat-icon{
     font-size:13px !important;
-}
+}*/
 
 /*
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {

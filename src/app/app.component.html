@@ -1,3 +1,28 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar *ngIf="authService.IsLoggedIn()"  color="primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 col-md-6 col-lg-9">
+                <span class="mat-title-custom">Audio Player</span>      
+            </div>
+            <div class="col-sm-9 col-md-6 col-lg-3">                
+                <button mat-button (click)="Redirect('/dashboard')">                    
+                    <span>Administration</span>
+                </button>                
+                <button mat-button [matMenuTriggerFor]="menu"
+                    #menuTrigger="matMenuTrigger" (mouseenter)="menuTrigger.openMenu()">    
+                    <span class="">Welcome {{authService.GetUserName()}}</span>
+                    <mat-icon>details</mat-icon>    
+                </button>
+                <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">                        
+                    <button mat-menu-item (click)="Logout()">
+                        <mat-icon>exit_to_app</mat-icon>
+                        <span>Logout</span>
+                    </button>    
+                </mat-menu>
+            </div>
+        </div>
+    </div>  
+</mat-toolbar>
 <ng4-loading-spinner> </ng4-loading-spinner>
 <router-outlet></router-outlet>

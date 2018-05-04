@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 import { UserService } from '../service/user.service';
+import { AuthenticationService } from '../service/authentication/authentication.service';
 
 import { Login } from '../class/login';
 
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   password = new FormControl('password', [Validators.required]);
 
   constructor(private userService: UserService, private router: Router,
+  private authenticationService: AuthenticationService,
   private spinnerService: Ng4LoadingSpinnerService) { }
 
   loginUser: Login = {
@@ -47,14 +49,11 @@ export class LoginComponent implements OnInit {
   Login(){
     this.spinnerService.show();
     this.ValidationSummary = false;
-    this.userService.authenticateUser(this.loginUser.UserName,this.loginUser.Password)
+    this.authenticationService.authenticateUser(this.loginUser)
     .subscribe(
       data => {        
         if(data !== null){     
-          localStorage.setItem('LoggedInUserData', JSON.stringify(data));
-          localStorage.setItem('UserId',data.ID);
-          localStorage.setItem('UserRole',data.Role);
-          localStorage.setItem('Name',data.Name);                 
+          localStorage.setItem('LoggedInUserData', JSON.stringify(data));                      
           this.router.navigateByUrl('/dashboard'); 
         }else{
           this.ValidationSummary = true;

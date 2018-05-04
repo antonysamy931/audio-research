@@ -3,18 +3,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs/Observable';
 
-@Injectable()
-export class UserService {
+import { Uri } from '../class/uri';
 
-  private baseUrl = '/user';
-  
+@Injectable()
+export class UserService {  
+
   constructor(private http: HttpClient) { }
 
+  Url : any = Uri;
+
   public authenticateUser(username, password): Observable<any> {
-    return this.http.get(this.baseUrl+'/authenticate?UserName='+username+'&Password='+password);
+    return this.http.post(this.Url.LoginUri, {UserName : username, Password : password});
   }
 
   public getotherusers():Observable<any>{
-    return this.http.get(this.baseUrl+'/getotherusers');
+    return this.http.get('/api/v1/getotherusers');
   }
 }

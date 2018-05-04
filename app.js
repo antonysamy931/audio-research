@@ -8,8 +8,9 @@ const app = express();
 const config = require(path.join(__dirname, '/bin/server/routes/constant/config'));
 
 // API file for interacting with Sqlite Database
-const api = require(path.join(__dirname,'bin/server/routes/api/audio.controller'));
 const db = require(path.join(__dirname,'/bin/server/routes/database.init'));
+
+const audio = require(path.join(__dirname,'bin/server/routes/api/audio.controller'));
 const user = require(path.join(__dirname,'/bin/server/routes/api/user.controller'));
 const authentication = require(path.join(__dirname, '/bin/server/routes/api/authenticate.controller'));
 const customer = require(path.join(__dirname, '/bin/server/routes/api/customer.controller'));
@@ -36,11 +37,11 @@ app.use(tokenMiddleware);
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // API location
-app.use('/api', api);
-app.use('/user',user);
-app.use('/auth',authentication);
-app.use('/customer',customer);
-app.use('/branch',branch);
+app.use('/api/v1/api',audio);
+app.use('/api/v1/user',user);
+app.use('/api/v1/auth',authentication);
+app.use('/api/v1/customer',customer);
+app.use('/api/v1/branch',branch);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {

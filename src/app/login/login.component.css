@@ -16,11 +16,8 @@ input.example-right-align {
   -moz-appearance: textfield;
 }
 
-.login-card{
-  width:50%;
-  left:25%;
-  top:150px;
-  min-height: 230px;
+.login-card{  
+  min-height: 300px;
 }
 
 .login-card-title{

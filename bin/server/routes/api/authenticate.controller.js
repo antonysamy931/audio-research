@@ -20,11 +20,26 @@ router.post('/login',function(req,res){
                 Token : token,
                 Result : result
             }
+
+            data.Result.IsSuperAdmin = false;
+            data.Result.IsSuperMember = false;
+            data.Result.IsCustomerUser = false;
+            data.Result.IsCustomerAdmin = false;
+            data.Result.IsCustomerMember = false;
+            
             if(typeof(result.CustomerId) == 'undefined' || result.CustomerId == null){
                 if(result.UserRole == 'admin'){
                     data.Result.IsSuperAdmin = true;
                 } else if(result.UserRole == 'member'){
                     data.Result.IsSuperMember = true;
+                }
+            }
+            else if(result.CustomerId){
+                data.Result.IsCustomerUser = true;
+                if(result.UserRole == 'admin'){
+                    data.Result.IsCustomerAdmin = true;
+                } else if(result.UserRole == 'member'){
+                    data.Result.IsCustomerMember = true;
                 }
             }
             res.status(201).json(data);

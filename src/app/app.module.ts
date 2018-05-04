@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SimpleGlobal } from 'ng2-simple-global';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { AudioListenComponent } from './audio-listen/audio-listen.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,8 @@ import { DashboardComponentComponent } from './dashboard-component/dashboard-com
 
 import { AudioServiceService } from './audio-service.service';
 import { UserService } from './service/user.service';
+import { AuthService } from './service/auth/auth.service';
+import { AuthenticationService } from './service/authentication/authentication.service';
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -40,9 +42,16 @@ import { BulkLoadComponent } from './bulk-load/bulk-load.component';
     AppMaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+    NgbModalModule.forRoot()
   ],
-  providers: [ AudioServiceService, UserService, SimpleGlobal ],
+  providers: [ 
+    AudioServiceService, 
+    UserService, 
+    SimpleGlobal,
+    AuthenticationService,
+    AuthService
+    ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

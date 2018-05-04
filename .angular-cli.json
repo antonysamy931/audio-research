@@ -19,12 +19,14 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../external_modules/bootstrap/css/bootstrap.min.css"
       ],
       "scripts": [
         "../node_modules/hammerjs/hammer.min.js",
         "../node_modules/jquery/dist/jquery.min.js",
-        "../external_modules/materialize/js/materialize.min.js"
+        "../external_modules/materialize/js/materialize.min.js",
+        "../node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

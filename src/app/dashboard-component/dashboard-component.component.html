@@ -1,32 +1,3 @@
-<!--<mat-toolbar color="primary">
-  <span class="mat-title-custom">Audio Player</span>
-  <button mat-icon-button class="mat-user-button" [matMenuTriggerFor]="menu"
-    #menuTrigger="matMenuTrigger"
-    (mouseenter)="menuTrigger.openMenu()">
-    <span class="mat-user-welcome-message">Welcome {{Name}}</span>
-    <mat-icon>details</mat-icon>    
-  </button>  
-
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="Redirect('/dashboard')">
-      <mat-icon>home</mat-icon>
-      <span>Dashboard</span>
-    </button>
-    <button mat-menu-item (click)="Redirect('/audioup')">
-      <mat-icon>file_upload</mat-icon>
-      <span>Audio Upload</span>
-    </button>
-    <button mat-menu-item (click)="Redirect('/audiolisten')">
-      <mat-icon>album</mat-icon>
-      <span>Audio Listen</span>
-    </button>
-    <button mat-menu-item (click)="Logout()">
-      <mat-icon>exit_to_app</mat-icon>
-      <span>Logout</span>
-    </button>    
-  </mat-menu>
-</mat-toolbar>-->
-
 <mat-card class="md-card-min-height dashboard-parent-card">
   <mat-card class="dashboard-card">
     <mat-list>    
@@ -44,58 +15,6 @@
       <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/audioup')">Upload Music</a></mat-list-item>
       <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/audiolisten')">Play Music</a></mat-list-item>    
     </mat-list>  
-  </mat-card>
-  <!--<mat-card class="dashboard-card">    
-    <mat-card-title class="dashboard-mat-card-title">
-      <span>Upload Music</span>
-    </mat-card-title>
-    <mat-card-content class="dashboard-mat-card-content">
-      <p>
-        The following screen can be used to upload music for users.
-      </p>
-    </mat-card-content> 
-    <mat-card-actions class="dashboard-card-actions">
-      <button mat-raised-button color="primary" (click)="Redirect('/audioup')">Go here..</button>
-    </mat-card-actions> 
-  </mat-card>
-  <mat-card class="dashboard-card">
-    <mat-card-title class="dashboard-mat-card-title">
-      Play Music
-    </mat-card-title>    
-    <mat-card-content class="dashboard-mat-card-content">
-      <p>
-        The following screen can be used to verify the list of music assigned for an user.
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="dashboard-card-actions">
-      <button mat-raised-button color="primary" (click)="Redirect('/audiolisten')">Go here..</button>
-    </mat-card-actions>  
-  </mat-card>
-  <mat-card class="dashboard-card">
-    <mat-card-title class="dashboard-mat-card-title">
-      Customers
-    </mat-card-title>    
-    <mat-card-content class="dashboard-mat-card-content">
-      <p>
-        The following screen can be used to manipulate customer related changes.
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="dashboard-card-actions">
-      <button mat-raised-button color="primary" (click)="Redirect('/customer')">Go here..</button>
-    </mat-card-actions>  
-  </mat-card>
-  <mat-card class="dashboard-card">
-    <mat-card-title class="dashboard-mat-card-title">
-      User Management
-    </mat-card-title>    
-    <mat-card-content class="dashboard-mat-card-content">
-      <p>
-        The following screen can be used to manipulate customer related changes.
-      </p>
-    </mat-card-content>
-    <mat-card-actions class="dashboard-card-actions">
-      <button mat-raised-button color="primary" (click)="Redirect('/customer')">Go here..</button>
-    </mat-card-actions>  
-  </mat-card>-->
+  </mat-card>  
 </mat-card>
 
