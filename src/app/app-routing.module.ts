@@ -13,6 +13,12 @@ import { BulkLoadComponent } from './bulk-load/bulk-load.component';
 
 import { LoginComponent } from './login/login.component';
 
+import { CustomerBranchesComponent } from './customer-branches/customer-branches.component';
+import { BranchDetailComponent } from './branch-detail/branch-detail.component';
+import { BranchViewUsersComponent } from './branch-view-users/branch-view-users.component';
+import { BranchAddUserComponent } from './branch-add-user/branch-add-user.component';
+import { BranchUploadFileComponent } from './branch-upload-file/branch-upload-file.component';
+
 const pageRoute: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch:'full'},
   { path: 'dashboard', component: DashboardComponentComponent },
@@ -22,7 +28,12 @@ const pageRoute: Routes = [
   { path: 'customer', component: CustomerComponent },
   { path: 'branch', component: BranchComponent },
   { path: 'users', component: UsersComponent },
-  { path: 'load', component: BulkLoadComponent }
+  { path: 'load', component: BulkLoadComponent },
+  { path: 'customer-branches/:id', component: CustomerBranchesComponent},
+  { path: 'branch-detail/:id', component: BranchDetailComponent},
+  { path: 'branch-users/:id', component: BranchViewUsersComponent},
+  { path: 'branch-add-user/:id', component: BranchAddUserComponent},
+  { path: 'branch-file-upload/:id', component: BranchUploadFileComponent}
 ];
 
 @NgModule({

@@ -15,3 +15,5 @@
     at Error (native) errno: 1, code: 'SQLITE_ERROR' }
 [2018-05-02T19:23:59.933] [ERROR] error - { Error: SQLITE_BUSY: database is locked
     at Error (native) errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-06T14:17:30.537] [ERROR] error - { Error: SQLITE_BUSY: database is locked errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-06T14:21:01.780] [ERROR] error - { Error: SQLITE_BUSY: database is locked errno: 5, code: 'SQLITE_BUSY' }

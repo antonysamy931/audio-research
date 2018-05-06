@@ -22,18 +22,32 @@ router.post('/upload',function(req, res, next){
         }
 
         let Id = req.query.Id;
-        console.log(Id);
         let Name = req.files.audio.name;
-        dbhelper.FileInfoInsert(Id, Name);
-
-        let audioFile = req.files.audio;
-        audioFile.mv(fileDir + req.files.audio.name, function(err){
-            if (err)
-                return res.status(500).json(err);
-            
-            res.json('File uploaded');
-        });
+        var record = {
+            Name: Name,
+            BranchId: Id,
+            CreatedBy: req.CreatedBy
+        }
+        dbhelper.playrepo.Insert(record).then(function(result){
+            let audioFile = req.files.audio;
+            audioFile.mv(fileDir + req.files.audio.name, function(err){
+                if (err)
+                    return res.status(500).json(err);
+                
+                res.json('File uploaded');
+            });
+        });        
     }
+});
+
+router.get('/getfilebybranch',function(req,res,next){
+    dbhelper.playrepo.GetFileByBranch(req.query,BranchId).then(function(result){
+        if(!result){
+            res.status(404).json('File not found');
+        }else{
+            res.send(fs.readFileSync(fileDir+result.Name));
+        }
+    });
 });
 
 router.get('/getfiles',function(req, res, next){

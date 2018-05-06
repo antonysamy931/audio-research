@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { CdkTableModule } from '@angular/cdk/table';
 import { 
   MatToolbarModule,
   MatIconModule,
@@ -13,14 +13,18 @@ import {
   MatCheckboxModule,
   MatSelectModule,
   MatListModule,
-  MatDividerModule  
+  MatDividerModule,
+  MatPaginatorModule  
 } from '@angular/material';
+
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   exports:[
+    CdkTableModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -32,7 +36,9 @@ import {
     MatCheckboxModule,
     MatSelectModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   declarations: []
 })

@@ -1,3 +1,67 @@
-<p>
-  customer works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-lg-6 d-xs-none"></div>
+    <div class="col-md-6 col-lg-6 col-sm-12">
+      <div class="container">
+        <div style="text-align: right; margin:2%; text-transform: uppercase;">
+          <a mat-raised-button color="primary" style="text-decoration: none;" 
+          title="Create New Customer" router-link="/" routerLinkActive="active" >Add New Customer</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <!--<table mat-table #table [dataSource]="datasource">        
+        <ng-container matColumnDef="CustomerId">
+          <th mat-header-cell *matHeaderCellDef> Customer Id. </th>
+          <td mat-cell *matCellDef="let element"> {{element.CustomerId}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
+      <mat-paginator #paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 20]"
+        [showFirstLastButtons]="true">
+      </mat-paginator>-->
+      <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.Name}}</td>
+                <td>{{item.Description}}</td>
+                <td><a style="text-transform: uppercase; text-decoration: none;" 
+                  href="#" mat-raised-button color="primary">View Detail</a></td>
+                <td><a style="text-transform: uppercase; text-decoration: none;" 
+                  routerLink="/customer-branches/{{item.CustomerId}}" routerLinkActive="active"
+                  mat-raised-button color="primary">View Branches</a></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>      
+
+    </div>
+  </div>
+</div>

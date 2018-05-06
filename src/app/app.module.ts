@@ -16,6 +16,9 @@ import { AudioServiceService } from './audio-service.service';
 import { UserService } from './service/user.service';
 import { AuthService } from './service/auth/auth.service';
 import { AuthenticationService } from './service/authentication/authentication.service';
+import { CustomerService } from './service/customer/customer.service';
+import { BranchService } from './service/branch/branch.service';
+import { BranchUserService } from './service/branch/user/branch-user.service';
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -25,6 +28,11 @@ import { CustomerComponent } from './customer/customer.component';
 import { BranchComponent } from './branch/branch.component';
 import { UsersComponent } from './users/users.component';
 import { BulkLoadComponent } from './bulk-load/bulk-load.component';
+import { CustomerBranchesComponent } from './customer-branches/customer-branches.component';
+import { BranchDetailComponent } from './branch-detail/branch-detail.component';
+import { BranchAddUserComponent } from './branch-add-user/branch-add-user.component';
+import { BranchViewUsersComponent } from './branch-view-users/branch-view-users.component';
+import { BranchUploadFileComponent } from './branch-upload-file/branch-upload-file.component';
 
 @NgModule({
   declarations: [
@@ -32,25 +40,28 @@ import { BulkLoadComponent } from './bulk-load/bulk-load.component';
     AudioListenComponent, 
     AudioUploadComponent, 
     DashboardComponentComponent, 
-    LoginComponent, CustomerComponent, BranchComponent, UsersComponent, BulkLoadComponent
+    LoginComponent, CustomerComponent, BranchComponent, UsersComponent, BulkLoadComponent, CustomerBranchesComponent, BranchDetailComponent, BranchAddUserComponent, BranchViewUsersComponent, BranchUploadFileComponent
   ],
   imports: [    
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    AppMaterialModule,
     FormsModule,
+    HttpClientModule,
+    AppMaterialModule,
     ReactiveFormsModule,
     Ng4LoadingSpinnerModule.forRoot(),
-    NgbModalModule.forRoot()
+    NgbModalModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [ 
     AudioServiceService, 
     UserService, 
     SimpleGlobal,
     AuthenticationService,
-    AuthService
+    AuthService,
+    CustomerService,
+    BranchService,
+    BranchUserService
     ],
   bootstrap: [ AppComponent ]
 })

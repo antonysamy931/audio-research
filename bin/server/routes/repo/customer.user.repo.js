@@ -13,7 +13,7 @@ const errorlog = logger.getLogger('error');
 const infolog = logger.getLogger('info');
 const debuglog = logger.getLogger('debug');
 
-function Insert(record){
+function Insert(record){    
     const date = utility.get_local_date_string();
     userdb.run(customeruserquery.INSERT_CUSTOMER_USER,[
         null,

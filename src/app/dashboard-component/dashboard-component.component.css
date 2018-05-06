@@ -1,8 +1,5 @@
 .dashboard-card{
-    width: 40%;
-    float: left;
-    margin-left: 5%;
-    background-color: #eaecf8;
+    
 }
 
 .dashboard-card-actions{
@@ -33,7 +30,6 @@
     font-size: 15px;
     margin-left: 5%;
     cursor: pointer;
-    width: 50%;
 }
 .dashboard-mat-divider{
     margin-left: 0;    

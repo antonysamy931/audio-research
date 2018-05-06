@@ -10,4 +10,16 @@ router.get('/getcustomersusers',function(req,res){
     });
 });
 
+router.post('/addnewuser',function(req,res,next){
+    dbhelper.userrepo.Insert(req.body).then(function(result){
+        res.json('User inserted successfully');
+    })
+});
+
+router.get('/getbranchusers',function(req,res,next){
+    dbhelper.userrepo.GetBranchUsers(req.query.BranchId).then(function(result){
+        res.json(result);
+    })
+});
+
 module.exports = router;

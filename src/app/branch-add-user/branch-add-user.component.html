@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <mat-card style="margin-top: 2%">
+          <mat-card-header>
+            <mat-card-title>Add New User for Branch : <b>{{Branch.NAME}}</b></mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form>
+              <mat-form-field>
+                <input matInput placeholder="Enter Name" [formControl]="name"
+                [(ngModel)]="User.Name" (input)="onChangeInput()" required/>
+                <mat-error *ngIf="name.invalid && name.hasError('required')">Name is required.</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Enter Username" [formControl] = "username"
+                [(ngModel)]="User.UserName" (input)="onChangeInput()" required/>
+                <mat-error *ngIf="username.invalid && username.hasError('required')">Username is required.</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Enter Password" [formControl]="password"
+                [(ngModel)]="User.Password" [type]="hide ? 'password' : 'text'" (input)="onChangeInput()" required/>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-error *ngIf="password.invalid && password.hasError('required')">Password is required.</mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-select placeholder="Select Role" [formControl]="role" 
+                [(ngModel)]="User.Role" required>
+                  <mat-option *ngFor="let r of Roles" [value]="r.value">{{r.text}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="role.invalid && role.hasError('required')">Role is required.</mat-error>
+              </mat-form-field>
+              <div *ngIf="ValidationSummary" class="validation-error">
+                  <span>{{ValidationSummaryMessage}}</span>
+              </div>
+            </form>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" 
+              (click)="GoToBranchDetail()">CANCEL</button>
+            <button mat-raised-button color="primary"
+              [disabled] = "name.invalid || username.invalid || password.invalid || role.invalid"
+              (click)="Save()">SAVE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>    
+    </div>
+  </div>

@@ -81,7 +81,7 @@ db.audio_db.serialize(() =>{
     db.audio_db.run(`CREATE TABLE IF NOT EXISTS PlayList(
         Id INTEGER PRIMARY KEY,
         Name TEXT NOT NULL,
-        UserId TEXT NOT NULL,
+        BranchId TEXT NOT NULL,
         CreatedBy TEXT NOT NULL,
         CreatedDate TEXT NOT NULL,
         UpdtedBy TEXT NULL,

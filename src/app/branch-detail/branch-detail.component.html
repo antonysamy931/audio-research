@@ -1,0 +1,68 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-lg-6 d-xs-none"></div>
+    <div class="col-md-6 col-lg-6 col-sm-12">
+      <div class="container">
+        <div style="text-align: right; margin:2%; text-transform: uppercase;">
+          <a mat-raised-button color="primary" style="text-decoration: none;" 
+          title="Update Branch Detail" router-link="/" routerLinkActive="active" >Edit</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+      <mat-card style="margin-top:2%">
+        <mat-card-header>
+          <mat-card-title>Branch Detail</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-4">Name</div>
+            <div class="col-8">{{Branch.NAME}}</div>
+          </div>
+          <div class="row">
+            <div class="col-4">Description</div>
+            <div class="col-8">{{Branch.Description}}</div>
+          </div>
+            <div class="row">
+              <div class="col-4">Address Line One</div>
+              <div class="col-8">{{Branch.AddressLine1}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4">Address Line Two</div>
+              <div class="col-8">{{Branch.AddressLine2}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4">City</div>
+              <div class="col-8">{{Branch.City}}</div>
+            </div>
+            <div class="row">
+              <div class="col-4">State</div>
+              <div class="col-8">{{Branch.State}}</div>
+            </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="d-xs-none col-sm-6 col-lg-6">
+      <mat-card style="margin-top:2%">
+        <mat-card-header>
+          <mat-card-title>Actions</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class=col-12>
+              <a routerLink="/branch-users/{{Branch.BranchId}}" routerLinkActive="active">View Users</a>              
+            </div>
+            <div class="col-12">
+                <a routerLink="/branch-add-user/{{Branch.BranchId}}" routerLinkActive="active">Add User</a>
+            </div>
+            <div class="col-12">
+              <a routerLink="/branch-file-upload/{{Branch.BranchId}}" routerLinkActive="active">File Upload</a>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>      
+    </div>
+  </div>
+</div>

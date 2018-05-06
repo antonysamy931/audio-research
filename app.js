@@ -37,7 +37,7 @@ app.use(tokenMiddleware);
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // API location
-app.use('/api/v1/api',audio);
+app.use('/api/v1/play',audio);
 app.use('/api/v1/user',user);
 app.use('/api/v1/auth',authentication);
 app.use('/api/v1/customer',customer);

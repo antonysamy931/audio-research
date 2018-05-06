@@ -1,20 +1,21 @@
-<mat-card class="md-card-min-height dashboard-parent-card">
-  <mat-card class="dashboard-card">
-    <mat-list>    
-      <mat-list-item class="dashboard-mat-list-header">Customer Management</mat-list-item>
-      <mat-divider class="dashboard-mat-divider"></mat-divider>
-      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/customer')">Customers</a></mat-list-item>
-      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/load')">Bulkload Customers / Branches</a></mat-list-item>
-      <mat-list-item></mat-list-item>    
-      <mat-list-item class="dashboard-mat-list-header">User Management</mat-list-item>
-      <mat-divider class="dashboard-mat-divider"></mat-divider>
-      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/users')">Users</a></mat-list-item>      
-      <mat-list-item></mat-list-item>
-      <mat-list-item class="dashboard-mat-list-header">File Management</mat-list-item>
-      <mat-divider class="dashboard-mat-divider"></mat-divider>
-      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/audioup')">Upload Music</a></mat-list-item>
-      <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/audiolisten')">Play Music</a></mat-list-item>    
-    </mat-list>  
-  </mat-card>  
-</mat-card>
-
+<div class="container">  
+  <div class="row" style="margin-top: 2%;">
+      <div class="col-sm-12 col-md-6 col-lg-6">
+          <mat-card class="dashboard-card">
+            <mat-list>    
+              <mat-list-item class="dashboard-mat-list-header">Customer Management</mat-list-item>
+              <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/customer')">Customers</a></mat-list-item>
+              <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/load')">Bulkload Customers / Branches</a></mat-list-item>
+              <mat-list-item class="dashboard-mat-list-header">User Management</mat-list-item>
+              <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/users')">Users</a></mat-list-item>      
+              <mat-list-item class="dashboard-mat-list-header">File Management</mat-list-item>
+              <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/audioup')">Upload Music</a></mat-list-item>
+              <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/audiolisten')">Play Music</a></mat-list-item>    
+            </mat-list>  
+          </mat-card>      
+        </div>
+        <div class="d-xs-none col-md-6 col-lg-6">
+      
+        </div>
+  </div>  
+</div>
