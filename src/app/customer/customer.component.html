@@ -5,7 +5,7 @@
       <div class="container">
         <div style="text-align: right; margin:2%; text-transform: uppercase;">
           <a mat-raised-button color="primary" style="text-decoration: none;" 
-          title="Create New Customer" router-link="/" routerLinkActive="active" >Add New Customer</a></div>
+          title="Create New Customer" router-link="/add-customer" routerLinkActive="active" >Add New Customer</a></div>
       </div>
     </div>
   </div>
@@ -53,7 +53,8 @@
                 <td>{{item.Name}}</td>
                 <td>{{item.Description}}</td>
                 <td><a style="text-transform: uppercase; text-decoration: none;" 
-                  href="#" mat-raised-button color="primary">View Detail</a></td>
+                  routerLink="/customer-detail/{{item.CustomerId}}" routerLinkActive="active"
+                  mat-raised-button color="primary">View Detail</a></td>
                 <td><a style="text-transform: uppercase; text-decoration: none;" 
                   routerLink="/customer-branches/{{item.CustomerId}}" routerLinkActive="active"
                   mat-raised-button color="primary">View Branches</a></td>

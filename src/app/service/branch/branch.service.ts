@@ -14,36 +14,28 @@ export class BranchService {
 
   Url : Uri = new Uri();
 
-  private GetOptions() {
-    let headers = new HttpHeaders().set('Authorization',this.authService.GetAuthToken());
-    let options = {
-      headers: headers
-    }
-    return options;
-  }
-
   public GetAllBranches():Observable<any>{    
-    return this.http.get(this.Url.GetAllBranches,this.GetOptions());
+    return this.http.get(this.Url.GetAllBranches);
   }
 
   public GetBranchById(id: string):Observable<any>{
-    return this.http.get(this.Url.GetBrach+"?BranchId="+id,this.GetOptions());
+    return this.http.get(this.Url.GetBrach+"?BranchId="+id);
   }
 
   public GetBranchesByCustomer(id: string): Observable<any>{    
-    return this.http.get(this.Url.GetCustomerBranches+"?CustomerId="+id,this.GetOptions());
+    return this.http.get(this.Url.GetCustomerBranches+"?CustomerId="+id);
   }
 
   public InsertAudioByBranch(id: string, file: any): Observable<any>{
-    return this.http.post(this.Url.InsertAudio+"?Id="+id,file,this.GetOptions());
+    return this.http.post(this.Url.InsertAudio+"?Id="+id,file);
   }
 
   public GetAudioByBranchId(id: string): Observable<any>{
-    return this.http.get(this.Url.GetAudioByBranch+"?BranchId="+id,this.GetOptions());
+    return this.http.get(this.Url.GetAudioByBranch+"?BranchId="+id);
   }
 
   public getPlayLists() : Observable<any>{
-    return this.http.get('/api/v1/play/getfiles',this.GetOptions());
+    return this.http.get('/api/v1/play/getfiles');
   }
 
 }

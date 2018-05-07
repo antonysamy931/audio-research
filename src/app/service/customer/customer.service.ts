@@ -14,12 +14,8 @@ export class CustomerService {
 
   Url : Uri = new Uri();
 
-  public GetCustomers(): Observable<any>{
-    let headers = new HttpHeaders().set('Authorization',this.authService.GetAuthToken());
-    let options = {
-      headers: headers
-    }    
-    return this.http.get(this.Url.GetAllCustomers, options);
+  public GetCustomers(): Observable<any>{     
+    return this.http.get(this.Url.GetAllCustomers);
   }
 
 }

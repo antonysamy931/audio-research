@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { Observable } from 'rxjs/Observable';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SimpleGlobal } from 'ng2-simple-global';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 import { AppComponent } from './app.component';
 import { AudioListenComponent } from './audio-listen/audio-listen.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +36,13 @@ import { BranchAddUserComponent } from './branch-add-user/branch-add-user.compon
 import { BranchViewUsersComponent } from './branch-view-users/branch-view-users.component';
 import { BranchUploadFileComponent } from './branch-upload-file/branch-upload-file.component';
 import { BranchAudioListenComponent } from './branch-audio-listen/branch-audio-listen.component';
+import { AddNewCustomerComponent } from './add-new-customer/add-new-customer.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { UpdateCustomerComponent } from './update-customer/update-customer.component';
+import { AddCustomerBranchComponent } from './add-customer-branch/add-customer-branch.component';
+import { UpdateCustomerBranchComponent } from './update-customer-branch/update-customer-branch.component';
+
+import { AuthInterceptor } from './class/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -41,7 +50,22 @@ import { BranchAudioListenComponent } from './branch-audio-listen/branch-audio-l
     AudioListenComponent, 
     AudioUploadComponent, 
     DashboardComponentComponent, 
-    LoginComponent, CustomerComponent, BranchComponent, UsersComponent, BulkLoadComponent, CustomerBranchesComponent, BranchDetailComponent, BranchAddUserComponent, BranchViewUsersComponent, BranchUploadFileComponent, BranchAudioListenComponent
+    LoginComponent, 
+    CustomerComponent, 
+    BranchComponent, 
+    UsersComponent, 
+    BulkLoadComponent, 
+    CustomerBranchesComponent, 
+    BranchDetailComponent, 
+    BranchAddUserComponent, 
+    BranchViewUsersComponent, 
+    BranchUploadFileComponent, 
+    BranchAudioListenComponent, 
+    AddNewCustomerComponent, 
+    CustomerDetailComponent, 
+    UpdateCustomerComponent,     
+    AddCustomerBranchComponent, 
+    UpdateCustomerBranchComponent
   ],
   imports: [    
     BrowserModule,
@@ -62,7 +86,11 @@ import { BranchAudioListenComponent } from './branch-audio-listen/branch-audio-l
     AuthService,
     CustomerService,
     BranchService,
-    BranchUserService
+    BranchUserService,{
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
     ],
   bootstrap: [ AppComponent ]
 })

@@ -14,20 +14,12 @@ export class BranchUserService {
 
   Url : Uri = new Uri();
 
-  private GetOptions() {
-    let headers = new HttpHeaders().set('Authorization',this.authService.GetAuthToken());
-    let options = {
-      headers: headers
-    }
-    return options;
-  }
-
   public AddNewUser(user: AddUser): Observable<any>{
-    return this.http.post(this.Url.AddBranchUser,user,this.GetOptions());
+    return this.http.post(this.Url.AddBranchUser,user);
   }
 
   public GetUsers(branchId: string): Observable<any>{
-    return this.http.get(this.Url.GetBranchUsers+"?BranchId="+branchId,this.GetOptions());
+    return this.http.get(this.Url.GetBranchUsers+"?BranchId="+branchId);
   }
 
 }

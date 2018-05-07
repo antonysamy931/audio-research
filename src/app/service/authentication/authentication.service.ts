@@ -16,16 +16,11 @@ export class AuthenticationService {
   Url : any = new Uri();
 
   public authenticateUser(login: Login): Observable<any> {
-    console.log(this.Url.LogInUri);
     return this.http.post(this.Url.LoginUri, login);
   }
 
   public logoff() {    
-    let headers = new HttpHeaders().set('Authorization',this.authService.GetAuthToken());
     let data = this.authService.GetUserName();
-    let options = {
-      headers: headers
-    }
-    this.http.post(this.Url.LogOutUri,data, options);
+    this.http.post(this.Url.LogOutUri,data);
   }
 }
