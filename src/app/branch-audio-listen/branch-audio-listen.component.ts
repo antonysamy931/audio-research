@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Common } from '../class/common';
 
 import { BranchService } from '../service/branch/branch.service';
+import { AuthService } from '../service/auth/auth.service';
 
 @Component({
   selector: 'app-branch-audio-listen',
@@ -20,7 +21,7 @@ export class BranchAudioListenComponent extends Common implements OnInit {
   private audioFiles: any = [];
 
   constructor(private route: ActivatedRoute, public router: Router,
-    private branchservice: BranchService,) {
+    private branchservice: BranchService, private authService: AuthService) {
     super(router);
   }
 
