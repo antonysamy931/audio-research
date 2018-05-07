@@ -38,4 +38,12 @@ export class BranchService {
     return this.http.post(this.Url.InsertAudio+"?Id="+id,file,this.GetOptions());
   }
 
+  public GetAudioByBranchId(id: string): Observable<any>{
+    return this.http.get(this.Url.GetAudioByBranch+"?BranchId="+id,this.GetOptions());
+  }
+
+  public getPlayLists() : Observable<any>{
+    return this.http.get('/api/v1/play/getfiles',this.GetOptions());
+  }
+
 }

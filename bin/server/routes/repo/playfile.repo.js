@@ -25,7 +25,7 @@ function GetFilesByUser(Id, db){
 
 function Insert(record){
     return new Promise(function(resolve, reject){
-        const date = utility.get_local_date_string();
+        const date = utility.get_local_date_string();        
         audiodb.run(audioquery.INSERT_AUDIO,[
             null,
             record.Name,
@@ -38,9 +38,9 @@ function Insert(record){
         ],(err) => {
             if(err){
                 errorlog.error(err);
+            }else{
+                resolve('success');
             }
-        },() => {
-            resolve('success');
         });
     });
 }
@@ -71,3 +71,5 @@ module.exports = {
     Insert : Insert,
     GetFileByBranch : GetFileByBranch
 };
+
+GetFileByBranch('branch360c62d0-5113-11e8-88db-2f00136624f8');

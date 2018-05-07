@@ -26,26 +26,27 @@ router.post('/upload',function(req, res, next){
         var record = {
             Name: Name,
             BranchId: Id,
-            CreatedBy: req.CreatedBy
-        }
+            CreatedBy: req.body.CreatedBy
+        }        
         dbhelper.playrepo.Insert(record).then(function(result){
             let audioFile = req.files.audio;
             audioFile.mv(fileDir + req.files.audio.name, function(err){
                 if (err)
                     return res.status(500).json(err);
-                
-                res.json('File uploaded');
+                else
+                    res.json('File uploaded');
             });
         });        
     }
 });
 
 router.get('/getfilebybranch',function(req,res,next){
-    dbhelper.playrepo.GetFileByBranch(req.query,BranchId).then(function(result){
+    var branchId = req.query.BranchId;    
+    dbhelper.playrepo.GetFileByBranch(branchId).then(function(result){
         if(!result){
             res.status(404).json('File not found');
-        }else{
-            res.send(fs.readFileSync(fileDir+result.Name));
+        }else{            
+            res.json(result);
         }
     });
 });

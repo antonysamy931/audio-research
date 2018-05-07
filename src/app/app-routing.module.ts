@@ -18,6 +18,7 @@ import { BranchDetailComponent } from './branch-detail/branch-detail.component';
 import { BranchViewUsersComponent } from './branch-view-users/branch-view-users.component';
 import { BranchAddUserComponent } from './branch-add-user/branch-add-user.component';
 import { BranchUploadFileComponent } from './branch-upload-file/branch-upload-file.component';
+import { BranchAudioListenComponent } from './branch-audio-listen/branch-audio-listen.component';
 
 const pageRoute: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch:'full'},
@@ -33,7 +34,8 @@ const pageRoute: Routes = [
   { path: 'branch-detail/:id', component: BranchDetailComponent},
   { path: 'branch-users/:id', component: BranchViewUsersComponent},
   { path: 'branch-add-user/:id', component: BranchAddUserComponent},
-  { path: 'branch-file-upload/:id', component: BranchUploadFileComponent}
+  { path: 'branch-file-upload/:id', component: BranchUploadFileComponent},
+  { path: 'branch-audio-listen/:id', component: BranchAudioListenComponent}
 ];
 
 @NgModule({

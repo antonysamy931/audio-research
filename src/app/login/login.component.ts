@@ -5,6 +5,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 import { UserService } from '../service/user.service';
 import { AuthenticationService } from '../service/authentication/authentication.service';
+import { AuthService } from '../service/auth/auth.service';
 
 import { Login } from '../class/login';
 
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router,
   private authenticationService: AuthenticationService,
-  private spinnerService: Ng4LoadingSpinnerService) { }
+  private spinnerService: Ng4LoadingSpinnerService,
+  private authService: AuthService) { }
 
   loginUser: Login = {
     UserName : "",
@@ -53,8 +55,12 @@ export class LoginComponent implements OnInit {
     .subscribe(
       data => {        
         if(data !== null){     
-          localStorage.setItem('LoggedInUserData', JSON.stringify(data));                      
-          this.router.navigateByUrl('/dashboard'); 
+          localStorage.setItem('LoggedInUserData', JSON.stringify(data));  
+          if(this.authService.IsLoggedIn() && this.authService.IsAgencyAdmin()){
+            this.router.navigateByUrl('/dashboard');
+          }else if(this.authService.IsLoggedIn() && this.authService.IsBranchUser()){
+            this.router.navigateByUrl('/branch-audio-listen/'+this.authService.GetBranchId());
+          }
         }else{
           this.ValidationSummary = true;
         }

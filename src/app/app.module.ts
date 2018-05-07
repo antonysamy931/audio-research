@@ -33,6 +33,7 @@ import { BranchDetailComponent } from './branch-detail/branch-detail.component';
 import { BranchAddUserComponent } from './branch-add-user/branch-add-user.component';
 import { BranchViewUsersComponent } from './branch-view-users/branch-view-users.component';
 import { BranchUploadFileComponent } from './branch-upload-file/branch-upload-file.component';
+import { BranchAudioListenComponent } from './branch-audio-listen/branch-audio-listen.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { BranchUploadFileComponent } from './branch-upload-file/branch-upload-fi
     AudioListenComponent, 
     AudioUploadComponent, 
     DashboardComponentComponent, 
-    LoginComponent, CustomerComponent, BranchComponent, UsersComponent, BulkLoadComponent, CustomerBranchesComponent, BranchDetailComponent, BranchAddUserComponent, BranchViewUsersComponent, BranchUploadFileComponent
+    LoginComponent, CustomerComponent, BranchComponent, UsersComponent, BulkLoadComponent, CustomerBranchesComponent, BranchDetailComponent, BranchAddUserComponent, BranchViewUsersComponent, BranchUploadFileComponent, BranchAudioListenComponent
   ],
   imports: [    
     BrowserModule,

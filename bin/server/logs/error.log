@@ -17,3 +17,33 @@
     at Error (native) errno: 5, code: 'SQLITE_BUSY' }
 [2018-05-06T14:17:30.537] [ERROR] error - { Error: SQLITE_BUSY: database is locked errno: 5, code: 'SQLITE_BUSY' }
 [2018-05-06T14:21:01.780] [ERROR] error - { Error: SQLITE_BUSY: database is locked errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-07T10:19:46.501] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:22:47.071] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:24:47.109] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:26:47.116] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:31:58.343] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:32:46.158] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:35:12.755] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:37:12.793] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:38:22.990] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:40:23.027] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:41:13.055] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:42:04.425] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:42:23.034] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:44:28.253] [ERROR] error - { Error: SQLITE_ERROR: near "1": syntax error
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-07T10:46:08.660] [ERROR] error - { Error: SQLITE_SCHEMA: near "1": syntax error
+    at Error (native) errno: 17, code: 'SQLITE_SCHEMA' }

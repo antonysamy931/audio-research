@@ -21,12 +21,12 @@ export class AuthService {
     return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.UserRole : "";    
   }
 
-  IsSuperAdmin() : boolean {
-    return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.IsSuperAdmin : false;
+  IsAgencyAdmin() : boolean {
+    return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.IsAgencyAdmin : false;
   }
 
-  IsSuperMember() : boolean {
-    return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.IsSuperMember : false;
+  IsAgencyMember() : boolean {
+    return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.IsAgencyMember : false;
   }
 
   IsCustomerUser() : boolean {
@@ -41,8 +41,20 @@ export class AuthService {
     return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.IsCustomerMember : false;
   }
 
+  IsBranchUser() : boolean {
+    return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.IsBranchUser : false;
+  }
+
   GetAuthToken() : string {
     return localStorage.getItem('LoggedInUserData') ? 'bearer ' + this.GetUserData().Token : "";
+  }
+
+  GetCustomerId() : string{
+    return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.CustomerId : "";
+  }
+
+  GetBranchId() : string{
+    return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.BranchId : "";
   }
 
   private GetUserData() : any {

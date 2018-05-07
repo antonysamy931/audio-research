@@ -5,6 +5,24 @@
           <mat-card-header>
             <mat-card-title>Upload file for Branch : <b>{{Branch.NAME}}</b></mat-card-title>
           </mat-card-header>
+          <mat-card-content>
+            <div class="container">
+              <div class="row">
+                <div class="col-12">
+                   <div class="form-group">
+                      <label for="exampleInputFile">File</label>
+                      <input type="file" class="form-control-file" #audioUpload type="file" 
+                        accept=".mp3,.mp4,.rar,.zip" (change)="onFileChange($event)"
+                       aria-describedby="fileHelp">
+                    </div>
+                </div>                
+              </div>
+            </div>            
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button [disabled]="ButtonDisabled" 
+              (click)="Upload()">Upload</button>
+          </mat-card-actions>
         </mat-card>
       </div>    
     </div>

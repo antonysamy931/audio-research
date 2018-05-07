@@ -21,27 +21,30 @@ router.post('/login',function(req,res){
                 Result : result
             }
 
-            data.Result.IsSuperAdmin = false;
-            data.Result.IsSuperMember = false;
+            data.Result.IsAgencyAdmin = false;
+            data.Result.IsAgencyMember = false;
             data.Result.IsCustomerUser = false;
             data.Result.IsCustomerAdmin = false;
             data.Result.IsCustomerMember = false;
-            
+            data.Result.IsBranchUser = false;
+
             if(typeof(result.CustomerId) == 'undefined' || result.CustomerId == null){
                 if(result.UserRole == 'admin'){
-                    data.Result.IsSuperAdmin = true;
+                    data.Result.IsAgencyAdmin = true;
                 } else if(result.UserRole == 'member'){
-                    data.Result.IsSuperMember = true;
+                    data.Result.IsAgencyMember = true;
                 }
             }
-            else if(result.CustomerId){
+            else if(result.CustomerId && !result.BranchId){
                 data.Result.IsCustomerUser = true;
                 if(result.UserRole == 'admin'){
                     data.Result.IsCustomerAdmin = true;
                 } else if(result.UserRole == 'member'){
                     data.Result.IsCustomerMember = true;
                 }
-            }
+            } else if(result.BranchId){
+                data.Result.IsBranchUser = true;
+            }           
             res.status(201).json(data);
         }
     });    
