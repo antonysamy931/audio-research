@@ -22,4 +22,11 @@ export class BranchUserService {
     return this.http.get(this.Url.GetBranchUsers+"?BranchId="+branchId);
   }
 
+  public GetUserById(Id: string): Observable<any>{
+    return this.http.get(this.Url.GetUserById+"?UserId="+Id);
+  }
+
+  public UpdateUser(User: any): Observable<any>{
+    return this.http.post(this.Url.UpdateUser,User);
+  }
 }

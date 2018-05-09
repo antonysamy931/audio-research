@@ -1,3 +1,56 @@
-<p>
-  customer-detail works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a class="breadcrumb-item" routerLink="/customer" routerLinkActive="active">Customers</a>
+        <a class="breadcrumb-item active">Customer Detail</a>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-6">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Customer : <b>{{Customer.Description}}</b></mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-group row">
+            <label class="col-4 col-form-label">Name : </label>
+            <div class="col-8">
+              <label class="col-form-label font-weight-bold">{{Customer.Name}}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-4 col-form-label">Addressline 1 : </label>
+            <div class="col-8">
+              <label class="col-form-label font-weight-bold">{{Customer.AddressLine1}}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-4 col-form-label">Addressline 2 : </label>
+            <div class="col-8">
+              <label class="col-form-label font-weight-bold">{{Customer.AddressLine2}}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-4 col-form-label">City : </label>
+            <div class="col-8">
+              <label class="col-form-label font-weight-bold">{{Customer.City}}</label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-4 col-form-label">State : </label>
+            <div class="col-8">
+              <label class="col-form-label font-weight-bold">{{Customer.State}}</label>
+            </div>
+          </div>          
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="Edit()">EDIT</button>
+          <button mat-button color="primary" (click)="Back()">BACK</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

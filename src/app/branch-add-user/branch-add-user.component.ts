@@ -19,6 +19,7 @@ export class BranchAddUserComponent extends Common implements OnInit {
   Branch: any = {};
   ValidationSummary: boolean = false;
   ValidationSummaryMessage: string = "";
+  hide:boolean = true;
 
   Roles: any =[{value:"",text:"-- Select --"},
                   {value:"member",text:"Member"}]; 
@@ -72,14 +73,12 @@ export class BranchAddUserComponent extends Common implements OnInit {
 
   Save(){
     this.User.BranchId = this.BranchId;
-    this.User.CustomerId = this.Branch.CustomerId;
-    console.log(this.User);
+    this.User.CustomerId = this.Branch.CustomerId;    
     this.branchUserService.AddNewUser(this.User).subscribe(data => {
-      console.log(data);
+      this.Redirect('/branch-users/'+this.BranchId)
     },err=> {
       console.log(err);
-    },() => {
-      this.Redirect('/branch-detail/'+this.BranchId)
+    },() => {      
     })
   }
 

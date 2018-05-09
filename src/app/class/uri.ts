@@ -17,6 +17,8 @@ export class Uri {
 
     public AddBranchUser: string ="/api/v1/user/addnewuser";
     public GetBranchUsers: string = "/api/v1/user/getbranchusers";
+    public GetUserById: string = "/api/v1/user/getuserbyid";
+    public UpdateUser: string = "/api/v1/user/updateuser";
 
     public InsertAudio: string = "/api/v1/play/upload";
     public GetAudioByBranch: string = "/api/v1/play/getfilebybranch";

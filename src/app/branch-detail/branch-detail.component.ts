@@ -39,4 +39,12 @@ export class BranchDetailComponent extends Common implements OnInit {
     })
   }
 
+  Edit(){
+    this.router.navigateByUrl('/update-customer-branch/'+this.BranchId);
+  }
+
+  Back(){
+    this.router.navigateByUrl('/customer-branches/'+this.Branch.CustomerId);
+  }
+
 }

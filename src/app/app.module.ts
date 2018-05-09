@@ -43,6 +43,8 @@ import { AddCustomerBranchComponent } from './add-customer-branch/add-customer-b
 import { UpdateCustomerBranchComponent } from './update-customer-branch/update-customer-branch.component';
 
 import { AuthInterceptor } from './class/auth.interceptor';
+import { BranchUserDetailComponent } from './branch-user-detail/branch-user-detail.component';
+import { BranchUserUpdateComponent } from './branch-user-update/branch-user-update.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +67,7 @@ import { AuthInterceptor } from './class/auth.interceptor';
     CustomerDetailComponent, 
     UpdateCustomerComponent,     
     AddCustomerBranchComponent, 
-    UpdateCustomerBranchComponent
+    UpdateCustomerBranchComponent, BranchUserDetailComponent, BranchUserUpdateComponent
   ],
   imports: [    
     BrowserModule,

@@ -1,3 +1,70 @@
-<p>
-  add-new-customer works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a class="breadcrumb-item" routerLink="/customer" routerLinkActive="active">Customers</a>
+        <a class="breadcrumb-item active">Add New Customer</a>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-6">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Create New Customer</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-group row">
+           <mat-form-field class="col-12">
+             <mat-label>Name :</mat-label>
+             <input matInput placeholder="Enter customer name" [(ngModel)]="Customer.Name"
+             [formControl]="customername" required/>
+           </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>Description :</mat-label>
+              <input matInput placeholder="Enter description" [(ngModel)]="Customer.Description"
+              [formControl]="customerdescription" required/>
+            </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>Addressline 1 :</mat-label>
+              <input matInput placeholder="Enter Address" [(ngModel)]="Customer.AddressLine1"
+              [formControl]="customeraddress1" required/>
+            </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>Addressline 2 :</mat-label>
+              <input matInput placeholder="Enter Address" [(ngModel)]="Customer.AddressLine2"
+              [formControl]="customeraddress2" />
+            </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>City :</mat-label>
+              <input matInput placeholder="Enter city" [(ngModel)]="Customer.City"
+              [formControl]="customercity" required/>
+            </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>State :</mat-label>
+              <input matInput placeholder="Enter State" [(ngModel)]="Customer.State"
+              [formControl]="customerstate" required/>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button
+          [disabled]="customername.invalid || customerdescription.invalid || customeraddress1.invalid || customercity.invalid || customerstate.invalid"
+          color="primary" (click)="Save()">SAVE</button>
+          <button mat-button color="primary" (click)="Cancel()">CANCEL</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

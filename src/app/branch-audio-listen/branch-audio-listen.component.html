@@ -1,7 +1,20 @@
 <div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a class="breadcrumb-item" routerLink="/customer" routerLinkActive="active">Customers</a>
+        <a class="breadcrumb-item" routerLink="/customer-detail/{{Branch.CustomerId}}" 
+        routerLinkActive="active">Customer Detail</a>
+        <a class="breadcrumb-item" routerLink="/branch-detail/{{BranchId}}" 
+        routerLinkActive="active">Branch Detail</a>
+        <a class="breadcrumb-item active">Audio</a>
+      </nav>
+    </div>
+  </div>
     <div class="row">
       <div class="col-12">
-        <mat-card style="margin-top: 2%">
+        <mat-card>
           <mat-card-header>
             <mat-card-title><b>{{Branch.NAME}}</b></mat-card-title>
           </mat-card-header>

@@ -4,11 +4,13 @@
       <nav class="breadcrumb">
         <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
         <a class="breadcrumb-item" routerLink="/customer" routerLinkActive="active">Customers</a>
-        <a class="breadcrumb-item" routerLink="/customer-detail/{{Branch.CustomerId}}" 
+        <a class="breadcrumb-item" routerLink="/customer-detail/{{User.CustomerId}}" 
         routerLinkActive="active">Customer Detail</a>
-        <a class="breadcrumb-item" routerLink="/branch-detail/{{BranchId}}" 
+        <a class="breadcrumb-item" routerLink="/branch-detail/{{User.BranchId}}" 
         routerLinkActive="active">Branch Detail</a>
-        <a class="breadcrumb-item active">Add User</a>
+        <a class="breadcrumb-item" routerLink="/branch-user-detail/{{UserId}}" 
+        routerLinkActive="active">User</a>
+        <a class="breadcrumb-item active">Update User</a>
       </nav>
     </div>
   </div>
@@ -16,7 +18,7 @@
       <div class="col-sm-12 col-md-8 col-lg-6">
         <mat-card>
           <mat-card-header>
-            <mat-card-title>Add New User for Branch : <b>{{Branch.NAME}}</b></mat-card-title>
+            <mat-card-title>User : <b>{{User.Name}}</b></mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <form>
@@ -32,16 +34,8 @@
                   <input matInput placeholder="Enter Username" [formControl] = "username"
                   [(ngModel)]="User.UserName" (input)="onChangeInput()" required/>
                   <mat-error *ngIf="username.invalid && username.hasError('required')">Username is required.</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="form-group row">
-                <mat-form-field class="col-12">
-                  <input matInput placeholder="Enter Password" [formControl]="password"
-                  [(ngModel)]="User.Password" [type]="hide ? 'password' : 'text'" (input)="onChangeInput()" required/>
-                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                  <mat-error *ngIf="password.invalid && password.hasError('required')">Password is required.</mat-error>
-                </mat-form-field>
-              </div>
+                </mat-form-field>           
+              </div>   
               <div class="form-group row">
                 <mat-form-field class="col-12">
                   <mat-select placeholder="Select Role" [formControl]="role" 
@@ -56,12 +50,12 @@
               </div>
             </form>
           </mat-card-content>
-          <mat-card-actions>        
+          <mat-card-actions>            
             <button mat-raised-button color="primary"
               [disabled] = "name.invalid || username.invalid || password.invalid || role.invalid"
               (click)="Save()">SAVE</button>
-                  <button mat-button color="primary" 
-              (click)="GoToBranchDetail()">CANCEL</button>
+              <button mat-button color="primary" 
+              (click)="Exit()">CANCEL</button>
           </mat-card-actions>
         </mat-card>
       </div>    

@@ -1,3 +1,74 @@
-<p>
-  add-customer-branch works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a class="breadcrumb-item" routerLink="/customer" routerLinkActive="active">Customers</a>
+        <a class="breadcrumb-item" routerLink="/customer-detail/{{CustomerId}}" 
+        routerLinkActive="active">Customer Detail</a>
+        <a class="breadcrumb-item" routerLink="/customer-branches/{{CustomerId}}" 
+        routerLinkActive="active">Customer Branches</a>
+        <a class="breadcrumb-item active">Add New Customer Branch</a>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-6">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Create New Branch</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-group row">
+           <mat-form-field class="col-12">
+             <mat-label>Name :</mat-label>
+             <input matInput placeholder="Enter branch name" [(ngModel)]="Branch.Name"
+             [formControl]="branchname" required/>
+           </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>Description :</mat-label>
+              <input matInput placeholder="Enter description" [(ngModel)]="Branch.Description"
+              [formControl]="branchdescription" required/>
+            </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>Addressline 1 :</mat-label>
+              <input matInput placeholder="Enter Address" [(ngModel)]="Branch.AddressLine1"
+              [formControl]="branchaddress1" required/>
+            </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>Addressline 2 :</mat-label>
+              <input matInput placeholder="Enter Address" [(ngModel)]="Branch.AddressLine2"
+              [formControl]="branchaddress2" />
+            </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>City :</mat-label>
+              <input matInput placeholder="Enter city" [(ngModel)]="Branch.City"
+              [formControl]="branchcity" required/>
+            </mat-form-field>
+          </div>
+          <div class="form-group row">
+            <mat-form-field class="col-12">
+              <mat-label>State :</mat-label>
+              <input matInput placeholder="Enter State" [(ngModel)]="Branch.State"
+              [formControl]="branchstate" required/>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button
+          [disabled]="branchname.invalid || branchdescription.invalid || branchaddress1.invalid || branchcity.invalid || branchstate.invalid"
+          color="primary" (click)="Save()">SAVE</button>
+          <button mat-button color="primary" (click)="Cancel()">CANCEL</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,19 @@
 <div class="container">
   <div class="row">
+    <div class="col-12">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a class="breadcrumb-item active">Customers</a>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-6 col-lg-6 d-xs-none"></div>
     <div class="col-md-6 col-lg-6 col-sm-12">
       <div class="container">
         <div style="text-align: right; margin:2%; text-transform: uppercase;">
           <a mat-raised-button color="primary" style="text-decoration: none;" 
-          title="Create New Customer" router-link="/add-customer" routerLinkActive="active" >Add New Customer</a></div>
+          title="Create New Customer" routerLink="/add-customer" routerLinkActive="active" >Add New Customer</a></div>
       </div>
     </div>
   </div>
@@ -37,7 +45,7 @@
         [showFirstLastButtons]="true">
       </mat-paginator>-->
       <div class="table-responsive">
-        <table class="table table-condensed">
+        <table class="table table-condensed" *ngIf="data?.length > 0">
             <thead class="thead-light">
               <tr>
                 <th scope="col">No.</th>
@@ -47,7 +55,7 @@
                 <th scope="col"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody>              
               <tr *ngFor="let item of data; let i = index">
                 <th scope="row">{{i+1}}</th>
                 <td>{{item.Name}}</td>
@@ -58,7 +66,23 @@
                 <td><a style="text-transform: uppercase; text-decoration: none;" 
                   routerLink="/customer-branches/{{item.CustomerId}}" routerLinkActive="active"
                   mat-raised-button color="primary">View Branches</a></td>
+              </tr>              
+            </tbody>
+          </table>
+          <table class="table table-condensed" *ngIf="data?.length == 0">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
               </tr>
+            </thead>
+            <tbody>              
+                <tr>
+                  <td colspan="5" style="text-align:center;">No record found..</td>
+                </tr>              
             </tbody>
           </table>
       </div>      

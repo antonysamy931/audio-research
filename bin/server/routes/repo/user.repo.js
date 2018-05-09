@@ -35,7 +35,8 @@ function Insert(record){
             1
         ],
         (err) => {
-            errorlog.error(err);            
+            errorlog.error(err);
+            reject(err);   
         },function(){
             record.UserId = UserId;
             customer_user_repo.Insert(record);
@@ -49,19 +50,23 @@ function GetCustomersUsers(){
         userdb.all(userquery.SELECT_ALL_CUSTOMER_USER,(err,rows)=>{
             if(err){
                 errorlog.error(err);
+                reject(err);
+            }else{
+                resolve(rows);
             }
-            resolve(rows);
         });
     });
 }
 
-function GetUserById(Id, db){    
+function GetUserById(Id){    
     return new Promise(function(resolve,reject){
-        userdb.get("Select * from Users Where Id = ?",[Id],(err,row)=>{        
+        userdb.get(userquery.SELECT_USER_BY_ID,[Id],(err,row)=>{        
             if(err){
-                console.log(err);
-            }                
-            resolve(row);
+                errorlog.error(err);
+                reject(err);
+            }else{              
+                resolve(row);
+            }
         });
     });
 }
@@ -71,6 +76,7 @@ function GetBranchUsers(BranchId){
         userdb.all(userquery.SELECT_BRANCH_USERS,[BranchId],(err,rows) => {
             if(err){
                 errorlog.error(err);
+                reject(err);
             }
             else{
                 resolve(rows);
@@ -79,9 +85,33 @@ function GetBranchUsers(BranchId){
     });
 }
 
+function UpdateUser(record){    
+    return new Promise(function(resolve, reject){
+        const date = utility.get_local_date_string();        
+        userdb.run(userquery.UPDATE_BRANCH_USER_BY_ID,
+        [
+            record.Name,
+            record.UserName,
+            record.Role,
+            record.UpdatedBy,
+            date,
+            record.ID
+        ],
+        (err)=>{
+            if(err){
+                errorlog.error(err);
+                reject(err);
+            }                    
+        }, () => {            
+            resolve('Updated successfully');
+        });
+    });
+}
 
 module.exports = {
     Insert : Insert,
     GetCustomersUsers : GetCustomersUsers,
-    GetBranchUsers : GetBranchUsers
+    GetBranchUsers : GetBranchUsers,
+    GetUserById : GetUserById,
+    UpdateUser : UpdateUser
 }

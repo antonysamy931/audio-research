@@ -18,4 +18,16 @@ export class CustomerService {
     return this.http.get(this.Url.GetAllCustomers);
   }
 
+  public GetCustomer(id: string): Observable<any>{
+    return this.http.get(this.Url.GetCustomer+"?CustomerId="+id);
+  }
+
+  public CreateCustomer(data: any): Observable<any>{
+    return this.http.post(this.Url.CreateCustomer,data);
+  }
+
+  public UpdateCustomer(data: any): Observable<any>{
+    return this.http.post(this.Url.UpdateCustomer,data);
+  }
+
 }

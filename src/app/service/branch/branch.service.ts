@@ -34,6 +34,14 @@ export class BranchService {
     return this.http.get(this.Url.GetAudioByBranch+"?BranchId="+id);
   }
 
+  public CreateBranch(data:any):Observable<any>{
+    return this.http.post(this.Url.CreateBranch,data);
+  }
+
+  public UpdateBranch(data: any): Observable<any>{
+    return this.http.post(this.Url.UpdateBranch,data);
+  }
+
   public getPlayLists() : Observable<any>{
     return this.http.get('/api/v1/play/getfiles');
   }

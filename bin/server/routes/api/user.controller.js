@@ -22,4 +22,16 @@ router.get('/getbranchusers',function(req,res,next){
     })
 });
 
+router.get('/getuserbyid',function(req,res,next){    
+    dbhelper.userrepo.GetUserById(req.query.UserId).then(function(result){
+        res.json(result);
+    });
+});
+
+router.post('/updateuser',function(req,res,next){
+    dbhelper.userrepo.UpdateUser(req.body).then(function(result){
+        res.json(result);
+    });
+});
+
 module.exports = router;

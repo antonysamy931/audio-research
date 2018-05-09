@@ -47,3 +47,9 @@
     at Error (native) errno: 1, code: 'SQLITE_ERROR' }
 [2018-05-07T10:46:08.660] [ERROR] error - { Error: SQLITE_SCHEMA: near "1": syntax error
     at Error (native) errno: 17, code: 'SQLITE_SCHEMA' }
+[2018-05-09T16:19:13.568] [ERROR] error - { Error: SQLITE_ERROR: ambiguous column name: ID
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-09T16:21:13.575] [ERROR] error - { Error: SQLITE_ERROR: ambiguous column name: ID
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
+[2018-05-09T16:22:42.639] [ERROR] error - { Error: SQLITE_ERROR: ambiguous column name: ID
+    at Error (native) errno: 1, code: 'SQLITE_ERROR' }
