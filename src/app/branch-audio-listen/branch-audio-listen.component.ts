@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Common } from '../class/common';
@@ -16,9 +16,15 @@ export class BranchAudioListenComponent extends Common implements OnInit {
   BranchId:string;
   Branch: any = {};
   AudioPath: any = {};
-  Name: string = "";
+  Name: string = "";  
+  AudioPlay: boolean = false;
+  Mute: boolean = false;
+  TotalDuration: number = 0;
+  volume: number = 20;
 
   private audioFiles: any = [];
+
+  private elementAudio : any;
 
   constructor(private route: ActivatedRoute, public router: Router,
     private branchservice: BranchService, private authService: AuthService) {
@@ -52,15 +58,52 @@ export class BranchAudioListenComponent extends Common implements OnInit {
     }, err => {
       console.log(err)
     },() => {      
-      (<HTMLAudioElement>document.getElementById(this.BranchId)).load();
+      this.elementAudio = (<HTMLAudioElement>document.getElementById(this.BranchId));      
+      this.elementAudio.load();
+      this.TotalDuration = this.elementAudio.duration;
+      this.elementAudio.volume = this.volume/100;
     });
   }
 
   play(){
-    (<HTMLAudioElement>document.getElementById(this.BranchId)).play();
+    this.elementAudio.play();
   }
 
   pause(){
-    (<HTMLAudioElement>document.getElementById(this.BranchId)).pause();
+    this.elementAudio.pause();
+  }
+
+  Toggle(){
+    if(this.AudioPlay){
+      this.elementAudio.pause();
+    }else{
+      this.elementAudio.play();
+      this.Mute = false;
+    }    
+    this.AudioPlay = !this.AudioPlay;
+  }
+
+  Stop(){
+    this.elementAudio.pause();
+    this.AudioPlay = false;
+    this.elementAudio.currentTime = 0;
+  } 
+
+  volumeChange(){
+    console.log(this.volume/100);    
+    this.elementAudio.volume = this.volume/100;
+    if((this.volume/100) < 0.1){
+      this.Mute = true;
+    }else{
+      this.Mute = false;
+    }
+  }
+
+  MuteVolume(){
+    this.elementAudio.volume = 0;
+    this.volume = 0;
+    if(!this.Mute){
+      this.Mute = true;      
+    }    
   }
 }

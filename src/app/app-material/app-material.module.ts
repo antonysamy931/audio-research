@@ -14,7 +14,8 @@ import {
   MatSelectModule,
   MatListModule,
   MatDividerModule,
-  MatPaginatorModule  
+  MatPaginatorModule,
+  MatSliderModule
 } from '@angular/material';
 
 import { MatTableModule } from '@angular/material/table';
@@ -38,7 +39,8 @@ import { MatTableModule } from '@angular/material/table';
     MatListModule,
     MatDividerModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSliderModule
   ],
   declarations: []
 })

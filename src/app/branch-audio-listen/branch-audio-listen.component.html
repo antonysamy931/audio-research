@@ -22,7 +22,7 @@
             <div class="container">
               <div class="row">
                 <div class="col-4">                   
-                  <audio controls id="{{BranchId}}" style="display:none;">
+                  <audio #player controls id="{{BranchId}}" style="display:none;">
                     <source src="{{AudioPath}}" type="audio/mpeg">
                     Your browser does not support the audio element.
                   </audio>             
@@ -30,11 +30,30 @@
                     <img class="card-img-top" src="/assets/img/speakers-clipart-animated-gif-27.jpg" alt="Card image">
                     <div class="card-body">                      
                       <p class="card-text"><marquee>{{Name}}</marquee></p>
-                      <a (click)="play()" class="btn btn-primary">Play</a>
-                      <a (click)="pause()" class="btn btn-primary">Pause</a>
-                      <a *ngIf="authService.IsAgencyAdmin()" style="text-transform: uppercase; text-decoration: none;" 
-                        routerLink="/branch-detail/{{BranchId}}" routerLinkActive="active" 
-                        class="btn btn-primary">Go To Branch</a>
+                      <div class="row">
+                        <div class="col-12">
+                          <a mat-button color="primary" (click)="Toggle()"
+                          style="min-width:2%; padding:0; margin-left:8%;" color="primary">
+                              <mat-icon>
+                                {{AudioPlay == false ? "play_circle_outline":"pause_circle_outline"}}
+                              </mat-icon>
+                          </a>
+                          <a mat-button color="primary" (click)="Stop()" 
+                          style="min-width:2%; padding:0;" color="primary">
+                            <mat-icon>stop</mat-icon>
+                          </a>   
+                          <a mat-button style="min-width:2%; padding:0;" color="primary">
+                            <mat-icon>volume_mute</mat-icon>
+                          </a>
+                          <mat-slider color="primary" [(ngModel)]="volume"
+                          (change)="volumeChange()" [min]="1" [max]="100" 
+                          [vertical]="false" [tickInterval]="1"></mat-slider>                      
+                          <a mat-button color="primary" style="min-width:2%; padding:0;" >
+                            <mat-icon>volume_up</mat-icon>
+                          </a>                                            
+                        </div>
+                        <div class="col-12"></div>
+                      </div>                      
                     </div>
                   </div>                   
                 </div>                
