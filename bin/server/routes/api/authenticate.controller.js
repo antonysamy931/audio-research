@@ -10,8 +10,9 @@ const config = require(path.join(__dirname, '../constant/config'));
 router.post('/login',function(req,res){    
     let UserName = req.body.UserName;
     let Password = cryptosystem.encrypt(req.body.Password);
+    let CustomerId = req.body.CustomerId;
      
-    dbhelper.authenticaterepo.Login(UserName,Password).then(function(result){
+    dbhelper.authenticaterepo.Login(UserName,Password,CustomerId).then(function(result){
         if(typeof(result) == 'undefined' || result == null || result == ''){
             res.status(401).json('Username or password provide incorrect');
         }else{

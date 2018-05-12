@@ -30,4 +30,8 @@ export class CustomerService {
     return this.http.post(this.Url.UpdateCustomer,data);
   }
 
+  public GetAllCustomers(): Observable<any>{
+    return this.http.get(this.Url.GetCustomers);
+  }
+
 }

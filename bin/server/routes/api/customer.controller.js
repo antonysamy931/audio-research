@@ -35,4 +35,10 @@ router.post('/deletecustomer', function(req,res,next){
     });
 });
 
+router.get('/getcustomers',function(req,res,next){
+    dbhelper.customerrepo.GetAllCustomers().then(function(result){
+        res.json(result);
+    });
+});
+
 module.exports = router;

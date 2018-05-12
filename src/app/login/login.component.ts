@@ -6,6 +6,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { UserService } from '../service/user.service';
 import { AuthenticationService } from '../service/authentication/authentication.service';
 import { AuthService } from '../service/auth/auth.service';
+import { CustomerService } from '../service/customer/customer.service';
 
 import { Login } from '../class/login';
 
@@ -19,18 +20,29 @@ export class LoginComponent implements OnInit {
   private ValidationSummary: boolean = false;
   username = new FormControl('username', [Validators.required]);
   password = new FormControl('password', [Validators.required]);
+  customer = new FormControl('customer', [Validators.required]);
 
   constructor(private userService: UserService, private router: Router,
   private authenticationService: AuthenticationService,
   private spinnerService: Ng4LoadingSpinnerService,
-  private authService: AuthService) { }
+  private authService: AuthService,
+  private customerService: CustomerService) { }
+
+  private Customers:any[] = [];
+
+  private ValidationSummaryMessage:string = "Username or Password provide incorrect.";
 
   loginUser: Login = {
     UserName : "",
-    Password : ""
+    Password : "",
+    CustomerId : ""
   };  
 
   ngOnInit() {
+    this.Customers.push({CustomerId: "",Description:"-- Select Customer --"});
+    this.Customers.push({CustomerId: "AgencyUsers",Description:"Agency Users"});
+    
+    this.LoadCustomers();
   }
 
   ngAfterViewInit(){    
@@ -67,7 +79,23 @@ export class LoginComponent implements OnInit {
         this.spinnerService.hide();
       },
       err => {
+        this.ValidationSummary = true;
+        this.ValidationSummaryMessage = err.error;
         console.log(err);
+        this.spinnerService.hide();
       });
+  }
+
+  LoadCustomers(){
+    this.spinnerService.show();
+    this.customerService.GetAllCustomers().subscribe(
+      data => {
+        data.forEach(element => {
+          this.Customers.push({CustomerId: element.CustomerId, Description: element.Description});
+        });
+        this.spinnerService.hide();
+      },
+      err => {console.log(err)}
+    );
   }
 }

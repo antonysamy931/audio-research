@@ -26,7 +26,6 @@ export abstract class Common implements OnInit, AfterViewInit{
 
     BranchUser(){        
         var CurrentUrl: string = window.location.href.split(window.location.host)[1];
-        console.log(CurrentUrl);
         if(CurrentUrl.includes('branch-audio-listen')){
             return true;
         }else if(CurrentUrl === '/' || CurrentUrl.includes('dashboard')){

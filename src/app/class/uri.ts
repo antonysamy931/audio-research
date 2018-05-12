@@ -4,6 +4,7 @@ export class Uri {
 
     public GetAllCustomers: string = "/api/v1/customer/getallcustomers";
     public GetCustomer: string = "/api/v1/customer/getcustomer";
+    public GetCustomers: string = "/api/v1/customer/getcustomers";
     public CreateCustomer: string = "/api/v1/customer/create";
     public UpdateCustomer: string = "/api/v1/customer/updatecustomer";
     public DeleteCustomer: string = "/api/v1/customer/deletecustomer";

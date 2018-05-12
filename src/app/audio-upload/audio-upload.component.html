@@ -1,31 +1,58 @@
-<mat-toolbar color="primary">
-  <span class="mat-title-custom">Audio Player</span>
-  <button mat-icon-button class="mat-user-button" [matMenuTriggerFor]="menu">
-    <span class="mat-user-welcome-message">Welcome {{Name}}</span>
-    <mat-icon>details</mat-icon>    
-  </button>  
-  
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="Redirect('/dashboard')">
-      <mat-icon>home</mat-icon>
-      <span>Dashboard</span>
-    </button>
-    <button mat-menu-item (click)="Redirect('/audioup')">
-      <mat-icon>file_upload</mat-icon>
-      <span>Audio Upload</span>
-    </button>
-    <button mat-menu-item (click)="Redirect('/audiolisten')">
-      <mat-icon>album</mat-icon>
-      <span>Audio Listen</span>
-    </button>
-    <button mat-menu-item (click)="Logout()">
-      <mat-icon>exit_to_app</mat-icon>
-      <span>Logout</span>
-    </button>    
-  </mat-menu>
-</mat-toolbar>
-
-<mat-card class="file-upload-card md-card-min-height">    
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a class="breadcrumb-item active">File Upload</a>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-6">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>File Upload</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form>
+            <div class="form-group row">
+              <mat-form-field class="col-12">
+                <mat-select placeholder="Select Customer" (change)="LoadBranches()" [formControl]="customer"
+                  [(ngModel)]="CustomerId" required>
+                  <mat-option *ngFor="let c of Customers" [value]="c.CustomerId">{{c.Description}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-group row">
+              <mat-form-field class="col-12">
+                <mat-select [disabled]="customer.invalid"
+                 placeholder="Select Branch" [formControl]="branch"
+                  [(ngModel)]="BranchId" required>
+                  <mat-option *ngFor="let b of Branches" [value]="b.BranchId">{{b.Description}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-group row">
+              <div class="col-2">
+                <label>File</label>
+              </div>
+              <div class="col-10">
+                <input #audioUpload type="file" accept=".mp3,.mp4" 
+                [disabled]="customer.invalid || branch.invalid" (change)="onFileChange($event)">    
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary"
+           [disabled]="customer.invalid || branch.invalid || ButtonDisabled" 
+          (click)="Upload()">Upload</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<!--<mat-card class="file-upload-card md-card-min-height">    
   <mat-card-content>
 
     <mat-card class="file-upload-child-card">
@@ -53,3 +80,4 @@
 
   </mat-card-content>  
 </mat-card>
+-->

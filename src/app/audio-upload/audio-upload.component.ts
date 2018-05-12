@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
-import { AudioServiceService } from '../audio-service.service'
-import { UserService } from '../service/user.service';
+import { CustomerService } from '../service/customer/customer.service';
+import { BranchService } from '../service/branch/branch.service';
 
 import { Common } from '../class/common';
 import { User } from '../class/user';
@@ -19,27 +19,28 @@ import { isNgTemplate } from '@angular/compiler';
 
 export class AudioUploadComponent extends Common implements OnInit {
   audioFile: any;
-  constructor(private audioService: AudioServiceService, public router:Router,
-  private userService: UserService, private spinnerService: Ng4LoadingSpinnerService) {
+  constructor(public router:Router,
+  private spinnerService: Ng4LoadingSpinnerService,
+  private customerService: CustomerService,
+  private branchService: BranchService) {
     super(router);
   }
 
   @ViewChild('audioUpload')
   private audioElement : any;
-  private Name:string;
-  private Users: any[];
-  private User: any;
+  private CustomerId: any;
+  private BranchId: any;
   private AudioFile: any;
   private ButtonDisabled: boolean = true;
+  private Customers: any = [];
+  private Branches: any = [];
   
-  private user = new FormControl('user',[Validators.required]);
+  private customer = new FormControl('customer', [Validators.required]);
+  private branch = new FormControl('branch', [Validators.required]);
   private file = new FormControl('file',[Validators.required]);
 
   ngOnInit() {
-    if(localStorage.getItem('Name')){
-        this.Name = localStorage.getItem('Name');
-    }
-    this.GetUsers();
+    this.LoadCustomers();
   }
 
   Upload(){
@@ -47,17 +48,18 @@ export class AudioUploadComponent extends Common implements OnInit {
     let reader = new FileReader();
     const formData: any = new FormData();
     formData.append('audio', this.AudioFile, this.AudioFile.name);      
-    this.audioService.upload(formData,this.User)
+    this.branchService.InsertAudioByBranch(this.BranchId, formData)
       .subscribe(message => 
-      {
-        console.log(message)          
-        this.audioElement.nativeElement.value = "";   
-        this.User=""; 
-        this.user.reset();    
-        this.spinnerService.hide();
+      {        
+        this.audioElement.nativeElement.value = "";                    
+        this.customer.reset();
+        this.Branches = [];
+        this.branch.reset();
       }, err => 
       {
         console.log(err)
+      }, () => {
+        this.spinnerService.hide();
       });
   }
 
@@ -68,13 +70,37 @@ export class AudioUploadComponent extends Common implements OnInit {
     }
   }
 
-  GetUsers(){
-    this.userService.getotherusers().subscribe(data => {
-      this.Users = data;            
-      console.log(this.Users);
-    }, err => {
-      console.log(err);
-    });
+  LoadCustomers(){
+    this.spinnerService.show();
+     this.Customers.push({CustomerId: "", Description:"-- Select Customer --"});
+     this.customerService.GetCustomers().subscribe(
+       data => {
+         if(data.length > 0){
+          data.forEach(element => {
+            this.Customers.push({CustomerId: element.CustomerId, Description: element.Description});
+          });
+         }          
+       },
+       err => {
+          console.log(err);
+       }, () => {
+        this.spinnerService.hide();
+       }
+     ); 
+  }
+
+  LoadBranches(){
+    this.spinnerService.show();
+    this.branchService.GetBranchesByCustomer(this.CustomerId).subscribe(
+      data => {
+        this.Branches = data;
+      },
+      err => {
+        console.log(err);
+      }, () => {
+        this.spinnerService.hide();
+      }
+    );
   }
 
 }

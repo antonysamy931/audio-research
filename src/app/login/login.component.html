@@ -18,15 +18,23 @@
               [(ngModel)]="loginUser.Password" [type]="hide ? 'password' : 'text'"  (input)="OnChangeInput()" required />
               <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
               <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
-            </mat-form-field>      
+            </mat-form-field>
+            <mat-form-field class="login-form-field">
+              <mat-select placeholder="Select Customer" [formControl]="customer"
+                [(ngModel)]="loginUser.CustomerId" required>
+                <mat-option *ngFor="let c of Customers" [value]="c.CustomerId">{{c.Description}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="customer.invalid">Customer is required.</mat-error>
+            </mat-form-field>
+                  
             <div *ngIf="ValidationSummary" class="validation-error">
-                <span>Username or Password provide incorrect.</span>
+                <span>{{ValidationSummaryMessage}}</span>
             </div>
           </div>
         </mat-card-content>  
         <mat-card-actions class="login-card-actions">
           <button mat-raised-button color="primary" 
-          [disabled]="username.invalid || password.invalid" (click)="Login()">Login</button>
+          [disabled]="username.invalid || password.invalid || customer.invalid" (click)="Login()">Login</button>
         </mat-card-actions>
       </mat-card>
     </div>

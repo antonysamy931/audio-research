@@ -7,7 +7,8 @@ const jwt = require('jsonwebtoken');
 const config = require(path.join(__dirname, '../constant/config'));
 
 router.use(function(req, res, next){   
-    if(req.path.includes('api/v1') && !req.path.includes('login') && !req.path.includes('api/v1/play/getfile')){
+    if(req.path.includes('api/v1') && !req.path.includes('login') 
+    && !req.path.includes('api/v1/play/getfile') && !req.path.includes('getcustomers')){
         let authorization = req.header('Authorization');
         if(!authorization){
             res.status(401).json('UnAuthorized User.');
