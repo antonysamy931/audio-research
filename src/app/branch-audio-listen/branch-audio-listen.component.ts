@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Common } from '../class/common';
@@ -11,7 +11,7 @@ import { AuthService } from '../service/auth/auth.service';
   templateUrl: './branch-audio-listen.component.html',
   styleUrls: ['./branch-audio-listen.component.css']
 })
-export class BranchAudioListenComponent extends Common implements OnInit {
+export class BranchAudioListenComponent extends Common implements OnInit, AfterViewInit {
 
   BranchId:string;
   Branch: any = {};
@@ -21,13 +21,15 @@ export class BranchAudioListenComponent extends Common implements OnInit {
   Mute: boolean = false;
   TotalDuration: number = 0;
   volume: number = 20;
+  progress: number = 0;
 
   private audioFiles: any = [];
 
   private elementAudio : any;
 
   constructor(private route: ActivatedRoute, public router: Router,
-    private branchservice: BranchService, private authService: AuthService) {
+    private branchservice: BranchService, private authService: AuthService,
+    private elementRef: ElementRef) {
     super(router);
   }
 
@@ -40,7 +42,21 @@ export class BranchAudioListenComponent extends Common implements OnInit {
 
     });
     this.LoadBranchDetails();
-    this.LoadAudio();    
+    this.LoadAudio();
+  }
+
+  ngAfterViewInit(){
+    document.getElementById(this.BranchId).addEventListener('timeupdate', 
+    function(){
+      var element = <HTMLAudioElement>(document.getElementById(this.BranchId));
+      var percentage = Math.floor((element.currentTime / element.duration) * 100);
+      this.progress = percentage;
+    }.bind(this));
+
+    document.getElementById(this.BranchId).addEventListener('ended',function(){
+      this.Stop();
+      this.progress = 0;
+    }.bind(this));
   }
 
   LoadBranchDetails(){
@@ -90,7 +106,6 @@ export class BranchAudioListenComponent extends Common implements OnInit {
   } 
 
   volumeChange(){
-    console.log(this.volume/100);    
     this.elementAudio.volume = this.volume/100;
     if((this.volume/100) < 0.1){
       this.Mute = true;

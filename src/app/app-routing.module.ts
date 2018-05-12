@@ -24,6 +24,7 @@ import { AddCustomerBranchComponent } from './add-customer-branch/add-customer-b
 import { UpdateCustomerBranchComponent } from './update-customer-branch/update-customer-branch.component';
 import { BranchUserDetailComponent } from './branch-user-detail/branch-user-detail.component';
 import { BranchUserUpdateComponent } from './branch-user-update/branch-user-update.component';
+import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 
 const pageRoute: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch:'full'},
@@ -65,7 +66,8 @@ const pageRoute: Routes = [
   { path: 'add-customer-branch/:id', component: AddCustomerBranchComponent},
   { path: 'update-customer-branch/:id', component: UpdateCustomerBranchComponent},
   { path: 'branch-user-detail/:id', component: BranchUserDetailComponent},
-  { path: 'branch-user-update/:id', component: BranchUserUpdateComponent}
+  { path: 'branch-user-update/:id', component: BranchUserUpdateComponent},
+  { path: 'un-authorized', component: UnAuthorizedComponent}
 ];
 
 @NgModule({

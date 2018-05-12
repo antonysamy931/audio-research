@@ -45,6 +45,7 @@ import { UpdateCustomerBranchComponent } from './update-customer-branch/update-c
 import { AuthInterceptor } from './class/auth.interceptor';
 import { BranchUserDetailComponent } from './branch-user-detail/branch-user-detail.component';
 import { BranchUserUpdateComponent } from './branch-user-update/branch-user-update.component';
+import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { BranchUserUpdateComponent } from './branch-user-update/branch-user-upda
     CustomerDetailComponent, 
     UpdateCustomerComponent,     
     AddCustomerBranchComponent, 
-    UpdateCustomerBranchComponent, BranchUserDetailComponent, BranchUserUpdateComponent
+    UpdateCustomerBranchComponent, BranchUserDetailComponent, BranchUserUpdateComponent, UnAuthorizedComponent
   ],
   imports: [    
     BrowserModule,

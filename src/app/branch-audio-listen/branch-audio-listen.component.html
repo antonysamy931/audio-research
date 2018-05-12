@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="authService.IsAgencyAdmin() || authService.IsAgencyMember() || authService.IsCustomerUser()">
     <div class="col-12">
       <nav class="breadcrumb">
         <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
@@ -52,7 +52,11 @@
                             <mat-icon>volume_up</mat-icon>
                           </a>                                            
                         </div>
-                        <div class="col-12"></div>
+                        <div class="col-12">
+                          <mat-slider style="width:100%;" color="primary" [(ngModel)]="progress"
+                          [min]="1" [max]="100" [disabled]="true"
+                          [vertical]="false" [tickInterval]="1"></mat-slider>
+                        </div>
                       </div>                      
                     </div>
                   </div>                   
