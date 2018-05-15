@@ -34,4 +34,10 @@ router.post('/updateuser',function(req,res,next){
     });
 });
 
+router.post('/isuserexistforcustomer',function(req,res,next){
+    dbhelper.userrepo.IsUserExistForCustomer(req.body.CustomerId,req.body.UserName).then(function(result){
+        res.json(result);
+    });
+});
+
 module.exports = router;

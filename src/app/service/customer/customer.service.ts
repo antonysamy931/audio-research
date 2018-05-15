@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs/Observable';
-
 import { Uri } from '../../class/uri';
 
 import { AuthService } from '../auth/auth.service';
@@ -32,6 +31,10 @@ export class CustomerService {
 
   public GetAllCustomers(): Observable<any>{
     return this.http.get(this.Url.GetCustomers);
+  }
+
+  public IsCustomerExist(Name: string){    
+    return this.http.get(this.Url.IsCustomerExist+"?Name="+Name);
   }
 
 }

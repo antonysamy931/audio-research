@@ -19,3 +19,7 @@ exports.SELECT_BRANCH_USERS = `SELECT U.* FROM Users U
 exports.UPDATE_BRANCH_USER_BY_ID = `UPDATE [Users] 
                                     SET Name = ?, UserName = ?, [Role] = ?, UpdatedBy = ?, UpdatedDate = ?
                                     WHERE ID = ?`;
+exports.IS_USER_EXIST_FOR_CUSTOMER = `SELECT COUNT(1) AS RowCount FROM [Users] AS U
+                                    JOIN [CustomerUser] AS CU ON U.ID = CU.UserId
+                                    WHERE CU.CustomerId = ? 
+                                    AND U.UserName = ?`;

@@ -29,4 +29,8 @@ export class BranchUserService {
   public UpdateUser(User: any): Observable<any>{
     return this.http.post(this.Url.UpdateUser,User);
   }
+
+  public CheckUserExist(Id:string, UserName: string): Observable<any>{
+    return this.http.post(this.Url.IsUserExistForCustomer,{CustomerId:Id,UserName:UserName});
+  }
 }

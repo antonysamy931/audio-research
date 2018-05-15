@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 import { Common } from '../class/common';
+import { IsCustomerNameExistValidator } from '../class/validators/customer-exist';
 
 import { CustomerService } from '../service/customer/customer.service';
 
@@ -18,7 +19,8 @@ export class AddNewCustomerComponent extends Common implements OnInit {
     super(router);
    }
 
-  customername = new FormControl('customername',Validators.required);
+  customername = new FormControl('customername',[Validators.required], 
+                [IsCustomerNameExistValidator(this.customerservice)]);
   customerdescription = new FormControl('customerdescription',Validators.required);
   customeraddress1 = new FormControl('customeraddress1',Validators.required);
   customeraddress2 = new FormControl('customeraddress2');
@@ -27,7 +29,9 @@ export class AddNewCustomerComponent extends Common implements OnInit {
   
   Customer: any = {}
 
-  ngOnInit() {
+  CustomerNames: any[] = [];
+
+  ngOnInit() {    
   }
 
   Save(){    
@@ -40,6 +44,5 @@ export class AddNewCustomerComponent extends Common implements OnInit {
 
   Cancel(){
     this.router.navigateByUrl('/customer');
-  }
-
+  } 
 }

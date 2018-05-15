@@ -18,3 +18,4 @@ exports.DELETE_BRANCH = `UPDATE Branch
 exports.DELETE_BRANCH_By_Customer = `UPDATE Branch 
                             SET Active = ?, UpdatedBy = ?, UpdatedDate = ?
                             WHERE CustomerId = ?`;
+exports.IS_BRANCH_EXIST = `SELECT COUNT(1) AS RowCount FROM [Branch] WHERE lower(Name) = lower(?) AND CustomerId=?`;

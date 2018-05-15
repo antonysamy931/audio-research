@@ -8,6 +8,7 @@ export class Uri {
     public CreateCustomer: string = "/api/v1/customer/create";
     public UpdateCustomer: string = "/api/v1/customer/updatecustomer";
     public DeleteCustomer: string = "/api/v1/customer/deletecustomer";
+    public IsCustomerExist: string = "/api/v1/customer/iscustomerexist";
 
     public GetAllBranches: string = "/api/v1/branch/getallbranches";
     public GetCustomerBranches: string = "/api/v1/branch/getcustomerbranches";
@@ -15,11 +16,13 @@ export class Uri {
     public GetBrach: string = "/api/v1/branch/getbranchbyid";
     public UpdateBranch: string = "/api/v1/branch/updatebranch";
     public DeleteBranch: string = "/api/v1/branch/deletebranch";
+    public IsBranchExist: string = "/api/v1/branch/isbranchexist";
 
     public AddBranchUser: string ="/api/v1/user/addnewuser";
     public GetBranchUsers: string = "/api/v1/user/getbranchusers";
     public GetUserById: string = "/api/v1/user/getuserbyid";
     public UpdateUser: string = "/api/v1/user/updateuser";
+    public IsUserExistForCustomer: string = "/api/v1/user/isuserexistforcustomer";
 
     public InsertAudio: string = "/api/v1/play/upload";
     public GetAudioByBranch: string = "/api/v1/play/getfilebybranch";

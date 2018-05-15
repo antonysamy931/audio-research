@@ -102,10 +102,23 @@ function Delete(record){
     });
 }
 
+function IsCustomerExist(name){
+    return new Promise(function(resolve,reject){
+       customerdb.get(customerquery.IS_CUSTOMER_EXIST,[name], (err,row) => {
+            if(err){
+                errorlog.error(err);
+            }else{
+                resolve(row.RowCount > 0);
+            }
+       });
+    });
+}
+
 module.exports = {
     Insert : Insert,
     GetAllCustomers : GetAllCustomers,
     CustomerGetById : CustomerGetById,
     Update : Update,
-    Delete : Delete
+    Delete : Delete,
+    IsCustomerExist : IsCustomerExist
 }

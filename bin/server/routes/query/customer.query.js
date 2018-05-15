@@ -13,3 +13,4 @@ exports.UPDATE_CUSTOMER = `UPDATE Customer
 exports.DELETE_CUSTOMER = `UPDATE Customer 
                             SET Active = ?, UpdatedBy = ?, UpdatedDate = ?
                             WHERE ID = ?`;
+exports.IS_CUSTOMER_EXIST = `SELECT COUNT(1) AS RowCount FROM [Customer] WHERE lower(Name) = lower(?)`

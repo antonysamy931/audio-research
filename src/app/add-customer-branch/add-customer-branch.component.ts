@@ -4,6 +4,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 import { Common } from '../class/common';
+import { IsBranchExistForCustomerValidator } from '../class/validators/branch-exist-for-customer';
 
 import { BranchService } from '../service/branch/branch.service';
 
@@ -22,7 +23,8 @@ export class AddCustomerBranchComponent extends Common implements OnInit {
   CustomerId: string = "";
   Branch: any = {};
 
-  branchname = new FormControl('branchname',Validators.required);
+  branchname = new FormControl('branchname',[Validators.required],
+                  [IsBranchExistForCustomerValidator(this.branchservice, this.route)]);
   branchdescription = new FormControl('branchdescription',Validators.required);
   branchaddress1 = new FormControl('branchaddress1',Validators.required);
   branchaddress2 = new FormControl('branchaddress2');
@@ -36,7 +38,7 @@ export class AddCustomerBranchComponent extends Common implements OnInit {
 
     });
   }
-
+  
   Save(){
     this.Branch.CustomerId = this.CustomerId;
     this.branchservice.CreateBranch(this.Branch).subscribe(data => {

@@ -20,6 +20,8 @@
              <mat-label>Name :</mat-label>
              <input matInput placeholder="Enter customer name" [(ngModel)]="Customer.Name"
              [formControl]="customername" required/>
+             <mat-error *ngIf="customername.invalid && customername.hasError('required')">Name is required.</mat-error>
+             <mat-error *ngIf="customername.invalid && customername.hasError('hasnameexist')">Customer name already exist.</mat-error>
            </mat-form-field>
           </div>
           <div class="form-group row">
@@ -27,6 +29,7 @@
               <mat-label>Description :</mat-label>
               <input matInput placeholder="Enter description" [(ngModel)]="Customer.Description"
               [formControl]="customerdescription" required/>
+              <mat-error *ngIf="customerdescription.invalid && customerdescription.hasError('required')">Name is required.</mat-error>
             </mat-form-field>
           </div>
           <div class="form-group row">
@@ -34,6 +37,7 @@
               <mat-label>Addressline 1 :</mat-label>
               <input matInput placeholder="Enter Address" [(ngModel)]="Customer.AddressLine1"
               [formControl]="customeraddress1" required/>
+              <mat-error *ngIf="customeraddress1.invalid && customeraddress1.hasError('required')">Name is required.</mat-error>
             </mat-form-field>
           </div>
           <div class="form-group row">
@@ -48,6 +52,7 @@
               <mat-label>City :</mat-label>
               <input matInput placeholder="Enter city" [(ngModel)]="Customer.City"
               [formControl]="customercity" required/>
+              <mat-error *ngIf="customercity.invalid && customercity.hasError('required')">Name is required.</mat-error>
             </mat-form-field>
           </div>
           <div class="form-group row">
@@ -55,6 +60,7 @@
               <mat-label>State :</mat-label>
               <input matInput placeholder="Enter State" [(ngModel)]="Customer.State"
               [formControl]="customerstate" required/>
+              <mat-error *ngIf="customerstate.invalid && customerstate.hasError('required')">Name is required.</mat-error>
             </mat-form-field>
           </div>
         </mat-card-content>

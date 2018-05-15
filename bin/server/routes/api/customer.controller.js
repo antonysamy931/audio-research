@@ -41,4 +41,10 @@ router.get('/getcustomers',function(req,res,next){
     });
 });
 
+router.get('/iscustomerexist',function(req,res,next){
+    dbhelper.customerrepo.IsCustomerExist(req.query.Name).then(function(result){
+        res.json(result);
+    });
+});
+
 module.exports = router;

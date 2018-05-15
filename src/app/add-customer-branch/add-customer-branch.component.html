@@ -24,6 +24,7 @@
              <mat-label>Name :</mat-label>
              <input matInput placeholder="Enter branch name" [(ngModel)]="Branch.Name"
              [formControl]="branchname" required/>
+             <mat-error *ngIf="branchname.invalid && branchname.hasError('hasnameexist')">Branch name already exist for this customer.</mat-error>
            </mat-form-field>
           </div>
           <div class="form-group row">

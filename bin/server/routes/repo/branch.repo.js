@@ -129,6 +129,18 @@ function DeleteByCustomerId(record){
     });
 }
 
+function IsBranchExist(name,customerid){
+    return new Promise(function(resolve,reject){
+       customerdb.get(branchquery.IS_BRANCH_EXIST,[name,customerid], (err,row) => {
+            if(err){
+                errorlog.error(err);
+            }else{
+                resolve(row.RowCount > 0);
+            }
+       });
+    });
+}
+
 module.exports = {
     Insert : Insert,
     GetAllBranches : GetAllBranches,
@@ -136,5 +148,6 @@ module.exports = {
     BranchGetById : BranchGetById,
     Update : Update,
     Delete : Delete,
-    DeleteByCustomerId : DeleteByCustomerId
+    DeleteByCustomerId : DeleteByCustomerId,
+    IsBranchExist : IsBranchExist
 }

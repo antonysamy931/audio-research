@@ -42,6 +42,10 @@ export class BranchService {
     return this.http.post(this.Url.UpdateBranch,data);
   }
 
+  public IsBranchExist(CustomerId: string, Name: string): Observable<any>{
+    return this.http.post(this.Url.IsBranchExist,{CustomerId: CustomerId, Name: Name});
+  }
+
   public getPlayLists() : Observable<any>{
     return this.http.get('/api/v1/play/getfiles');
   }

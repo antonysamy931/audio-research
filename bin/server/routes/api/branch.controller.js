@@ -42,4 +42,10 @@ router.post('/deletebranch', function(req,res,next){
     });
 });
 
+router.post('/isbranchexist',function(req,res,next){
+    dbhelper.branchrepo.IsBranchExist(req.body.Name,req.body.CustomerId).then(function(result){
+        res.json(result);
+    });
+});
+
 module.exports = router;
