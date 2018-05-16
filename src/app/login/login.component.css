@@ -26,7 +26,10 @@ input.example-right-align {
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  color:#3f51b5;
+  background-color: #3f51b5;
+  color: #ffffff;
+  padding-top: 2%;
+  min-height: 50px;
 }
 
 .login-form-field{

@@ -3,7 +3,7 @@
     <div class="col-sm-12 col-md-8 col-lg-6">
       <mat-card class="login-card md-card-min-height">  
         <mat-card-title class="login-card-title">
-          <span>Login</span>
+          <span>Audio Player</span>
         </mat-card-title>  
         <mat-card-content>
           <div class="login-container">
@@ -16,7 +16,7 @@
             <mat-form-field class="login-form-field">
               <input matInput placeholder="Enter your password" [formControl]="password"
               [(ngModel)]="loginUser.Password" [type]="hide ? 'password' : 'text'"  (input)="OnChangeInput()" required />
-              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              <mat-icon style="cursor:pointer;" matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
               <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
             </mat-form-field>
             <mat-form-field class="login-form-field">
@@ -32,7 +32,7 @@
             </div>
           </div>
         </mat-card-content>  
-        <mat-card-actions class="login-card-actions">
+        <mat-card-actions class="mat-action-card-custom">
           <button mat-raised-button color="primary" 
           [disabled]="username.invalid || password.invalid || customer.invalid" (click)="Login()">Login</button>
         </mat-card-actions>
