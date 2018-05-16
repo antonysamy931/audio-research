@@ -20,6 +20,7 @@ export class UpdateCustomerBranchComponent extends Common implements OnInit {
   }
   
   BranchId: string = "";
+  CustomerId:string;
   Branch: any = {};
 
   branchdescription = new FormControl('branchdescription',Validators.required);
@@ -30,7 +31,8 @@ export class UpdateCustomerBranchComponent extends Common implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.BranchId = params['id']
+      this.BranchId = params['id'];
+      this.CustomerId = params['customerid'];
     },err => {
 
     });
@@ -47,14 +49,14 @@ export class UpdateCustomerBranchComponent extends Common implements OnInit {
 
   Update(){
     this.branchservice.UpdateBranch(this.Branch).subscribe(data => {
-      this.router.navigateByUrl('/branch-detail/'+this.BranchId);
+      this.router.navigateByUrl('/branch-detail/'+this.BranchId+'/'+this.CustomerId);
     }, err =>{
       console.log(err);
     })
   }
 
   Cancel(){
-    this.router.navigateByUrl('/branch-detail/'+this.BranchId);
+    this.router.navigateByUrl('/branch-detail/'+this.BranchId+'/'+this.CustomerId);
   }
 
 }

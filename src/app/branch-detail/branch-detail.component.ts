@@ -13,6 +13,8 @@ import { BranchService } from '../service/branch/branch.service';
 export class BranchDetailComponent extends Common implements OnInit {
 
   BranchId:string;
+  CustomerId:string;
+
   Branch: any = {};
 
   constructor(private route: ActivatedRoute, public router: Router,
@@ -23,6 +25,7 @@ export class BranchDetailComponent extends Common implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.BranchId = params['id'];
+      this.CustomerId = params['customerid'];
     },err => {
 
     }, () =>{
@@ -40,7 +43,7 @@ export class BranchDetailComponent extends Common implements OnInit {
   }
 
   Edit(){
-    this.router.navigateByUrl('/update-customer-branch/'+this.BranchId);
+    this.router.navigateByUrl('/update-customer-branch/'+this.BranchId+'/'+this.CustomerId);
   }
 
   Back(){

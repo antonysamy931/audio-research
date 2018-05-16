@@ -8,10 +8,10 @@
         <a class="breadcrumb-item" routerLink="/customer" routerLinkActive="active">Customers</a>
         <a class="breadcrumb-item" routerLink="/customer-detail/{{User.CustomerId}}" 
         routerLinkActive="active">Customer Detail</a>
-        <a class="breadcrumb-item" routerLink="/branch-detail/{{User.BranchId}}" 
+        <a class="breadcrumb-item" routerLink="/branch-detail/{{User.BranchId}}/{{CustomerId}}" 
         routerLinkActive="active">Branch Detail</a>
-        <a class="breadcrumb-item" routerLink="/branch-users/{{User.BranchId}}" 
-        routerLinkActive="active">Users</a>
+        <a class="breadcrumb-item" routerLink="/branch-users/{{User.BranchId}}/{{CustomerId}}" 
+        routerLinkActive="active">Branch Users</a>
         <a class="breadcrumb-item active">User Detail</a>
       </nav>
     </div>
@@ -42,7 +42,7 @@
               </div>
             </div>            
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions class="mat-action-card-custom">
           <button mat-raised-button color="primary" (click)="Edit()">EDIT</button>          
         </mat-card-actions>
       </mat-card>

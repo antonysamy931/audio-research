@@ -57,13 +57,13 @@
               </div>
             </div>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions class="mat-action-card-custom">
           <button mat-raised-button color="primary" (click)="Edit()">EDIT</button>
           <button mat-button color="primary" (click)="Back()">BACK</button>
         </mat-card-actions>
       </mat-card>
     </div>
-    <div class="d-xs-none col-sm-6 col-lg-6">
+    <div class="col-sm-12 col-md-6 col-lg-6">
       <mat-card style="margin-top:2%">
         <mat-card-header>
           <mat-card-title>Actions</mat-card-title>
@@ -71,16 +71,16 @@
         <mat-card-content>
           <div class="row">
             <div class=col-12>
-              <a routerLink="/branch-users/{{Branch.BranchId}}" routerLinkActive="active">View Users</a>              
+              <a class="btn btn-link detail-link" routerLink="/branch-users/{{Branch.BranchId}}/{{CustomerId}}" routerLinkActive="active">View Users</a>              
             </div>
             <div class="col-12">
-                <a routerLink="/branch-add-user/{{Branch.BranchId}}" routerLinkActive="active">Add User</a>
+                <a class="btn btn-link detail-link" routerLink="/branch-add-user/{{Branch.BranchId}}/{{CustomerId}}" routerLinkActive="active">Add User</a>
             </div>
             <div class="col-12">
-              <a routerLink="/branch-file-upload/{{Branch.BranchId}}" routerLinkActive="active">File Upload</a>
+              <a class="btn btn-link detail-link" routerLink="/branch-file-upload/{{Branch.BranchId}}/{{CustomerId}}" routerLinkActive="active">File Upload</a>
             </div>
             <div class="col-12">
-              <a routerLink="/branch-audio-listen/{{Branch.BranchId}}" routerLinkActive="active">Audio</a>
+              <a class="btn btn-link detail-link" routerLink="/branch-audio-listen/{{Branch.BranchId}}/{{CustomerId}}" routerLinkActive="active">Audio</a>
             </div>
           </div>
         </mat-card-content>

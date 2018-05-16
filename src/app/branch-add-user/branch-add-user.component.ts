@@ -4,6 +4,7 @@ import { FormControl, Validator, Validators } from '@angular/forms';
 
 import { Common } from '../class/common';
 import { AddUser } from '../class/user';
+import { IsUserNameExistForCustomerValidator } from '../class/validators/username-exist';
 
 import { BranchService } from '../service/branch/branch.service';
 import { BranchUserService } from '../service/branch/user/branch-user.service';
@@ -16,6 +17,7 @@ import { BranchUserService } from '../service/branch/user/branch-user.service';
 export class BranchAddUserComponent extends Common implements OnInit {
 
   BranchId:string;
+  CustomerId:string;
   Branch: any = {};
   ValidationSummary: boolean = false;
   ValidationSummaryMessage: string = "";
@@ -25,7 +27,8 @@ export class BranchAddUserComponent extends Common implements OnInit {
                   {value:"member",text:"Member"}]; 
 
   name = new FormControl('name', Validators.required);
-  username = new FormControl('username', Validators.required);
+  username = new FormControl('username', [Validators.required],
+        [IsUserNameExistForCustomerValidator(this.branchUserService,this.route)]);
   password = new FormControl('password', Validators.required);
   role = new FormControl('role', Validators.required);
 
@@ -46,6 +49,7 @@ export class BranchAddUserComponent extends Common implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.BranchId = params['id'];
+      this.CustomerId = params['customerid'];
     },err => {
 
     }, () =>{
@@ -55,7 +59,7 @@ export class BranchAddUserComponent extends Common implements OnInit {
   }
 
   GoToBranchDetail(){
-    this.Redirect('/branch-detail/'+this.BranchId);
+    this.Redirect('/branch-detail/'+this.BranchId+'/'+this.CustomerId);
   }
 
   onChangeInput(){
@@ -75,7 +79,7 @@ export class BranchAddUserComponent extends Common implements OnInit {
     this.User.BranchId = this.BranchId;
     this.User.CustomerId = this.Branch.CustomerId;    
     this.branchUserService.AddNewUser(this.User).subscribe(data => {
-      this.Redirect('/branch-users/'+this.BranchId)
+      this.Redirect('/branch-users/'+this.BranchId+'/'+this.CustomerId);
     },err=> {
       console.log(err);
     },() => {      

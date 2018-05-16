@@ -14,6 +14,7 @@ import { BranchUserService } from '../service/branch/user/branch-user.service';
 export class BranchViewUsersComponent extends Common implements OnInit {
 
   BranchId:string;
+  CustomerId:string;
   Branch: any = {};
   BranchUsers: any = [];
 
@@ -25,6 +26,7 @@ export class BranchViewUsersComponent extends Common implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.BranchId = params['id'];
+      this.CustomerId = params['customerid'];
     },err => {
 
     }, () =>{

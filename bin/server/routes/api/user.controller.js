@@ -40,4 +40,10 @@ router.post('/isuserexistforcustomer',function(req,res,next){
     });
 });
 
+router.post('/updateusernameexistforcustomer',function(req,res,next){
+    dbhelper.userrepo.IsUserExistForCustomer_Update(req.body.CustomerId,req.body.UserName,req.body.UserId).then(function(result){
+        res.json(result);
+    });
+});
+
 module.exports = router;

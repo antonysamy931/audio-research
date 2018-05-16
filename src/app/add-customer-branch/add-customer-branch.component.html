@@ -24,6 +24,7 @@
              <mat-label>Name :</mat-label>
              <input matInput placeholder="Enter branch name" [(ngModel)]="Branch.Name"
              [formControl]="branchname" required/>
+             <mat-error *ngIf="branchname.invalid && branchname.hasError('required')">Name is required.</mat-error>
              <mat-error *ngIf="branchname.invalid && branchname.hasError('hasnameexist')">Branch name already exist for this customer.</mat-error>
            </mat-form-field>
           </div>
@@ -32,6 +33,7 @@
               <mat-label>Description :</mat-label>
               <input matInput placeholder="Enter description" [(ngModel)]="Branch.Description"
               [formControl]="branchdescription" required/>
+              <mat-error *ngIf="branchdescription.invalid && branchdescription.hasError('required')">Description is required.</mat-error>
             </mat-form-field>
           </div>
           <div class="form-group row">
@@ -39,6 +41,7 @@
               <mat-label>Addressline 1 :</mat-label>
               <input matInput placeholder="Enter Address" [(ngModel)]="Branch.AddressLine1"
               [formControl]="branchaddress1" required/>
+              <mat-error *ngIf="branchaddress1.invalid && branchaddress1.hasError('required')">Addressline1 is required.</mat-error>
             </mat-form-field>
           </div>
           <div class="form-group row">
@@ -53,6 +56,7 @@
               <mat-label>City :</mat-label>
               <input matInput placeholder="Enter city" [(ngModel)]="Branch.City"
               [formControl]="branchcity" required/>
+              <mat-error *ngIf="branchcity.invalid && branchcity.hasError('required')">City is required.</mat-error>
             </mat-form-field>
           </div>
           <div class="form-group row">
@@ -60,6 +64,7 @@
               <mat-label>State :</mat-label>
               <input matInput placeholder="Enter State" [(ngModel)]="Branch.State"
               [formControl]="branchstate" required/>
+              <mat-error *ngIf="branchstate.invalid && branchstate.hasError('required')">State is required.</mat-error>
             </mat-form-field>
           </div>
         </mat-card-content>

@@ -37,7 +37,6 @@ export class CustomerBranchesComponent extends Common implements OnInit, OnDestr
   LoadCustomerBranches(){
     this.branchservice.GetBranchesByCustomer(this.CustomerId).subscribe(data => {
       this.data = data;   
-      console.log(data); 
     }, err => {
       console.log(err); 
     })

@@ -14,6 +14,7 @@ import { AuthService } from '../service/auth/auth.service';
 export class BranchAudioListenComponent extends Common implements OnInit, AfterViewInit {
 
   BranchId:string;
+  CustomerId:string;
   Branch: any = {};
   AudioPath: any = {};
   Name: string = "";  
@@ -36,6 +37,7 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.BranchId = params['id'];
+      this.CustomerId = params['customerid'];
     },err => {
 
     }, () =>{

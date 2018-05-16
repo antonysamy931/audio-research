@@ -23,3 +23,8 @@ exports.IS_USER_EXIST_FOR_CUSTOMER = `SELECT COUNT(1) AS RowCount FROM [Users] A
                                     JOIN [CustomerUser] AS CU ON U.ID = CU.UserId
                                     WHERE CU.CustomerId = ? 
                                     AND U.UserName = ?`;
+exports.IS_USER_EXIST_FOR_CUSTOMER_UPDATE = `SELECT COUNT(1) AS RowCount FROM [Users] AS U
+                                            JOIN [CustomerUser] AS CU ON U.ID = CU.UserId
+                                            WHERE CU.CustomerId = ? 
+                                            AND U.ID <> ?
+                                            AND U.UserName = ?`;

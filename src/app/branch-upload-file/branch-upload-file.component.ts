@@ -14,6 +14,7 @@ import { BranchService } from '../service/branch/branch.service';
 export class BranchUploadFileComponent extends Common implements OnInit {
 
   BranchId:string;
+  CustomerId:string;
   Branch: any = {};
   @ViewChild('audioUpload')
   private audioElement : any;
@@ -28,6 +29,7 @@ export class BranchUploadFileComponent extends Common implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.BranchId = params['id'];
+      this.CustomerId = params['customerid'];
     },err => {
 
     }, () =>{

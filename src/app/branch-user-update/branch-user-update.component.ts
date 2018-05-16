@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, Validator, Validators } from '@angular/forms';
 
 import { Common } from '../class/common';
+import { IsUserNameExistForCustomerValidator } from '../class/validators/update-username-exist';
 
 import { BranchUserService } from '../service/branch/user/branch-user.service';
 
@@ -14,6 +15,7 @@ import { BranchUserService } from '../service/branch/user/branch-user.service';
 export class BranchUserUpdateComponent extends Common implements OnInit {
 
   UserId: string = '';
+  CustomerId: string = '';
   User: any = {};
   ValidationSummary: boolean = false;
   ValidationSummaryMessage: string = "";
@@ -23,7 +25,8 @@ export class BranchUserUpdateComponent extends Common implements OnInit {
                   {value:"member",text:"Member"}]; 
 
   name = new FormControl('name', Validators.required);
-  username = new FormControl('username', Validators.required);
+  username = new FormControl('username', [Validators.required],
+    [IsUserNameExistForCustomerValidator(this.branchUserService, this.route)]);
   password = new FormControl('password', Validators.required);
   role = new FormControl('role', Validators.required);
 
@@ -35,6 +38,7 @@ export class BranchUserUpdateComponent extends Common implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.UserId = params['id'];
+      this.CustomerId = params['customerid'];
     }, err => {
       console.log(err);
     });
@@ -57,16 +61,16 @@ export class BranchUserUpdateComponent extends Common implements OnInit {
 
   Save(){
     this.branchUserService.UpdateUser(this.User).subscribe(data => {      
-      this.router.navigateByUrl('/branch-user-detail/'+this.UserId);
+      this.router.navigateByUrl('/branch-user-detail/'+this.UserId+'/'+this.CustomerId);
     }, err => {
       console.log(err);
     },() => {
-      this.router.navigateByUrl('/branch-user-detail/'+this.UserId);
+      this.router.navigateByUrl('/branch-user-detail/'+this.UserId+'/'+this.CustomerId);
     })
   }
 
   Exit(){
-    this.router.navigateByUrl('/branch-user-detail/'+this.UserId);
+    this.router.navigateByUrl('/branch-user-detail/'+this.UserId+'/'+this.CustomerId);
   }
 
 }

@@ -120,11 +120,27 @@ function IsUserExistForCustomer(customerid,name){
     });
 }
 
+function IsUserExistForCustomer_Update(customerid,name,userid){
+    return new Promise(function(resolve,reject){
+       userdb.get(userquery.IS_USER_EXIST_FOR_CUSTOMER_UPDATE,[
+           customerid,
+           userid,
+           name], (err,row) => {
+            if(err){
+                errorlog.error(err);
+            }else{
+                resolve(row.RowCount > 0);
+            }
+       });
+    });
+}
+
 module.exports = {
     Insert : Insert,
     GetCustomersUsers : GetCustomersUsers,
     GetBranchUsers : GetBranchUsers,
     GetUserById : GetUserById,
     UpdateUser : UpdateUser,
-    IsUserExistForCustomer : IsUserExistForCustomer
+    IsUserExistForCustomer : IsUserExistForCustomer,
+    IsUserExistForCustomer_Update : IsUserExistForCustomer_Update
 }

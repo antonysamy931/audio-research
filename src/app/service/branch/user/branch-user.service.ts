@@ -33,4 +33,12 @@ export class BranchUserService {
   public CheckUserExist(Id:string, UserName: string): Observable<any>{
     return this.http.post(this.Url.IsUserExistForCustomer,{CustomerId:Id,UserName:UserName});
   }
+
+  public CheckUsernameExistForUpdateUser(Id:string, UserName:string, CustomerId:string): Observable<any>{
+    return this.http.post(this.Url.IsUserExistForCustomer_UpdateRequest,{
+      CustomerId:CustomerId,
+      UserName:UserName,
+      UserId:Id
+    });
+  }
 }

@@ -23,6 +23,7 @@ export class Uri {
     public GetUserById: string = "/api/v1/user/getuserbyid";
     public UpdateUser: string = "/api/v1/user/updateuser";
     public IsUserExistForCustomer: string = "/api/v1/user/isuserexistforcustomer";
+    public IsUserExistForCustomer_UpdateRequest: string = "/api/v1/user/updateusernameexistforcustomer";
 
     public InsertAudio: string = "/api/v1/play/upload";
     public GetAudioByBranch: string = "/api/v1/play/getfilebybranch";

@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
           if(this.authService.IsLoggedIn() && this.authService.IsAgencyAdmin()){
             this.router.navigateByUrl('/dashboard');
           }else if(this.authService.IsLoggedIn() && this.authService.IsBranchUser()){
-            this.router.navigateByUrl('/branch-audio-listen/'+this.authService.GetBranchId());
+            this.router.navigateByUrl('/branch-audio-listen/'+this.authService.GetBranchId()+'/'+this.authService.GetCustomerId());
           }
         }else{
           this.ValidationSummary = true;
