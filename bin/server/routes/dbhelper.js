@@ -9,6 +9,7 @@ const authenticaterepo = require(path.join(__dirname,'./repo/authenticate.repo')
 const branchrepo = require(path.join(__dirname,'./repo/branch.repo'));
 const customerrepo = require(path.join(__dirname,'./repo/customer.repo'));
 const customeruserrepo = require(path.join(__dirname,'./repo/customer.user.repo'));
+const socketrepo = require(path.join(__dirname,'./repo/socket.current.users.repo'));
 
 module.exports = {
     userrepo,
@@ -18,5 +19,6 @@ module.exports = {
     authenticaterepo,
     branchrepo,
     customerrepo,
-    customeruserrepo
+    customeruserrepo,
+    socketrepo
 }

@@ -1,6 +1,7 @@
 import { OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth/auth.service';
+import { SocketInitService } from '../service/socket/socket-init.service';
 
 export abstract class Common implements OnInit, AfterViewInit{
     constructor(public router:Router){          
@@ -9,6 +10,7 @@ export abstract class Common implements OnInit, AfterViewInit{
     public BackUrl: string = "";
 
     private auth: AuthService = new AuthService();
+    private socketinit: SocketInitService = new SocketInitService();
 
     ngOnInit() {                
         if(!this.auth.IsLoggedIn()){            
@@ -53,5 +55,6 @@ export abstract class Common implements OnInit, AfterViewInit{
     Logout(){
         localStorage.clear();
         this.router.navigateByUrl('/login');
+        this.socketinit.LogOut();
     }
 }

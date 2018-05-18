@@ -5,6 +5,7 @@ const databaseAudioPath = path.join(__dirname ,"../../db/audio_player.db");
 const databaseUserPath = path.join(__dirname, "../../db/user_master.db");
 const databaseCustomerPath = path.join(__dirname, "../../db/customer_master.db");
 const databaseAuditPath = path.join(__dirname, "../../db/audit_master.db");
+const socketMasterPath = path.join(__dirname, "../../db/socket_master.db");
 
 const logger = require(path.join(__dirname, 'logger'));
 
@@ -29,6 +30,12 @@ exports.customer_db = new sqlite.Database(databaseCustomerPath, (err) => {
 });
 
 exports.audit_db = new sqlite.Database(databaseAuditPath, (err) => {
+    if(err){
+        errorlog.error(err);
+    }    
+});
+
+exports.socket_db = new sqlite.Database(socketMasterPath, (err) => {
     if(err){
         errorlog.error(err);
     }    

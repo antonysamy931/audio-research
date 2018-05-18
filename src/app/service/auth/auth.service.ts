@@ -55,6 +55,10 @@ export class AuthService {
 
   GetBranchId() : string{
     return localStorage.getItem('LoggedInUserData') ? this.GetUserData().Result.BranchId : "";
+  }  
+
+  GetRawToken(): string{
+    return this.GetUserData().Token;
   }
 
   private GetUserData() : any {

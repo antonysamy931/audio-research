@@ -7,6 +7,7 @@ import { UserService } from '../service/user.service';
 import { AuthenticationService } from '../service/authentication/authentication.service';
 import { AuthService } from '../service/auth/auth.service';
 import { CustomerService } from '../service/customer/customer.service';
+import { SocketInitService } from '../service/socket/socket-init.service';
 
 import { Login } from '../class/login';
 
@@ -27,6 +28,8 @@ export class LoginComponent implements OnInit {
   private spinnerService: Ng4LoadingSpinnerService,
   private authService: AuthService,
   private customerService: CustomerService) { }
+
+  private socketinitservice: SocketInitService = new SocketInitService();
 
   private Customers:any[] = [];
 
@@ -76,6 +79,7 @@ export class LoginComponent implements OnInit {
         }else{
           this.ValidationSummary = true;
         }
+        this.socketinitservice.LogIn();
         this.spinnerService.hide();
       },
       err => {

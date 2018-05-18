@@ -7,11 +7,6 @@ const crypto = require(path.join(__dirname,'./helpers/cryptosystem'));
 const logger = require(path.join(__dirname, './helpers/logger'));
 const db = require(path.join(__dirname, './helpers/db.instance'));
 
-const databaseAudioPath = path.join(__dirname ,"../db/audio_player.db");
-const databaseUserPath = path.join(__dirname, "../db/user_master.db");
-const databaseCustomerPath = path.join(__dirname, "../db/customer_master.db");
-const databaseAuditPath = path.join(__dirname, "../db/audit_master.db");
-
 const errorlog = logger.getLogger('error');
 const infolog = logger.getLogger('info');
 const debuglog = logger.getLogger('debug');
@@ -116,6 +111,15 @@ db.audit_db.serialize(() => {
             LoginTime TEXT NOT NULL,
             LogoutTime TEXT NULL
         )`);
+});
+
+db.socket_db.serialize(() => {
+    db.socket_db.run(`CREATE TABLE IF NOT EXISTS CurrentUsers(
+        Id INTEGER PRIMARY KEY,
+        UserId TEXT NOT NULL,
+        CustomerId TEXT NULL,
+        BranchId TEXT NULL
+    )`)
 });
 
 function InsertUser(db){
