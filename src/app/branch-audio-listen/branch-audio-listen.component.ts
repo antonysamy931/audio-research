@@ -23,6 +23,7 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
   TotalDuration: number = 0;
   volume: number = 20;
   progress: number = 0;
+  CurrentTime: number = 0;
 
   private audioFiles: any = [];
 
@@ -44,21 +45,26 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
 
     });
     this.LoadBranchDetails();
-    this.LoadAudio();
+    this.LoadAudio(); 
   }
 
   ngAfterViewInit(){
     document.getElementById(this.BranchId).addEventListener('timeupdate', 
-    function(){
+    function(){      
       var element = <HTMLAudioElement>(document.getElementById(this.BranchId));
       var percentage = Math.floor((element.currentTime / element.duration) * 100);
-      this.progress = percentage;
+      this.CurrentTime = element.currentTime;
+      this.progress = percentage;      
     }.bind(this));
 
     document.getElementById(this.BranchId).addEventListener('ended',function(){
       this.Stop();
       this.progress = 0;
-    }.bind(this));
+    }.bind(this));    
+
+    setTimeout(() => {
+      this.TotalDuration = (<HTMLAudioElement>document.getElementById(this.BranchId)).duration;
+    }, 1000);
   }
 
   LoadBranchDetails(){
@@ -78,7 +84,7 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
     },() => {      
       this.elementAudio = (<HTMLAudioElement>document.getElementById(this.BranchId));      
       this.elementAudio.load();
-      this.TotalDuration = this.elementAudio.duration;
+      this.TotalDuration = this.elementAudio.duration;   
       this.elementAudio.volume = this.volume/100;
     });
   }
@@ -122,5 +128,18 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
     if(!this.Mute){
       this.Mute = true;      
     }    
+  }
+
+  ReadableDuration(seconds) {    
+    var sec = Math.floor(seconds);    
+    var min = Math.floor(sec / 60);
+    var DisplayMinute = min >= 10 ? String(min) : "0" + String(min);    
+    sec = Math.floor( sec % 60 );
+    var Displaysecond = sec >= 10 ? String(sec) : "0" + String(sec);    
+    return DisplayMinute + ':' + Displaysecond;
+  }
+
+  ProgressChange(){
+    this.elementAudio.currentTime = (this.progress/100)*this.TotalDuration;
   }
 }

@@ -29,7 +29,9 @@
                   <div class="card">
                     <img class="card-img-top" src="/assets/img/speakers-clipart-animated-gif-27.jpg" alt="Card image">
                     <div class="card-body">                      
-                      <p class="card-text"><marquee>{{Name}}</marquee></p>
+                      <p class="card-text" 
+                        style="font-size: 12px;text-transform: uppercase;font-weight: bold;color: #303e8c;">
+                        <marquee>{{Name}}</marquee></p>
                       <div class="row">
                         <div class="col-12">
                           <a mat-button color="primary" (click)="Toggle()"
@@ -52,10 +54,16 @@
                             <mat-icon>volume_up</mat-icon>
                           </a>                                            
                         </div>
-                        <div class="col-12">
-                          <mat-slider style="width:100%;" color="primary" [(ngModel)]="progress"
-                          [min]="1" [max]="100" [disabled]="true"
-                          [vertical]="false" [tickInterval]="1"></mat-slider>
+                        <div class="col-12">                          
+                          <span 
+                          style="width:10%;font-size: 12px;font-weight: bold;color: #303EAD;">
+                          {{ReadableDuration(CurrentTime)}}</span>
+                          <mat-slider style="width:70%;" color="primary" [(ngModel)]="progress"
+                          [min]="1" [max]="100" [disabled]="false" (change)="ProgressChange()"
+                          [vertical]="false" [tickInterval]="1" [thumbLabel]="false"></mat-slider>
+                          <span *ngIf="TotalDuration" 
+                          style="width:10%;font-size: 12px;font-weight: bold;color: #303EAD;">
+                          {{ReadableDuration(TotalDuration)}}</span>
                         </div>
                       </div>                      
                     </div>
