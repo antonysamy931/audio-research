@@ -43,7 +43,7 @@ module.exports = {
     },
     GetCustomers: function(){
         return new Promise(function(resolve,reject){
-            socketdb.get(socketquery.CUSTOMERS,[],(err, rows) => {
+            socketdb.all(socketquery.CUSTOMERS,[],(err, rows) => {
                 if(err){
                     errorlog.error(err);
                 }

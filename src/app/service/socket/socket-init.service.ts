@@ -20,6 +20,10 @@ export class SocketInitService {
 
   LogOut(){
     this.socket.emit("logout",this.authservice.GetRawToken());
-  }  
+  }
+
+  GetSocket() {
+    return this.socket;
+  }
 
 }

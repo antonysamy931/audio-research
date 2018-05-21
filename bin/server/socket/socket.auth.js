@@ -9,8 +9,4 @@ module.exports = function(socket, io){
     socket.on('logout', (data) => {
         Users.DisconnectedUser(data);
     });
-
-    socket.on('UserData',() => {
-        console.log(Users.GetAvailableCustomers())
-    });
 }

@@ -1,61 +1,32 @@
 const path = require('path');
 const jwt = require('jsonwebtoken');
 const config = require(path.join(__dirname, '../routes/constant/config'));
-
-var Users = [];
+const dbhelper = require(path.join(__dirname, '../routes/dbhelper.js'));
 
 module.exports = {
     ConnectedUser: function(data){        
-        console.log(config.My_Secret_Key);
-        console.log(data);
-        var User = GetUserData(data);
-        if(data){
-            if(UserAlreadyExist(data) > -1){
-                Users.push(data);
+        var User = GetUserData(data);      
+        dbhelper.socketrepo.UserExist(User.UserId).then(function(result){
+            if(result == undefined){
+                dbhelper.socketrepo.Insert(User);
             }
-        }
+        });  
     },
 
-    DisconnectedUser: function(data){
-        let index = UserAlreadyExist(data);
-        if(index > -1){
-            Users.splice(index,1);
-        }
+    DisconnectedUser: function(data){        
+        var User = GetUserData(data);           
+        dbhelper.socketrepo.Delete(User.UserId);
     },
 
-    GetAvailableCustomers: function(){
-        let Customers = [];
-        for(var i = 0; i < Users.length; i++){
-            if(Customers.indexOf(Users[i].CustomerId)){
-                Customers.push(Users[i].CustomerId);
-            }
-        }
-        return Customers;
+    GetAvailableCustomers: function(){        
+        return dbhelper.socketrepo.GetCustomers();
     },
 
     GetAvailableBranchs: function(CustomerId){
-        let Branches = [];
-        for(var i =0; i < Users.length; i++){
-            if(Users[i].CustomerId == CustomerId 
-            && Branches.indexOf(Users[i].BranchId)){
-                Branches.push(Users[i].BranchId);
-            }
-        }
+        return dbhelper.socketrepo.GetCustomerBranches(CustomerId);
     }
 };
 
 function GetUserData(data){
      return jwt.verify(data, config.My_Secret_Key); 
-}
-
-function UserAlreadyExist(user){
-    if(Users.length > 0){
-        for(var i = 0; i < Users.length; i++){
-            if(Users[i].UserId == user.UserId){
-                return i;
-            }
-        }
-    }else{
-        return -1;
-    }    
 }

@@ -10,7 +10,7 @@ export abstract class Common implements OnInit, AfterViewInit{
     public BackUrl: string = "";
 
     private auth: AuthService = new AuthService();
-    private socketinit: SocketInitService = new SocketInitService();
+    public socketinit: SocketInitService = new SocketInitService();
 
     ngOnInit() {                
         if(!this.auth.IsLoggedIn()){            
@@ -53,8 +53,8 @@ export abstract class Common implements OnInit, AfterViewInit{
     }
 
     Logout(){
-        localStorage.clear();
-        this.router.navigateByUrl('/login');
         this.socketinit.LogOut();
+        localStorage.clear();
+        this.router.navigateByUrl('/login');        
     }
 }

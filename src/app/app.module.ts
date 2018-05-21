@@ -22,6 +22,7 @@ import { CustomerService } from './service/customer/customer.service';
 import { BranchService } from './service/branch/branch.service';
 import { BranchUserService } from './service/branch/user/branch-user.service';
 import { SocketInitService } from './service/socket/socket-init.service';
+import { SocketCustomerService } from './service/socket/customer/socket-customer.service';
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -94,6 +95,7 @@ import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
     CustomerService,
     BranchService,
     SocketInitService,
+    SocketCustomerService,
     BranchUserService,{
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

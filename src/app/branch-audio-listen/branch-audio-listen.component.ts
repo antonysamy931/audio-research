@@ -5,6 +5,9 @@ import { Common } from '../class/common';
 
 import { BranchService } from '../service/branch/branch.service';
 import { AuthService } from '../service/auth/auth.service';
+import { SocketCustomerService } from '../service/socket/customer/socket-customer.service';
+
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-branch-audio-listen',
@@ -29,10 +32,13 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
 
   private elementAudio : any;
 
+  private socket;
+
   constructor(private route: ActivatedRoute, public router: Router,
     private branchservice: BranchService, private authService: AuthService,
-    private elementRef: ElementRef) {
+    private elementRef: ElementRef, private customersocket: SocketCustomerService) {
     super(router);
+    this.socket = this.socketinit.GetSocket(); 
   }
 
   ngOnInit() {
@@ -45,7 +51,14 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
 
     });
     this.LoadBranchDetails();
-    this.LoadAudio(); 
+    this.LoadAudio();    
+
+    //this.socket.emit('Customers', this.authService.GetRawToken());
+    this.customersocket.GetCustomer(this.socket);
+
+    this.socket.on('GetCustomers',(data) => { 
+      console.log(data);     
+    });
   }
 
   ngAfterViewInit(){
@@ -89,7 +102,7 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
     });
   }
 
-  play(){
+  play(){    
     this.elementAudio.play();
   }
 
@@ -97,7 +110,7 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
     this.elementAudio.pause();
   }
 
-  Toggle(){
+  Toggle(){    
     if(this.AudioPlay){
       this.elementAudio.pause();
     }else{
