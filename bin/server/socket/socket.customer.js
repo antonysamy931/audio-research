@@ -7,4 +7,10 @@ module.exports = function(socket, io){
             io.sockets.emit('GetCustomers',result);
         });        
     });
+
+    socket.on('CustomerBranches',(data) => {
+        Users.GetAvailableBranchs(data).then(function(result){
+            io.sockets.emit('GetCustomerBranches',result);
+        });
+    });
 }

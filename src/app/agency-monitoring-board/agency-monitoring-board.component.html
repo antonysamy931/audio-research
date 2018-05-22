@@ -1,0 +1,27 @@
+<div class="container">  
+  <div class="row">
+    <div class="col-12">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>        
+      </nav>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 2%;">
+      <div class="col-sm-8 col-md-4 col-lg-4">
+          <mat-card>
+            <mat-nav-list style="padding-left: 2%;">   
+              <mat-list-item>Customers</mat-list-item>      
+              <mat-divider></mat-divider>       
+              <mat-list-item *ngFor="let item of Customers">
+                <a [routerLink]="[item.CustomerId]"  href="#">{{item.Description}}</a>
+                <mat-icon *ngIf="!item.Active"  style="border-radius: 100%; background-color: red; margin-left: 2%;" >radio_button_unchecked</mat-icon>
+                <mat-icon *ngIf="item.Active"  style="border-radius: 100%; background-color: green; margin-left: 2%;" >radio_button_unchecked</mat-icon>
+              </mat-list-item>              
+            </mat-nav-list>  
+          </mat-card>      
+        </div>
+        <div class="d-xs-none col-md-8 col-lg-8">      
+          <router-outlet></router-outlet>    
+        </div>
+  </div>  
+</div>

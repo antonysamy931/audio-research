@@ -22,7 +22,7 @@ module.exports = {
         return dbhelper.socketrepo.GetCustomers();
     },
 
-    GetAvailableBranchs: function(CustomerId){
+    GetAvailableBranchs: function(CustomerId){        
         return dbhelper.socketrepo.GetCustomerBranches(CustomerId);
     }
 };

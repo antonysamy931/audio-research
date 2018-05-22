@@ -36,7 +36,7 @@ export class BranchAddUserComponent extends Common implements OnInit {
     private branchservice: BranchService, private branchUserService: BranchUserService) {
       super(router);
      }
-    
+         
   User: AddUser = {
     Name: "",
     UserName: "",

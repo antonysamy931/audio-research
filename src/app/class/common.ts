@@ -10,8 +10,7 @@ export abstract class Common implements OnInit, AfterViewInit{
     public BackUrl: string = "";
 
     private auth: AuthService = new AuthService();
-    public socketinit: SocketInitService = new SocketInitService();
-
+    public socketinit: SocketInitService = new SocketInitService();    
     ngOnInit() {                
         if(!this.auth.IsLoggedIn()){            
             this.router.navigateByUrl('/login');

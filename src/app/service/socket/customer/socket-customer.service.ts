@@ -11,4 +11,8 @@ export class SocketCustomerService {
     socket.emit('Customers', this.authservice.GetRawToken());
   }
 
+  GetCustomerBranches(socket: any, customerid: string){
+    socket.emit('CustomerBranches',customerid);
+  }
+
 }

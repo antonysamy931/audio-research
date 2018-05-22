@@ -16,7 +16,12 @@
           </mat-card>      
         </div>
         <div class="d-xs-none col-md-6 col-lg-6">
-      
+          <mat-card class="dashboard-card">
+            <mat-list>    
+              <mat-list-item class="dashboard-mat-list-header">Administration</mat-list-item>
+              <mat-list-item class="dashboard-mat-list-content"><a matLine (click)="Redirect('/monitor')">Monitoring</a></mat-list-item>              
+            </mat-list>  
+          </mat-card>  
         </div>
   </div>  
 </div>

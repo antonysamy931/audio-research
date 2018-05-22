@@ -53,7 +53,7 @@ module.exports = {
     },
     GetCustomerBranches: function(customer){
         return new Promise(function(resolve,reject){
-            socketdb.get(socketquery.BRANCHES,[],(err,rows) => {
+            socketdb.all(socketquery.BRANCHES,[customer],(err,rows) => {
                 if(err){
                     errorlog.error(err);
                 }

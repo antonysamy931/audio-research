@@ -25,6 +25,9 @@ import { UpdateCustomerBranchComponent } from './update-customer-branch/update-c
 import { BranchUserDetailComponent } from './branch-user-detail/branch-user-detail.component';
 import { BranchUserUpdateComponent } from './branch-user-update/branch-user-update.component';
 import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
+import { AgencyMonitoringBoardComponent } from './agency-monitoring-board/agency-monitoring-board.component';
+import { MonitoringCustomerBranchesComponent } from './monitoring-customer-branches/monitoring-customer-branches.component';
+import { MonitoringBranchPlayerComponent } from './monitoring-branch-player/monitoring-branch-player.component';
 
 const pageRoute: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch:'full'},
@@ -67,7 +70,12 @@ const pageRoute: Routes = [
   { path: 'update-customer-branch/:id/:customerid', component: UpdateCustomerBranchComponent},
   { path: 'branch-user-detail/:id/:customerid', component: BranchUserDetailComponent},
   { path: 'branch-user-update/:id/:customerid', component: BranchUserUpdateComponent},
-  { path: 'un-authorized', component: UnAuthorizedComponent}
+  { path: 'un-authorized', component: UnAuthorizedComponent},
+  { path: 'monitor', component: AgencyMonitoringBoardComponent,children:[ 
+    {path:':id',component: MonitoringCustomerBranchesComponent,children:[
+      {path:':id',component: MonitoringBranchPlayerComponent}
+    ]}   
+  ]}
 ];
 
 @NgModule({

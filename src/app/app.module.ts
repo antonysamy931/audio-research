@@ -48,6 +48,9 @@ import { AuthInterceptor } from './class/auth.interceptor';
 import { BranchUserDetailComponent } from './branch-user-detail/branch-user-detail.component';
 import { BranchUserUpdateComponent } from './branch-user-update/branch-user-update.component';
 import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
+import { AgencyMonitoringBoardComponent } from './agency-monitoring-board/agency-monitoring-board.component';
+import { MonitoringCustomerBranchesComponent } from './monitoring-customer-branches/monitoring-customer-branches.component';
+import { MonitoringBranchPlayerComponent } from './monitoring-branch-player/monitoring-branch-player.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,7 @@ import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
     UpdateCustomerBranchComponent, 
     BranchUserDetailComponent, 
     BranchUserUpdateComponent, 
-    UnAuthorizedComponent
+    UnAuthorizedComponent, AgencyMonitoringBoardComponent, MonitoringCustomerBranchesComponent, MonitoringBranchPlayerComponent
   ],
   imports: [    
     BrowserModule,
