@@ -28,7 +28,7 @@ export class AgencyMonitoringBoardComponent extends Common implements OnInit {
     
     setInterval(() => {
       this.customersocketservice.GetCustomer(this.Socket);
-    }, 5000);
+    }, 1000);
 
     this.Socket.on('GetCustomers',(data) => { 
       this.Customers.forEach(customer => {

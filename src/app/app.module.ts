@@ -23,6 +23,7 @@ import { BranchService } from './service/branch/branch.service';
 import { BranchUserService } from './service/branch/user/branch-user.service';
 import { SocketInitService } from './service/socket/socket-init.service';
 import { SocketCustomerService } from './service/socket/customer/socket-customer.service';
+import { SocketBranchService } from './service/socket/branch/socket-branch.service';
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -99,6 +100,7 @@ import { MonitoringBranchPlayerComponent } from './monitoring-branch-player/moni
     BranchService,
     SocketInitService,
     SocketCustomerService,
+    SocketBranchService,
     BranchUserService,{
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

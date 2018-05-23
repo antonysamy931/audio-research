@@ -56,4 +56,13 @@ export abstract class Common implements OnInit, AfterViewInit{
         localStorage.clear();
         this.router.navigateByUrl('/login');        
     }
+    
+    ReadableDuration(seconds) {    
+        var sec = Math.floor(seconds);    
+        var min = Math.floor(sec / 60);
+        var DisplayMinute = min >= 10 ? String(min) : "0" + String(min);    
+        sec = Math.floor( sec % 60 );
+        var Displaysecond = sec >= 10 ? String(sec) : "0" + String(sec);    
+        return DisplayMinute + ':' + Displaysecond;
+    }
 }

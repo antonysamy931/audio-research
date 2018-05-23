@@ -34,6 +34,21 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
 
   private socket;
 
+  private socketAudioInfo: any = {
+    branchid: "",
+    audio: {
+      isplay: false,
+      ispause: false,
+      isend: false,
+      ismute: this.Mute,
+      isstop: false,
+      volume: this.volume,
+      totalduration: 0,
+      currenttime: 0,
+      path: ""
+    }
+  }
+
   constructor(private route: ActivatedRoute, public router: Router,
     private branchservice: BranchService, private authService: AuthService,
     private elementRef: ElementRef, private customersocket: SocketCustomerService) {
@@ -45,6 +60,7 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
     this.route.params.subscribe(params => {
       this.BranchId = params['id'];
       this.CustomerId = params['customerid'];
+      this.socketAudioInfo.branchid = this.BranchId;
     },err => {
 
     }, () =>{
@@ -52,13 +68,13 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
     });
     this.LoadBranchDetails();
     this.LoadAudio();    
-
-    //this.socket.emit('Customers', this.authService.GetRawToken());
     this.customersocket.GetCustomer(this.socket);
 
-    this.socket.on('GetCustomers',(data) => { 
-      console.log(data);     
-    });
+    
+    /*setInterval(() => {
+      this.SendAudioInfo();
+    }, 1000);*/
+
   }
 
   ngAfterViewInit(){
@@ -67,13 +83,44 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
       var element = <HTMLAudioElement>(document.getElementById(this.BranchId));
       var percentage = Math.floor((element.currentTime / element.duration) * 100);
       this.CurrentTime = element.currentTime;
-      this.progress = percentage;      
+      this.progress = percentage;  
+      this.socketAudioInfo.audio.ispause = false;
+      this.socketAudioInfo.audio.isplay = true;  
+      this.socketAudioInfo.audio.isend = false; 
+      this.socketAudioInfo.audio.totalduration = element.duration;      
+      this.socketAudioInfo.audio.currenttime = element.currentTime;
+      this.socketAudioInfo.audio.isstop = false;
+      this.SendAudioInfo();
     }.bind(this));
 
     document.getElementById(this.BranchId).addEventListener('ended',function(){
       this.Stop();
+      var element = <HTMLAudioElement>(document.getElementById(this.BranchId));
       this.progress = 0;
+      this.socketAudioInfo.audio.ispause = false;
+      this.socketAudioInfo.audio.isplay = false; 
+      this.socketAudioInfo.audio.isend = true; 
+      this.socketAudioInfo.audio.totalduration = element.duration;      
+      this.socketAudioInfo.audio.currenttime = 0;
+      this.SendAudioInfo();
     }.bind(this));    
+
+    document.getElementById(this.BranchId).addEventListener('play', 
+    function(){            
+      this.socketAudioInfo.audio.ispause = false;
+      this.socketAudioInfo.audio.isplay = true; 
+      this.socketAudioInfo.audio.isend = false;    
+      this.socketAudioInfo.audio.isstop = false;   
+      this.SendAudioInfo();  
+    }.bind(this));
+
+    document.getElementById(this.BranchId).addEventListener('pause', 
+    function(){            
+      this.socketAudioInfo.audio.ispause = true;
+      this.socketAudioInfo.audio.isplay = false; 
+      this.socketAudioInfo.audio.isend = false;      
+      this.SendAudioInfo();   
+    }.bind(this));
 
     setTimeout(() => {
       this.TotalDuration = (<HTMLAudioElement>document.getElementById(this.BranchId)).duration;
@@ -92,6 +139,7 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
     this.branchservice.GetAudioByBranchId(this.BranchId).subscribe(data => {      
       this.AudioPath = "/api/v1/play/getfile?name="+ data.Name;      
       this.Name = data.Name;
+      this.socketAudioInfo.audio.path = data.Name;
     }, err => {
       console.log(err)
     },() => {      
@@ -103,7 +151,7 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
   }
 
   play(){    
-    this.elementAudio.play();
+    this.elementAudio.play();    
   }
 
   pause(){
@@ -114,25 +162,34 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
     if(this.AudioPlay){
       this.elementAudio.pause();
     }else{
-      this.elementAudio.play();
-      this.Mute = false;
+      this.elementAudio.play();      
+      this.Mute = false;      
     }    
-    this.AudioPlay = !this.AudioPlay;
+    this.AudioPlay = !this.AudioPlay;    
   }
 
   Stop(){
     this.elementAudio.pause();
     this.AudioPlay = false;
-    this.elementAudio.currentTime = 0;
+    this.elementAudio.currentTime = 0; 
+    this.socketAudioInfo.audio.ispause = false;
+    this.socketAudioInfo.audio.isplay = false; 
+    this.socketAudioInfo.audio.isend = false;    
+    this.socketAudioInfo.audio.isstop = true;
+    this.SendAudioInfo();
   } 
 
   volumeChange(){
     this.elementAudio.volume = this.volume/100;
     if((this.volume/100) < 0.1){
       this.Mute = true;
+      this.socketAudioInfo.audio.ismute = true;
     }else{
       this.Mute = false;
+      this.socketAudioInfo.audio.ismute = false;
     }
+    this.socketAudioInfo.audio.volume = this.volume;
+    this.SendAudioInfo();
   }
 
   MuteVolume(){
@@ -140,19 +197,16 @@ export class BranchAudioListenComponent extends Common implements OnInit, AfterV
     this.volume = 0;
     if(!this.Mute){
       this.Mute = true;      
+      this.socketAudioInfo.audio.ismute = true;
     }    
-  }
-
-  ReadableDuration(seconds) {    
-    var sec = Math.floor(seconds);    
-    var min = Math.floor(sec / 60);
-    var DisplayMinute = min >= 10 ? String(min) : "0" + String(min);    
-    sec = Math.floor( sec % 60 );
-    var Displaysecond = sec >= 10 ? String(sec) : "0" + String(sec);    
-    return DisplayMinute + ':' + Displaysecond;
-  }
+    this.SendAudioInfo();
+  }  
 
   ProgressChange(){
     this.elementAudio.currentTime = (this.progress/100)*this.TotalDuration;
+  }
+
+  private SendAudioInfo(){
+    this.customersocket.SendPlayFileInfo(this.socket, this.socketAudioInfo);
   }
 }

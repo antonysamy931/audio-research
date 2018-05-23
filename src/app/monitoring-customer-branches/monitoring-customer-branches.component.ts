@@ -3,6 +3,7 @@ import { Common } from '../class/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BranchService } from '../service/branch/branch.service';
 import { SocketCustomerService } from '../service/socket/customer/socket-customer.service';
+import { CustomerService } from '../service/customer/customer.service';
 
 @Component({
   selector: 'app-monitoring-customer-branches',
@@ -12,7 +13,8 @@ import { SocketCustomerService } from '../service/socket/customer/socket-custome
 export class MonitoringCustomerBranchesComponent extends Common implements OnInit {
 
   constructor(public router: Router, private activatedrouter: ActivatedRoute,
-  private branchservice: BranchService, private socketcustomerservice: SocketCustomerService) {
+  private branchservice: BranchService, private socketcustomerservice: SocketCustomerService,
+  private customerservice: CustomerService) {
     super(router);
     this.Socket = this.socketinit.GetSocket();
   }
@@ -20,16 +22,18 @@ export class MonitoringCustomerBranchesComponent extends Common implements OnIni
   private CustomerId:string;
   private Branches:any = [];
   private Socket: any;
+  private Customer: any = {};
 
   ngOnInit() {
     this.activatedrouter.params.subscribe(param => {
       this.CustomerId = param['id'];
       this.LoadCustomerBranches();
+      this.LoadCustomerDetail();
     });
     
     setInterval(() => {
       this.socketcustomerservice.GetCustomerBranches(this.Socket, this.CustomerId);
-    }, 5000);
+    }, 1000);
     
     this.Socket.on('GetCustomerBranches',(data) => {
       this.Branches.forEach(branch => {
@@ -50,5 +54,12 @@ export class MonitoringCustomerBranchesComponent extends Common implements OnIni
     });
   }
 
+  LoadCustomerDetail(){
+    this.customerservice.GetCustomer(this.CustomerId).subscribe(data => {
+      this.Customer = data;
+    }, err => {
+      console.log(err);
+    });
+  }
 
 }

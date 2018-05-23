@@ -1,6 +1,7 @@
 var path = require('path');
 var auth = require(path.join(__dirname,'socket.auth'));
 var customer = require(path.join(__dirname,'socket.customer'));
+var player = require(path.join(__dirname,'socket.branch.player'));
 
 module.exports = function(io){
     io.on('connection',function(socket){
@@ -10,5 +11,6 @@ module.exports = function(io){
         });
         auth(socket,io);
         customer(socket,io);
+        player(socket,io);
     });
 }

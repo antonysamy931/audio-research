@@ -8,11 +8,15 @@ export class SocketCustomerService {
   private authservice: AuthService = new AuthService();
   
   GetCustomer(socket: any){
-    socket.emit('Customers', this.authservice.GetRawToken());
+    socket.emit('Customers',"normal");
   }
 
   GetCustomerBranches(socket: any, customerid: string){
     socket.emit('CustomerBranches',customerid);
+  }
+
+  SendPlayFileInfo(socket: any, data: any){
+    socket.emit('songinfo', data);
   }
 
 }

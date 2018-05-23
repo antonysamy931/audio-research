@@ -3,7 +3,8 @@
         <div class="col-sm-8 col-md-6 col-lg-6">
             <mat-card>
               <mat-nav-list style="padding-left: 2%;">   
-                <mat-list-item>Branches</mat-list-item>      
+                <mat-list-item>Customer : {{Customer.Description}}</mat-list-item>      
+                <mat-list-item>Branches</mat-list-item>
                 <mat-divider></mat-divider>       
                 <mat-list-item *ngFor="let item of Branches">
                   <a [routerLink]="[item.BranchId]"  href="#">{{item.Description}}</a>
