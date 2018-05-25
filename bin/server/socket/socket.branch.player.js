@@ -7,8 +7,7 @@ module.exports = function(socket, io){
         socket.leave(data);        
     });
 
-    socket.on('songinfo',function(data){
-        console.log(data);
+    socket.on('songinfo',function(data){        
         io.to(data.branchid).emit('receiveaudio',data.audio);
     });
 }

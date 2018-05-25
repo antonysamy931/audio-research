@@ -52,6 +52,10 @@ import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 import { AgencyMonitoringBoardComponent } from './agency-monitoring-board/agency-monitoring-board.component';
 import { MonitoringCustomerBranchesComponent } from './monitoring-customer-branches/monitoring-customer-branches.component';
 import { MonitoringBranchPlayerComponent } from './monitoring-branch-player/monitoring-branch-player.component';
+import { AddCustomerUserComponent } from './add-customer-user/add-customer-user.component';
+import { CustomerUserService } from './service/customer/user/customer-user.service';
+import { ViewCustomerUsersComponent } from './view-customer-users/view-customer-users.component';
+import { CustomerUserDetailComponent } from './customer-user-detail/customer-user-detail.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +81,11 @@ import { MonitoringBranchPlayerComponent } from './monitoring-branch-player/moni
     UpdateCustomerBranchComponent, 
     BranchUserDetailComponent, 
     BranchUserUpdateComponent, 
-    UnAuthorizedComponent, AgencyMonitoringBoardComponent, MonitoringCustomerBranchesComponent, MonitoringBranchPlayerComponent
+    UnAuthorizedComponent, 
+    AgencyMonitoringBoardComponent, 
+    MonitoringCustomerBranchesComponent, 
+    MonitoringBranchPlayerComponent, 
+    AddCustomerUserComponent, ViewCustomerUsersComponent, CustomerUserDetailComponent
   ],
   imports: [    
     BrowserModule,
@@ -101,6 +109,7 @@ import { MonitoringBranchPlayerComponent } from './monitoring-branch-player/moni
     SocketInitService,
     SocketCustomerService,
     SocketBranchService,
+    CustomerUserService,
     BranchUserService,{
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

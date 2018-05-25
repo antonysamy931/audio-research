@@ -28,6 +28,9 @@ import { UnAuthorizedComponent } from './un-authorized/un-authorized.component';
 import { AgencyMonitoringBoardComponent } from './agency-monitoring-board/agency-monitoring-board.component';
 import { MonitoringCustomerBranchesComponent } from './monitoring-customer-branches/monitoring-customer-branches.component';
 import { MonitoringBranchPlayerComponent } from './monitoring-branch-player/monitoring-branch-player.component';
+import { AddCustomerUserComponent } from './add-customer-user/add-customer-user.component';
+import { ViewCustomerUsersComponent } from './view-customer-users/view-customer-users.component';
+import { CustomerUserDetailComponent } from './customer-user-detail/customer-user-detail.component';
 
 const pageRoute: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch:'full'},
@@ -35,25 +38,7 @@ const pageRoute: Routes = [
   { path: 'audioup', component: AudioUploadComponent },
   { path: 'audiolisten', component: AudioListenComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'customer', component: CustomerComponent},
-  /*{ path: 'customer', component: CustomerComponent, children:[
-    { path: 'add-customer', component: AddNewCustomerComponent},
-    { path: 'customer-detail/:id', component: CustomerDetailComponent,children:[
-      { path: 'update-customer', component: UpdateCustomerComponent}
-    ]},
-    { path: 'customer-branches/:id', component: CustomerBranchesComponent, children:[
-      { path: 'add-customer-branch', component: AddCustomerBranchComponent},
-      { path: 'branch-detail/:id', component: BranchDetailComponent,children:[
-        { path: 'update-customer-branch', component: UpdateCustomerBranchComponent},
-        { path: 'branch-users', component: BranchViewUsersComponent,children:[
-          { path: 'branch-add-user', component: BranchAddUserComponent}
-        ]},
-        { path: 'branch-add-user/:id', component: BranchAddUserComponent},
-        { path: 'branch-file-upload/:id', component: BranchUploadFileComponent},
-        { path: 'branch-audio-listen/:id', component: BranchAudioListenComponent}
-      ]}
-    ]}
-  ]},*/
+  { path: 'customer', component: CustomerComponent},  
   { path: 'branch', component: BranchComponent },
   { path: 'users', component: UsersComponent },
   { path: 'load', component: BulkLoadComponent },
@@ -75,7 +60,10 @@ const pageRoute: Routes = [
     {path:':id',component: MonitoringCustomerBranchesComponent,children:[
       {path:':id',component: MonitoringBranchPlayerComponent}
     ]}   
-  ]}
+  ]},
+  { path: 'add-customer-user/:id', component: AddCustomerUserComponent},
+  { path: 'view-customer-users/:id', component: ViewCustomerUsersComponent},
+  { path: 'customer-user-detail/:id/:customerid', component: CustomerUserDetailComponent}
 ];
 
 @NgModule({

@@ -27,4 +27,7 @@ export class Uri {
 
     public InsertAudio: string = "/api/v1/play/upload";
     public GetAudioByBranch: string = "/api/v1/play/getfilebybranch";
+
+    public AddCustomerUser: string = "/api/v1/user/addnewuser";
+    public GetCustomerUsers: string = "/api/v1/user/getcustomersusers";
 }

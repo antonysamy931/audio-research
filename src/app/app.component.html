@@ -12,7 +12,7 @@
                 <button mat-button [matMenuTriggerFor]="menu"
                     #menuTrigger="matMenuTrigger" (mouseenter)="menuTrigger.openMenu()">    
                     <span class="">Welcome {{authService.GetUserName()}}</span>
-                    <mat-icon>details</mat-icon>    
+                    <mat-icon style="width: 2%; font-size: 14px; padding-top: 3%;">details</mat-icon>    
                 </button>
                 <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">                        
                     <button mat-menu-item (click)="Logout()">

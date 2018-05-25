@@ -58,6 +58,12 @@ body{
     font-size: 12px !important;
 }
 
+.list_active{
+    text-decoration: underline !important;
+    color: blue !important;
+    font-weight: bold;
+}
+
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {  }
 

@@ -45,9 +45,9 @@ function Insert(record){
     });    
 }
 
-function GetCustomersUsers(){
+function GetCustomersUsers(customerid){
     return new Promise(function(resolve,reject){
-        userdb.all(userquery.SELECT_ALL_CUSTOMER_USER,(err,rows)=>{
+        userdb.all(userquery.SELECT_ALL_CUSTOMER_USER,[customerid],(err,rows)=>{
             if(err){
                 errorlog.error(err);
                 reject(err);

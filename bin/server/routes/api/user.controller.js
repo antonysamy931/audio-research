@@ -5,7 +5,7 @@ const path = require('path');
 const dbhelper = require(path.join(__dirname,'../dbhelper'));
 
 router.get('/getcustomersusers',function(req,res){
-    dbhelper.userrepo.GetCustomersUsers().then(function(result){
+    dbhelper.userrepo.GetCustomersUsers(req.query.CustomerId).then(function(result){
         res.json(result);
     });
 });

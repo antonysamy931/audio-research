@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="breadcrumb">
+          <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+          <a class="breadcrumb-item" routerLink="/customer" routerLinkActive="active">Customers</a>
+          <a class="breadcrumb-item" routerLink="/customer-detail/{{CustomerId}}" 
+          routerLinkActive="active">Customer Detail</a>         
+          <a class="breadcrumb-item active">Customer Users</a>
+        </nav>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-12">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title style="padding-top:1%;">View Users for Customer : <b>{{Customer.Description}}</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6 col-lg-6 d-xs-none"></div>
+                  <div class="col-md-6 col-lg-6 col-sm-12">
+                    <div class="container">
+                      <div style="text-align: right; margin:2%; text-transform: uppercase;">
+                        <a mat-raised-button color="primary" style="text-decoration: none;" 
+                        title="Add New Customer User" routerLink="/add-customer-user/{{CustomerId}}" routerLinkActive="active">Add New User</a></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table-responsive">
+                      <table class="table table-condensed">
+                          <thead class="thead-light">
+                            <tr>
+                              <th scope="col">No.</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">User Name</th>
+                              <th scope="col">Role</th>
+                              <th scope="col"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of Users; let i = index">
+                              <th scope="row">{{i+1}}</th>
+                              <td>{{item.Name}}</td>
+                              <td>{{item.UserName}}</td>
+                              <td>{{item.UserRole}}</td>
+                              <td><a style="text-transform: uppercase; text-decoration: none;" 
+                                routerLink="/customer-user-detail/{{item.UserId}}/{{CustomerId}}" routerLinkActive="active"
+                                  mat-raised-button color="primary">View Detail</a></td>                  
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>      
+              
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>    
+      </div>
+    </div>
+  
+  

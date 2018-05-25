@@ -7,9 +7,10 @@ exports.SELECT_ALL_USER = "SELECT * FROM Users";
 exports.SELECT_USER_BY_ID = `SELECT U.ID, U.Name, U.UserName, U.[Password], U.Role, CU.CustomerId, CU.BranchId FROM [Users] U join [CustomerUser] CU
                             ON U.ID = CU.UserId WHERE U.ID = ?`
 
-exports.SELECT_ALL_CUSTOMER_USER = `SELECT U.ID AS UserId, U.Name, U.Role AS UserRole, CU.CustomerId, CU.BranchId 
+exports.SELECT_ALL_CUSTOMER_USER = `SELECT U.ID AS UserId, U.Name, U.UserName, U.Role AS UserRole, CU.CustomerId 
                                     FROM [Users] as U INNER JOIN [CustomerUser] AS CU
-                                    ON U.ID = CU.UserId WHERE U.Active = 1 `;
+                                    ON U.ID = CU.UserId WHERE U.Active = 1 AND CU.BranchId IS NULL 
+                                    AND CU.CustomerId = ?`;
 
 exports.SELECT_BRANCH_USERS = `SELECT U.* FROM Users U
                                 JOIN [CustomerUser] CU 

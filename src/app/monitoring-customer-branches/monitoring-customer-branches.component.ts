@@ -43,7 +43,7 @@ export class MonitoringCustomerBranchesComponent extends Common implements OnIni
           branch.Active = false;
         }
       });
-    });
+    });    
   }
 
   LoadCustomerBranches(){
