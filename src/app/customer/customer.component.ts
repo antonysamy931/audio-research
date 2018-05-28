@@ -16,7 +16,7 @@ export class CustomerComponent extends Common implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  private datasource = new MatTableDataSource();
+  private datasource:any;
   displayedColumns = ['Name','Description','CustomerId'];
   
   constructor(public router:Router, private customerService: CustomerService) { 
@@ -31,11 +31,11 @@ export class CustomerComponent extends Common implements OnInit {
 
   LoadCustomers(){
     this.customerService.GetCustomers().subscribe(
-      data => { this.datasource.data = data; this.data = data; },
+      data => { this.datasource = new MatTableDataSource(data); this.data = data; },
       err => {
         console.log(err);
       },()=>{
-        this.datasource.paginator = this.paginator;    
+        this.datasource.paginator = this.paginator;
       }
     );
   }

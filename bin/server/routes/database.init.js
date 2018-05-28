@@ -41,6 +41,17 @@ db.customer_db.serialize(() => {
         State TEXT NULL,
         CustomerId TEXT NULL,
         BranchId TEXT NULL
+    )`).run(`CREATE TABLE IF NOT EXISTS CustomerGroup(
+        ID TEXT PRIMARY KEY,
+        Name TEXT NOT NULL,        
+        CustomerId TEXT NOT NULL,
+        FOREIGN KEY(CustomerId) REFERENCES Customer(ID)
+    )`).run(`CREATE TABLE IF NOT EXISTS GroupBranches(
+        ID INTEGER PRIMARY KEY,
+        GroupId TEXT NOT NULL,
+        BranchId TEXT NOT NULL,
+        FOREIGN KEY(GroupId) REFERENCES CustomerGroup(ID),
+        FOREIGN KEY(BranchId) REFERENCES Branch(ID)
     )`); 
 });
 

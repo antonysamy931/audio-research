@@ -56,6 +56,7 @@ import { AddCustomerUserComponent } from './add-customer-user/add-customer-user.
 import { CustomerUserService } from './service/customer/user/customer-user.service';
 import { ViewCustomerUsersComponent } from './view-customer-users/view-customer-users.component';
 import { CustomerUserDetailComponent } from './customer-user-detail/customer-user-detail.component';
+import { CustomerUserUpdateComponent } from './customer-user-update/customer-user-update.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,7 @@ import { CustomerUserDetailComponent } from './customer-user-detail/customer-use
     AgencyMonitoringBoardComponent, 
     MonitoringCustomerBranchesComponent, 
     MonitoringBranchPlayerComponent, 
-    AddCustomerUserComponent, ViewCustomerUsersComponent, CustomerUserDetailComponent
+    AddCustomerUserComponent, ViewCustomerUsersComponent, CustomerUserDetailComponent, CustomerUserUpdateComponent
   ],
   imports: [    
     BrowserModule,

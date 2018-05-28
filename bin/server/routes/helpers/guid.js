@@ -13,3 +13,7 @@ exports.branch_guid = function(){
 exports.user_guid = function(){
     return "user"+uuidv1();
 }
+
+exports.group_guid = function(){
+    return "group"+uuidv1();
+}

@@ -31,6 +31,7 @@
                   <th scope="col">Name</th>
                   <th scope="col">Description</th>
                   <th scope="col"></th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>                
@@ -40,7 +41,10 @@
                   <td>{{item.Description}}</td>
                   <td><a style="text-transform: uppercase; text-decoration: none;" 
                     routerLink="/branch-detail/{{item.BranchId}}/{{CustomerId}}" routerLinkActive="active"
-                    mat-raised-button color="primary">View Detail</a></td>                  
+                    mat-raised-button color="primary">View Detail</a></td>     
+                  <td><a style="text-transform: uppercase; text-decoration: none;" 
+                    routerLink="/update-customer-branch/{{item.BranchId}}/{{CustomerId}}" routerLinkActive="active"
+                    mat-raised-button color="primary">Edit</a></td>               
                 </tr>                                
               </tbody>
             </table>

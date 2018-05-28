@@ -31,6 +31,7 @@ import { MonitoringBranchPlayerComponent } from './monitoring-branch-player/moni
 import { AddCustomerUserComponent } from './add-customer-user/add-customer-user.component';
 import { ViewCustomerUsersComponent } from './view-customer-users/view-customer-users.component';
 import { CustomerUserDetailComponent } from './customer-user-detail/customer-user-detail.component';
+import { CustomerUserUpdateComponent } from './customer-user-update/customer-user-update.component';
 
 const pageRoute: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch:'full'},
@@ -63,7 +64,8 @@ const pageRoute: Routes = [
   ]},
   { path: 'add-customer-user/:id', component: AddCustomerUserComponent},
   { path: 'view-customer-users/:id', component: ViewCustomerUsersComponent},
-  { path: 'customer-user-detail/:id/:customerid', component: CustomerUserDetailComponent}
+  { path: 'customer-user-detail/:id/:customerid', component: CustomerUserDetailComponent},
+  { path: 'customer-user-update/:id/:customerid', component: CustomerUserUpdateComponent}
 ];
 
 @NgModule({

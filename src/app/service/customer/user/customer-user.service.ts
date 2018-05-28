@@ -26,4 +26,8 @@ export class CustomerUserService {
     return this.http.get(this.Url.GetUserById+"?UserId="+userid);
   }
 
+  UpdateCustomerUser(data:any): Observable<any>{
+    return this.http.post(this.Url.UpdateCustomerUser,data);
+  }
+
 }

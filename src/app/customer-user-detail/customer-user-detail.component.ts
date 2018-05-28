@@ -40,7 +40,7 @@ export class CustomerUserDetailComponent extends Common implements OnInit {
   }
 
   Edit(){
-    
+    this.router.navigateByUrl(`/customer-user-update/${this.UserId}/${this.CustomerId}`);
   }
 
 }

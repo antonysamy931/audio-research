@@ -39,6 +39,7 @@
                               <th scope="col">User Name</th>
                               <th scope="col">Role</th>
                               <th scope="col"></th>
+                              <th scope="col"></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -50,6 +51,9 @@
                               <td><a style="text-transform: uppercase; text-decoration: none;" 
                                 routerLink="/customer-user-detail/{{item.UserId}}/{{CustomerId}}" routerLinkActive="active"
                                   mat-raised-button color="primary">View Detail</a></td>                  
+                              <td><a style="text-transform: uppercase; text-decoration: none;" 
+                                routerLink="/customer-user-update/{{item.UserId}}/{{CustomerId}}" routerLinkActive="active"
+                                  mat-raised-button color="primary">Edit</a></td>
                             </tr>
                           </tbody>
                         </table>

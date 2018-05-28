@@ -1,0 +1,40 @@
+[2018-05-28T14:29:28.983] [ERROR] error - { Error: SQLITE_BUSY: database is locked
+    at Error (native) errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-28T14:41:37.758] [ERROR] error - { Error: SQLITE_BUSY: database is locked
+    at Error (native) errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-28T14:43:13.710] [ERROR] error - { Error: SQLITE_BUSY: database is locked
+    at Error (native) errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-28T14:48:43.375] [ERROR] error - { Error: SQLITE_BUSY: database is locked
+    at Error (native) errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-28T14:48:49.761] [ERROR] error - { Error: SQLITE_BUSY: database is locked
+    at Error (native) errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-28T14:49:42.608] [ERROR] error - { Error: SQLITE_BUSY: database is locked
+    at Error (native) errno: 5, code: 'SQLITE_BUSY' }
+[2018-05-28T14:49:57.160] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:49:57.167] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:50:22.469] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:50:22.476] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:50:44.327] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:50:44.333] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:50:46.053] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:50:46.061] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:52:19.535] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:52:19.543] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:52:38.753] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:52:38.760] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:52:40.901] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }
+[2018-05-28T14:52:40.908] [ERROR] error - { Error: SQLITE_CONSTRAINT: NOT NULL constraint failed: GroupBranches.BranchId
+    at Error (native) errno: 19, code: 'SQLITE_CONSTRAINT' }

@@ -41,6 +41,7 @@
                             <th scope="col">User Name</th>
                             <th scope="col">Role</th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -52,6 +53,9 @@
                             <td><a style="text-transform: uppercase; text-decoration: none;" 
                               routerLink="/branch-user-detail/{{item.ID}}/{{CustomerId}}" routerLinkActive="active"
                                 mat-raised-button color="primary">View Detail</a></td>                  
+                            <td><a style="text-transform: uppercase; text-decoration: none;" 
+                              routerLink="/branch-user-update/{{item.ID}}/{{CustomerId}}" routerLinkActive="active"
+                                mat-raised-button color="primary">Edit</a></td>                  
                           </tr>
                         </tbody>
                       </table>

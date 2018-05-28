@@ -30,4 +30,5 @@ export class Uri {
 
     public AddCustomerUser: string = "/api/v1/user/addnewuser";
     public GetCustomerUsers: string = "/api/v1/user/getcustomersusers";
+    public UpdateCustomerUser: string = "/api/v1/user/updateuser";
 }
