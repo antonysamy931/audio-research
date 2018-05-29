@@ -15,6 +15,7 @@ const user = require(path.join(__dirname,'/bin/server/routes/api/user.controller
 const authentication = require(path.join(__dirname, '/bin/server/routes/api/authenticate.controller'));
 const customer = require(path.join(__dirname, '/bin/server/routes/api/customer.controller'));
 const branch = require(path.join(__dirname, '/bin/server/routes/api/branch.controller'));
+const group = require(path.join(__dirname, '/bin/server/routes/api/group.controller'));
 
 //Custom Middleware
 const tokenMiddleware = require(path.join(__dirname, '/bin/server/routes/helpers/req.middleware'))
@@ -42,6 +43,7 @@ app.use('/api/v1/user',user);
 app.use('/api/v1/auth',authentication);
 app.use('/api/v1/customer',customer);
 app.use('/api/v1/branch',branch);
+app.use('/api/v1/group',group);
 
 // Send all other requests to the Angular app
 app.get('*', (req, res) => {

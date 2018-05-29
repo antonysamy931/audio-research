@@ -36,10 +36,10 @@ module.exports = {
                     ],(err) => {
                         if(err){
                             errorlog.error(err);
-                        }
-                        resolve('success');
+                        }                        
                     });                    
                 });
+                resolve('success');
             });
         });        
     },
@@ -73,7 +73,7 @@ module.exports = {
     },
     GroupNameExit: function(data){
         return new Promise(function(resolve, reject){
-            customerdb.get(customergroupquery.GROUPNAMEEXIST,[data.Name],(err,row)=>{
+            customerdb.get(customergroupquery.GROUPNAMEEXIST,[data.Name, data.CustomerId],(err,row)=>{
                 if(err){
                     errorlog.error(err);
                 }else{                    
@@ -84,13 +84,38 @@ module.exports = {
     },
     GroupNameExistUpdate: function(data){
         return new Promise(function(resolve,reject){
-            customerdb.get(customergroupquery.GROUPNAMEEXISTUPDATE,[data.Name,data.GroupId],(err,row)=>{
+            customerdb.get(customergroupquery.GROUPNAMEEXISTUPDATE,[data.Name,data.GroupId, data.CustomerId],(err,row)=>{
                 if(err){
                     errorlog.error(err);
                 }else{
                     resolve(row['C'] > 0 ? true : false);
                 }
             });
+        });
+    },
+    GetGroups: function(customerid){
+        return new Promise(function(resolve, reject){
+            customerdb.all(customergroupquery.SELECT,[customerid],(err,rows)=>{
+                if(err){
+                    errorlog.error(err);
+                }else{
+                    resolve(rows);
+                }
+            });
+        });
+    },
+    AddBranchToGroup: function(data){
+        return new Promise(function(resolve,reject){
+            customerdb.run(customergroupquery.INSERTGROUPBRANCH,[
+                null,
+                data.GroupId,
+                data.BranchId
+            ],(err) => {
+                if(err){
+                    errorlog.error(err);
+                }
+                resolve('success');
+            });  
         });
     }
 }

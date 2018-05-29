@@ -31,4 +31,12 @@ export class Uri {
     public AddCustomerUser: string = "/api/v1/user/addnewuser";
     public GetCustomerUsers: string = "/api/v1/user/getcustomersusers";
     public UpdateCustomerUser: string = "/api/v1/user/updateuser";
+
+    public GetCustomerGroups: string = "/api/v1/group/getgroups";
+    public InsertCustomerGroup: string = "/api/v1/group/insertgroup";
+    public DeleteCustomerGroup: string = "/api/v1/group/deletegroup";
+    public DeleteCustomerGroupBranch: string = "/api/v1/group/deletebranchforgroup";
+    public CustomerGroupNameExist: string = "/api/v1/group/groupnameexit";
+    public CustomerGroupNameExistUpdate: string = "/api/v1/group/groupnameexistupdate";
+    public CustomerGroupAddBranch: string = "/api/v1/group/addbranchtogroup";
 }

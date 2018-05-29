@@ -57,6 +57,9 @@ import { CustomerUserService } from './service/customer/user/customer-user.servi
 import { ViewCustomerUsersComponent } from './view-customer-users/view-customer-users.component';
 import { CustomerUserDetailComponent } from './customer-user-detail/customer-user-detail.component';
 import { CustomerUserUpdateComponent } from './customer-user-update/customer-user-update.component';
+import { CustomerGroupComponent } from './customer-group/customer-group.component';
+import { CustomerGroupService } from './service/group/customer-group.service';
+import { DragDropDirectiveModule} from "angular4-drag-drop";
 
 @NgModule({
   declarations: [
@@ -86,7 +89,11 @@ import { CustomerUserUpdateComponent } from './customer-user-update/customer-use
     AgencyMonitoringBoardComponent, 
     MonitoringCustomerBranchesComponent, 
     MonitoringBranchPlayerComponent, 
-    AddCustomerUserComponent, ViewCustomerUsersComponent, CustomerUserDetailComponent, CustomerUserUpdateComponent
+    AddCustomerUserComponent, 
+    ViewCustomerUsersComponent, 
+    CustomerUserDetailComponent, 
+    CustomerUserUpdateComponent, 
+    CustomerGroupComponent
   ],
   imports: [    
     BrowserModule,
@@ -97,7 +104,8 @@ import { CustomerUserUpdateComponent } from './customer-user-update/customer-use
     ReactiveFormsModule,
     Ng4LoadingSpinnerModule.forRoot(),
     NgbModalModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    DragDropDirectiveModule
   ],
   providers: [ 
     AudioServiceService, 
@@ -111,6 +119,7 @@ import { CustomerUserUpdateComponent } from './customer-user-update/customer-use
     SocketCustomerService,
     SocketBranchService,
     CustomerUserService,
+    CustomerGroupService,
     BranchUserService,{
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

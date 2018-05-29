@@ -32,6 +32,7 @@ import { AddCustomerUserComponent } from './add-customer-user/add-customer-user.
 import { ViewCustomerUsersComponent } from './view-customer-users/view-customer-users.component';
 import { CustomerUserDetailComponent } from './customer-user-detail/customer-user-detail.component';
 import { CustomerUserUpdateComponent } from './customer-user-update/customer-user-update.component';
+import { CustomerGroupComponent } from './customer-group/customer-group.component';
 
 const pageRoute: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch:'full'},
@@ -65,7 +66,8 @@ const pageRoute: Routes = [
   { path: 'add-customer-user/:id', component: AddCustomerUserComponent},
   { path: 'view-customer-users/:id', component: ViewCustomerUsersComponent},
   { path: 'customer-user-detail/:id/:customerid', component: CustomerUserDetailComponent},
-  { path: 'customer-user-update/:id/:customerid', component: CustomerUserUpdateComponent}
+  { path: 'customer-user-update/:id/:customerid', component: CustomerUserUpdateComponent},
+  { path: 'customer-group/:id', component: CustomerGroupComponent}
 ];
 
 @NgModule({
