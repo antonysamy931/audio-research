@@ -1,3 +1,5 @@
 .selectedgroup{
-    background-color: red;
+    font-weight: bold;
+    text-decoration: underline;
+    color: blue;
 }

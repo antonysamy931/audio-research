@@ -117,5 +117,27 @@ module.exports = {
                 resolve('success');
             });  
         });
+    },
+    GetCustomerMappedBranches: function(data){
+        return new Promise(function(resolve, reject){
+            customerdb.all(customergroupquery.CUSTOMERMAPPEDBRANCH,[data.CustomerId],(err,rows)=>{
+                if(err){
+                    errorlog.error(err);
+                }else{
+                    resolve(rows);
+                }
+            });
+        });
+    },
+    GetGroupMappedBranches: function(data){        
+        return new Promise(function(resolve, reject){            
+            customerdb.all(customergroupquery.GROUPBRANCHES,[data.GroupId],(err,rows) =>{
+                if(err){
+                    errorlog.error(err);
+                }else{
+                    resolve(rows);
+                }
+            });
+        })
     }
 }

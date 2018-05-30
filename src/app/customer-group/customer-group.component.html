@@ -48,25 +48,42 @@
           <mat-card-content>
             <mat-list>
               <mat-list-item *ngFor="let item of Groups; let i = index" 
-              [ngClass]="{'selectedgroup':SelectedGroup == i}" (click)="SetActive(i)">
+              [ngClass]="{'selectedgroup':SelectedGroup == i}" (click)="SetActive(i, item)">
                 {{item.Name}}
               </mat-list-item> 
             </mat-list>
           </mat-card-content>          
         </mat-card>
       </div>
-      <div dropDirective (dropEvent)="AddDropItem($event)" class="col-sm-4 col-md-4 col-lg-4">
-        
+      <div class="col-sm-4 col-md-4 col-lg-4">
+        <mat-card *ngIf="SelectedGroup > -1" >
+          <mat-card-header>
+            <mat-card-title>Grouped Branches</mat-card-title>
+          </mat-card-header>
+          <mat-card-content dropDirective (dropEvent)="AddDropItem($event)">
+            <mat-list *ngIf="SelectedGroupBranches.length > 0" >
+                <mat-list-item *ngFor="let item of SelectedGroupBranches">
+                  {{item.NAME}} <mat-icon (click)="RemoveBranchFromGroup(item.ID)">close</mat-icon>
+                </mat-list-item> 
+            </mat-list>            
+            <mat-list *ngIf="SelectedGroupBranches.length == 0">
+                <mat-list-item>
+                  No branches..    
+                </mat-list-item> 
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
       </div>
       <div class="col-sm-4 col-md-4 col-lg-4">
-        <mat-card *ngIf="Branches.length > 0">
+        <mat-card *ngIf="Branches.length > 0 && SelectedGroup > -1">
           <mat-card-header>
-            <mat-card-title>Customer Groups</mat-card-title>
+            <mat-card-title>Ungrouped Branches</mat-card-title>
           </mat-card-header> 
           <mat-card-content>
             <mat-list>
-              <mat-list-item [dragDirective]='item' (releaseDrop)="ReleaseDrop($event)" *ngFor="let item of Branches">
-                {{GetBranchName(item.BranchId)}}
+              <mat-list-item [dragDirective]='item' (releaseDrop)="ReleaseDrop($event)" 
+              *ngFor="let item of Branches">
+                {{item.NAME}}
               </mat-list-item> 
             </mat-list>
           </mat-card-content>          

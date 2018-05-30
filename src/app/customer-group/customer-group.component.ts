@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Common } from '../class/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomerGroupService } from '../service/group/customer-group.service';
 import { BranchService } from '../service/branch/branch.service';
 import { FormControl, Validators } from '@angular/forms';
 import { IsGroupNameExistValidator } from '../class/validators/is-group-name-exist-validator';
+import { isNull } from 'util';
 
 @Component({
   selector: 'app-customer-group',
   templateUrl: './customer-group.component.html',
   styleUrls: ['./customer-group.component.css']
 })
-export class CustomerGroupComponent extends Common implements OnInit {
+export class CustomerGroupComponent extends Common implements OnInit, AfterViewInit {
 
   constructor(public router: Router, private activatedrouter: ActivatedRoute,
   private customergroupservice: CustomerGroupService, private branchservice: BranchService) {
@@ -25,7 +26,13 @@ export class CustomerGroupComponent extends Common implements OnInit {
 
   CustomerId: string;
 
-  SelectedGroup:number = 0;
+  SelectedGroup:number = -1;
+
+  CustomerMappedBranches:any = [];
+
+  SelectedGroupId: string;
+
+  SelectedGroupBranches: any = [];
 
   name = new FormControl('name', Validators.required,
     [IsGroupNameExistValidator(this.customergroupservice,this.activatedrouter)]);
@@ -34,8 +41,11 @@ export class CustomerGroupComponent extends Common implements OnInit {
     this.activatedrouter.params.subscribe(params => {
        this.CustomerId = params['id'];
     });
-    this.LoadCustomerGroups();
-    this.LoadCustomerBranches();
+    this.LoadCustomerGroups();    
+    this.LoadCustomerMappedBranches();
+  }
+
+  ngAfterViewInit(){    
   }
 
   LoadCustomerGroups(){
@@ -48,7 +58,14 @@ export class CustomerGroupComponent extends Common implements OnInit {
 
   LoadCustomerBranches(){
     this.branchservice.GetBranchesByCustomer(this.CustomerId).subscribe(data => {
-      this.Branches = data;   
+      this.Branches = [];
+      data.forEach(element => {
+        if(this.CustomerMappedBranches.indexOf(element.BranchId) === -1){
+          if(this.Branches.indexOf(element.BranchId) === -1){
+            this.Branches.push(element);
+          }
+        }
+      });      
     }, err => {
       console.log(err); 
     })
@@ -57,8 +74,7 @@ export class CustomerGroupComponent extends Common implements OnInit {
   Save(){
     this.Group.CustomerId = this.CustomerId;
     this.Group.BranchIds = [];
-    this.customergroupservice.AddCustomerGroup(this.Group).subscribe(data => {
-      console.log(data);      
+    this.customergroupservice.AddCustomerGroup(this.Group).subscribe(data => {      
     }, err => {
       console.log(err);
     },() => {
@@ -68,12 +84,54 @@ export class CustomerGroupComponent extends Common implements OnInit {
     })        
   }
 
-  SetActive(index: number){
-    this.SelectedGroup = index;
+  LoadCustomerMappedBranches(){
+    this.customergroupservice.GetCustomerMappedBranches(this.CustomerId).subscribe(data => {
+      this.CustomerMappedBranches = [];
+      data.forEach(element => {
+        this.CustomerMappedBranches.push(element.BranchId);
+      });      
+    }, err => {
+      console.log(err);
+    }, () => {     
+      this.LoadCustomerBranches(); 
+    });
   }
 
-  GetBranchName(branchid){
-    return this.Branches.find(x => x.BranchId).NAME;
+  LoadGroupedBranches(){
+    if(!isNull(this.SelectedGroupId)){
+      this.customergroupservice.GetGroupMappedBranches(this.SelectedGroupId).subscribe(data => {
+        this.SelectedGroupBranches = data;
+      }, err => {
+        console.log(err);
+      });
+    }
+  }
+
+  RemoveBranchFromGroup(BranchId: string){
+    this.customergroupservice.DeleteCustomerGroupBranch(this.SelectedGroupId,BranchId).subscribe(data => {
+      this.LoadCustomerMappedBranches();
+      this.LoadGroupedBranches();
+    }, err => {
+      console.log(err);
+    });    
+  }
+
+  SetActive(index: number, group: any){
+    this.SelectedGroup = index;
+    this.SelectedGroupId = group.ID;
+    this.LoadCustomerMappedBranches();
+    this.LoadGroupedBranches();
+  }
+
+  RemoveGroup(group: any){
+    // this.customergroupservice.DeleteCustomerGroup(group.ID).subscribe(data => {
+    //   this.LoadCustomerGroups();
+    //   this.LoadCustomerMappedBranches();
+    //   this.LoadCustomerBranches();
+    // }, err => {
+    //   console.log(err);
+    // });
+    console.log(group);
   }
 
   ReleaseDrop(event: any){    
@@ -81,7 +139,12 @@ export class CustomerGroupComponent extends Common implements OnInit {
   }
 
   AddDropItem(event: any){
-    console.log("drag " + event);
+    this.customergroupservice.AddBranchToCustomerGroup(this.SelectedGroupId,event.BranchId).subscribe(data => {
+      this.LoadCustomerMappedBranches();
+      this.LoadGroupedBranches();
+    },err => {
+      console.log(err);
+    });
   }
 
 }

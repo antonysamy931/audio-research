@@ -46,4 +46,16 @@ router.post('/addbranchtogroup',function(req,res){
     });
 });
 
+router.post('/getcustomermappedbranches',function(req,res){
+    dbhelper.customergrouprepo.GetCustomerMappedBranches(req.body).then(function(result){
+        res.json(result);
+    });
+});
+
+router.post('/getgroupmappedbranches',function(req,res){    
+    dbhelper.customergrouprepo.GetGroupMappedBranches(req.body).then(function(result){
+        res.json(result);
+    });
+});
+
 module.exports = router;

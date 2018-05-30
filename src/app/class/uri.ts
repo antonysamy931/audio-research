@@ -39,4 +39,6 @@ export class Uri {
     public CustomerGroupNameExist: string = "/api/v1/group/groupnameexit";
     public CustomerGroupNameExistUpdate: string = "/api/v1/group/groupnameexistupdate";
     public CustomerGroupAddBranch: string = "/api/v1/group/addbranchtogroup";
+    public GetCustomerMappedBranches: string = "/api/v1/group/getcustomermappedbranches";
+    public GetGroupMappedBranches: string = "/api/v1/group/getgroupmappedbranches";
 }

@@ -39,4 +39,12 @@ export class CustomerGroupService {
   GroupNameUpdateExistForCustomer(CustomerId: string, Name: string, GroupId: string): Observable<any>{
     return this.http.post(this.Url.CustomerGroupNameExistUpdate,{Name: Name, CustomerId: CustomerId, GroupId: GroupId});
   }
+
+  GetCustomerMappedBranches(CustomerId: string): Observable<any>{
+    return this.http.post(this.Url.GetCustomerMappedBranches,{CustomerId : CustomerId});
+  }
+
+  GetGroupMappedBranches(GroupId: string): Observable<any>{
+    return this.http.post(this.Url.GetGroupMappedBranches,{GroupId : GroupId});
+  }
 }
