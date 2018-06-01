@@ -47,9 +47,9 @@
           </mat-card-header>
           <mat-card-content>
             <mat-list>
-              <mat-list-item *ngFor="let item of Groups; let i = index" 
-              [ngClass]="{'selectedgroup':SelectedGroup == i}" (click)="SetActive(i, item)">
-                {{item.Name}}
+              <mat-list-item class="custom-mat-list-style" *ngFor="let item of Groups; let i = index" >
+                <div [ngClass]="{'selectedgroup':SelectedGroup == i}" (click)="SetActive(i, item)">{{item.Name}}</div>
+                <div><mat-icon (click)="RemoveGroup(item)" class="close-icon">close</mat-icon></div>
               </mat-list-item> 
             </mat-list>
           </mat-card-content>          
@@ -62,8 +62,8 @@
           </mat-card-header>
           <mat-card-content dropDirective (dropEvent)="AddDropItem($event)">
             <mat-list *ngIf="SelectedGroupBranches.length > 0" >
-                <mat-list-item *ngFor="let item of SelectedGroupBranches">
-                  {{item.NAME}} <mat-icon (click)="RemoveBranchFromGroup(item.ID)">close</mat-icon>
+                <mat-list-item class="custom-mat-list-style" *ngFor="let item of SelectedGroupBranches">
+                  {{item.NAME}} <mat-icon (click)="RemoveBranchFromGroup(item.ID)" class="close-icon">close</mat-icon>
                 </mat-list-item> 
             </mat-list>            
             <mat-list *ngIf="SelectedGroupBranches.length == 0">
@@ -81,7 +81,7 @@
           </mat-card-header> 
           <mat-card-content>
             <mat-list>
-              <mat-list-item [dragDirective]='item' (releaseDrop)="ReleaseDrop($event)" 
+              <mat-list-item class="custom-mat-list-style" [dragDirective]='item' (releaseDrop)="ReleaseDrop($event)" 
               *ngFor="let item of Branches">
                 {{item.NAME}}
               </mat-list-item> 

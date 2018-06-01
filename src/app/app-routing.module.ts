@@ -33,6 +33,7 @@ import { ViewCustomerUsersComponent } from './view-customer-users/view-customer-
 import { CustomerUserDetailComponent } from './customer-user-detail/customer-user-detail.component';
 import { CustomerUserUpdateComponent } from './customer-user-update/customer-user-update.component';
 import { CustomerGroupComponent } from './customer-group/customer-group.component';
+import { GroupAudioMapComponent } from './group-audio-map/group-audio-map.component';
 
 const pageRoute: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch:'full'},
@@ -67,7 +68,8 @@ const pageRoute: Routes = [
   { path: 'view-customer-users/:id', component: ViewCustomerUsersComponent},
   { path: 'customer-user-detail/:id/:customerid', component: CustomerUserDetailComponent},
   { path: 'customer-user-update/:id/:customerid', component: CustomerUserUpdateComponent},
-  { path: 'customer-group/:id', component: CustomerGroupComponent}
+  { path: 'customer-group/:id', component: CustomerGroupComponent},
+  { path: 'group-audio-map/:id', component: GroupAudioMapComponent}
 ];
 
 @NgModule({

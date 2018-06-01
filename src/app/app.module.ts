@@ -60,6 +60,8 @@ import { CustomerUserUpdateComponent } from './customer-user-update/customer-use
 import { CustomerGroupComponent } from './customer-group/customer-group.component';
 import { CustomerGroupService } from './service/group/customer-group.service';
 import { DragDropDirectiveModule} from "angular4-drag-drop";
+import { GroupAudioMapComponent } from './group-audio-map/group-audio-map.component';
+import { GroupAudioMapServiceService } from './service/group-audio/group-audio-map-service.service';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,7 @@ import { DragDropDirectiveModule} from "angular4-drag-drop";
     ViewCustomerUsersComponent, 
     CustomerUserDetailComponent, 
     CustomerUserUpdateComponent, 
-    CustomerGroupComponent
+    CustomerGroupComponent, GroupAudioMapComponent
   ],
   imports: [    
     BrowserModule,
@@ -120,6 +122,7 @@ import { DragDropDirectiveModule} from "angular4-drag-drop";
     SocketBranchService,
     CustomerUserService,
     CustomerGroupService,
+    GroupAudioMapServiceService,
     BranchUserService,{
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

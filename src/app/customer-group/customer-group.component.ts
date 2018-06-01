@@ -97,13 +97,15 @@ export class CustomerGroupComponent extends Common implements OnInit, AfterViewI
     });
   }
 
-  LoadGroupedBranches(){
-    if(!isNull(this.SelectedGroupId)){
+  LoadGroupedBranches(){    
+    if(!isNull(this.SelectedGroupId) && this.SelectedGroupId !== ""){
       this.customergroupservice.GetGroupMappedBranches(this.SelectedGroupId).subscribe(data => {
         this.SelectedGroupBranches = data;
       }, err => {
         console.log(err);
       });
+    }else{
+      this.SelectedGroupBranches = [];
     }
   }
 
@@ -124,14 +126,19 @@ export class CustomerGroupComponent extends Common implements OnInit, AfterViewI
   }
 
   RemoveGroup(group: any){
-    // this.customergroupservice.DeleteCustomerGroup(group.ID).subscribe(data => {
-    //   this.LoadCustomerGroups();
-    //   this.LoadCustomerMappedBranches();
-    //   this.LoadCustomerBranches();
-    // }, err => {
-    //   console.log(err);
-    // });
-    console.log(group);
+    this.customergroupservice.DeleteCustomerGroup(group.ID).subscribe(data => {
+      this.LoadCustomerGroups();
+      this.LoadCustomerMappedBranches();
+      this.LoadGroupedBranches();
+    }, err => {
+      console.log(err);
+    }, () => {
+      if(this.SelectedGroupId == group.ID){
+        this.SelectedGroup = -1;
+        this.SelectedGroupId = null;
+      }
+    });
+    //console.log(group);
   }
 
   ReleaseDrop(event: any){    
