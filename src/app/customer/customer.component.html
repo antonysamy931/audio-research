@@ -19,32 +19,58 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <!-- <table mat-table [dataSource]="datasource">        
-        <ng-container matColumnDef="CustomerId">
-          <th mat-header-cell *matHeaderCellDef> Customer Id. </th>
-          <td mat-cell *matCellDef="let element"> {{element.CustomerId}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="Name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
-        </ng-container>
-    
-        <ng-container matColumnDef="Description">
-          <th mat-header-cell *matHeaderCellDef> Description </th>
-          <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      
-      <mat-paginator
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 20]"
-        [showFirstLastButtons]="true">
-      </mat-paginator> -->
       <div class="table-responsive">
+        <mat-table [dataSource]="datasource" matSort class="table table-condensed">        
+          <ng-container matColumnDef="Detail">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell class="action-cell" *matCellDef="let element"> 
+                <a style="text-transform: uppercase; text-decoration: none;" 
+                routerLink="/customer-detail/{{element.CustomerId}}" routerLinkActive="active"
+                mat-raised-button color="primary">View Detail</a>            
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Edit">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell class="action-cell" *matCellDef="let element"> 
+                <a style="text-transform: uppercase; text-decoration: none;" 
+                routerLink="/update-customer/{{element.CustomerId}}" routerLinkActive="active"
+                mat-raised-button color="primary">Edit</a>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="Branches">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell class="action-cell" *matCellDef="let element"> 
+                <a style="text-transform: uppercase; text-decoration: none;" 
+                routerLink="/customer-branches/{{element.CustomerId}}" routerLinkActive="active"
+                mat-raised-button color="primary">View Branches</a>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="No">
+            <mat-header-cell *matHeaderCellDef class="mat-number-column"> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index" class="mat-number-column"> {{element.No}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Name}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="Description">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Description}} </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns; let i = index"></mat-row>
+        </mat-table>
+        
+        <mat-paginator
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 20]"
+          [showFirstLastButtons]="true">
+        </mat-paginator>
+      </div>
+      <!--<div class="table-responsive">
         <table class="table table-condensed" *ngIf="data?.length > 0">
             <thead class="thead-light">
               <tr>
@@ -89,7 +115,7 @@
                 </tr>              
             </tbody>
           </table>
-      </div>      
+      </div>      -->
 
     </div>
   </div>

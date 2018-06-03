@@ -12,5 +12,8 @@ export class GroupAudioMapServiceService {
 
   private Url: Uri = new Uri();
 
+  public InsertAudioByGroup(id: string, file: any): Observable<any>{
+    return this.http.post(this.Url.GroupFileUpload+"?Id="+id,file);
+  }
   
 }

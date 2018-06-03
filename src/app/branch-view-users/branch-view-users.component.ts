@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material'
 
 import { Common } from '../class/common';
 
@@ -17,6 +18,13 @@ export class BranchViewUsersComponent extends Common implements OnInit {
   CustomerId:string;
   Branch: any = {};
   BranchUsers: any = [];
+  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  displayedColumns = ['No','Name','Username','Role','Detail', 'Edit'];
+
+  private datasource:any;
+
 
   constructor(private route: ActivatedRoute, public router: Router,
     private branchservice: BranchService, private branchUserService: BranchUserService) {
@@ -46,9 +54,16 @@ export class BranchViewUsersComponent extends Common implements OnInit {
 
   LoadBranchUsers(){
     this.branchUserService.GetUsers(this.BranchId).subscribe(data => {
+      data.forEach(function(element, i) {
+        element.No = i+1;
+      });
       this.BranchUsers = data;
+      this.datasource = new MatTableDataSource(data);
     },err => {
       console.log(err);
+    },() => {
+      this.datasource.paginator = this.paginator;
+      this.datasource.sort = this.sort;
     })
   }
 }

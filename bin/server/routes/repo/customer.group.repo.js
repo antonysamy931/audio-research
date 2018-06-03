@@ -6,6 +6,7 @@ const utility = require(path.join(__dirname, '../helpers/utility'));
 const db = require(path.join(__dirname, '../helpers/db.instance'));
 const guid = require(path.join(__dirname, '../helpers/guid'));
 const customergroupquery = require(path.join(__dirname, '../query/customer.group.query'));
+const playfilerepo = require(path.join(__dirname, './playfile.repo'));
 
 const addressrepo = require(path.join(__dirname, './address.repo'));
 
@@ -139,5 +140,34 @@ module.exports = {
                 }
             });
         })
+    },
+    MapAudioToGroupBranches: function(groupid, name, createdby){
+        return new Promise(function(resolve, reject){            
+            GetBranches({GroupId: groupid}).then(function(result){
+                result.forEach(function(row, i){                    
+                    var Record = {
+                        BranchId: row.ID,
+                        Name: name,
+                        CreatedBy: createdby
+                    };
+                    playfilerepo.Insert(Record);
+                    if(i + 1 == result.length){                                                    
+                        resolve("success");
+                    }                  
+                });
+            })
+        })
     }
+}
+
+function GetBranches(data){
+    return new Promise(function(resolve, reject){  
+        customerdb.all(customergroupquery.GROUPBRANCHES,[data.GroupId],(err,rows) =>{
+            if(err){
+                errorlog.error(err);
+            }else{
+                resolve(rows);
+            }
+        });
+    })
 }

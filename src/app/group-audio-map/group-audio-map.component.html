@@ -1,3 +1,51 @@
-<p>
-  group-audio-map works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav class="breadcrumb">
+        <a class="breadcrumb-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a class="breadcrumb-item" routerLink="/customer" routerLinkActive="active">Customers</a>
+        <a class="breadcrumb-item" routerLink="/customer-detail/{{CustomerId}}" 
+        routerLinkActive="active">Customer Detail</a>        
+        <a class="breadcrumb-item active">File Mapped</a>
+      </nav>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-6">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title><b>File Map for Group</b></mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form>
+              <div class="form-group row">
+                <mat-form-field class="col-12">
+                  <mat-select placeholder="Select Group" [formControl]="group" 
+                  [(ngModel)]="Group" required>
+                    <mat-option *ngFor="let g of Groups" [value]="g.value">{{g.text}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="group.invalid && group.hasError('required')">Group is required.</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-group row">
+                <label for="exampleInputFile" class="control-label col-sm-2 col-md-2 col-lg-2">File</label>
+                <div class="col-sm-10 col-md-10 col-lg-10">
+                  <input type="file" class="" #audioUpload type="file" 
+                    accept=".mp3,.mp4,.zip,.gz,.bz2,.tar,.tar.gz,.tar.bz2,.tgz,.tbz2" (change)="onFileChange($event)"
+                  aria-describedby="fileHelp" />
+                </div>                      
+              </div>
+              <div *ngIf="ValidationSummary" class="validation-error">
+                  <span>{{ValidationSummaryMessage}}</span>
+              </div>
+            </form>
+          </mat-card-content>
+          <mat-card-actions class="mat-action-card-custom">            
+            <button mat-raised-button color="primary"
+              [disabled] = "group.invalid || ButtonDisabled"
+              (click)="Save()">SAVE</button>              
+          </mat-card-actions>
+        </mat-card>
+      </div>    
+    </div>
+  </div>

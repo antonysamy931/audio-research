@@ -64,6 +64,24 @@ body{
     font-weight: bold;
 }
 
+.mat-header-row{
+    background-color: #303e8c;
+}
+
+.mat-header-cell{
+    font-weight: bold !important;
+    font-size: 15px !important;
+    color: #fff !important;
+}
+
+.action-cell{
+    text-align: center !important;
+}
+
+.mat-number-column{
+    flex: 0 0 7% !important;
+}
+
 /* Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {  }
 

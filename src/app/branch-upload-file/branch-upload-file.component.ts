@@ -5,6 +5,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Common } from '../class/common';
 
 import { BranchService } from '../service/branch/branch.service';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-branch-upload-file',
@@ -22,9 +23,9 @@ export class BranchUploadFileComponent extends Common implements OnInit {
   private ButtonDisabled: boolean = true;
 
   constructor(private route: ActivatedRoute, public router: Router,
-    private branchservice: BranchService, private spinnerService: Ng4LoadingSpinnerService) {
-      super(router);
-     }
+  private branchservice: BranchService, private spinnerService: Ng4LoadingSpinnerService) {
+    super(router);
+  }
   
   ngOnInit() {
     this.route.params.subscribe(params => {

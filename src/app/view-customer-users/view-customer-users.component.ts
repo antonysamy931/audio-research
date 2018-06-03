@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Common } from '../class/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material'
 import { CustomerUserService } from '../service/customer/user/customer-user.service';
 import { CustomerService } from '../service/customer/customer.service';
 
@@ -20,6 +21,12 @@ export class ViewCustomerUsersComponent extends Common implements OnInit {
   private Users:any = [];
   private Customer:any = {};
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  displayedColumns = ['No','Name','Username','Role','Detail', 'Edit'];
+
+  private datasource:any;
+
   ngOnInit() {
     this.activatedroute.params.subscribe(params => {
       this.CustomerId = params['id']
@@ -38,9 +45,16 @@ export class ViewCustomerUsersComponent extends Common implements OnInit {
 
   LoadCustomerUsers(){
     this.customeruserservice.GetCustomerUsers(this.CustomerId).subscribe(data => {
-      this.Users = data;      
+      data.forEach(function(element, i) {
+        element.No = i+1;
+      });
+      this.Users = data;    
+      this.datasource = new MatTableDataSource(data);  
     }, err => {
       console.log(err);
+    }, () => {
+      this.datasource.paginator = this.paginator;
+      this.datasource.sort = this.sort;
     });
   }
 

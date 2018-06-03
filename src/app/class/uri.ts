@@ -41,4 +41,5 @@ export class Uri {
     public CustomerGroupAddBranch: string = "/api/v1/group/addbranchtogroup";
     public GetCustomerMappedBranches: string = "/api/v1/group/getcustomermappedbranches";
     public GetGroupMappedBranches: string = "/api/v1/group/getgroupmappedbranches";
+    public GroupFileUpload: string = "/api/v1/group/groupfileupload";
 }
